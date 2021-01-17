@@ -51,31 +51,31 @@
             <tbody>
                 <tr>
                   <th scope="row">Category</th>
-                  <td><input class="name" name="permission[]" type="checkbox" value="9"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="10"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="11"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="12"></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="9" {{in_array(9, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="10" {{in_array(10, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="11" {{in_array(11, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="12" {{in_array(12, $rolePermissions) ? "checked" : ""}}></td>
                 </tr>
                 <tr>
                   <th scope="row">Product</th>
-                  <td><input class="name" name="permission[]" type="checkbox" value="5"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="6"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="7"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="8"></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="5" {{in_array(5, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="6" {{in_array(6, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="7" {{in_array(7, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="8" {{in_array(8, $rolePermissions) ? "checked" : ""}}></td>
                 </tr>
                 <tr>
                   <th scope="row">Article</th>
-                  <td><input class="name" name="permission[]" type="checkbox" value="13"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="14"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="15"></td>
-                  <td><input class="name" name="permission[]" type="checkbox" value="16"></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="13" {{in_array(13, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="14" {{in_array(14, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="15" {{in_array(15, $rolePermissions) ? "checked" : ""}}></td>
+                  <td><input class="name" name="permission[]" type="checkbox" value="16" {{in_array(16, $rolePermissions) ? "checked" : ""}}></td>
                 </tr>
             <tr>
               <th scope="row">Role</th>
-              <td><input class="name" name="permission[]" type="checkbox" value="1"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="2"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="3"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="4"></td>
+              <td><input class="name" name="permission[]" type="checkbox" value="1" {{in_array(1, $rolePermissions) ? "checked" : ""}}></td>
+              <td><input class="name" name="permission[]" type="checkbox" value="2" {{in_array(2, $rolePermissions) ? "checked" : ""}}></td>
+              <td><input class="name" name="permission[]" type="checkbox" value="3" {{in_array(3, $rolePermissions) ? "checked" : ""}}></td>
+              <td><input class="name" name="permission[]" type="checkbox" value="4" {{in_array(4, $rolePermissions) ? "checked" : ""}}></td>
             </tr>
             </tbody>
         </table>
