@@ -7,7 +7,7 @@
             <!--begin::Header Menu-->
             <div id="kt_header_menu" class="header-menu header-menu-mobile ">
                         <div class="d-flex flex-wrap">
-                            
+
                             <div class="ml-auto d-flex"> </div>
                             <div id="course-header"></div>
                         </div>
@@ -68,7 +68,7 @@
                     id="kt_quick_user_toggle">
                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">{{ __('lang.welcome') }} </span>
                     <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{auth()->user()->name??''}}</span>
-                    
+
                 </div>
             </div>
             <!--end::User-->
@@ -124,12 +124,12 @@
                                 </a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-        
+
                                     <a href='#' class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5" onclick="event.preventDefault();
                                                         this.closest('form').submit();">{{ __('lang.Logout') }}
                                     </a>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <!--end:Item-->
 
                         <!--begin::Item-->
-                        
+
 
                     </div>
                     <!--end::Nav-->
@@ -233,7 +233,7 @@
 
     </div>
     <!--end::Container-->
-    
+
 </div>
 <div class="mycontent d-flex flex-column flex-row-fluid wrapper"" id="kt_wrapper">
     <div class=" container">
@@ -245,4 +245,3 @@
     </div>
 
 
-    

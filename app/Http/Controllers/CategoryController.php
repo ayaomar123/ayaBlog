@@ -13,7 +13,14 @@ use Session;
 
 class CategoryController extends Controller
 {
-   
+    function __construct()
+    {
+         $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:category-create', ['only' => ['create','store']]);
+         $this->middleware('permission:category-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:category-delete', ['only' => ['destroy']]);
+    }
+
     public function index(){
 
     $items = $this->queryModel()->get();
@@ -30,9 +37,9 @@ class CategoryController extends Controller
     {
 
         if(request()->ajax()) {
-            
+
             $data = $this->queryModel()->select('*');
-            
+
             return datatables()::of($data)
             ->addIndexColumn()
             ->filter(function ($instance) use ($request) {
@@ -50,21 +57,21 @@ class CategoryController extends Controller
                     ->orWhere('status', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('description', 'LIKE', '%' . $request->search . '%');
 
-                }               
+                }
             })
             ->rawColumns(['status'])
             ->addColumn('action', function($data){
 
-                   $editUrl = url('categories/'.$data->id);   
+                   $editUrl = url('categories/'.$data->id);
 
                    $btn = '<a style="width:100px" href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
-                   
+
                    $btn = $btn.' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
 
                     return $btn;
             })
             ->rawColumns(['action'])
-            ->make(true);            
+            ->make(true);
         }
 
     }
@@ -132,7 +139,7 @@ class CategoryController extends Controller
             return view('categories.edit',compact('category'));
         }catch(\Exception $e){
             throw $e;
-        }        
+        }
     }
 
     /**
@@ -145,7 +152,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = $this->rules();
-    
+
         $this->queryModel()
         ->where('id', $request->id)
         ->update($data);
@@ -170,20 +177,20 @@ class CategoryController extends Controller
     }
 
     public function deleteAll(){
-        
+
         $this->queryModel()
         ->whereIn('id',\request('id'))
         ->delete();
-        
+
         return response()->json(['success'=>"Category Deleted successfully."]);
     }
 
-    public function deactivate(){  
+    public function deactivate(){
 
         $this->queryModel()
         ->whereIn('id',\request('id'))
         ->update(['status'=> \request('status')]);
-       
+
         return response()->json(['success'=>"Categories updated successfully."]);
     }
 
@@ -197,7 +204,7 @@ class CategoryController extends Controller
         return response()->json(['success'=>"Categories updated successfully."]);
 
     }
-    public function changeStatus(Request $request) 
+    public function changeStatus(Request $request)
     {
 
         $category = Category::find($request->id);
@@ -217,12 +224,12 @@ class CategoryController extends Controller
         }elseif(request('status')){
             $items->where('status', request('status'));
         }
-        
+
         $items->get();
 
         return view("categories.index")->with('items',$items);
     }
-    
+
     private function model()
     {
         return new Category();

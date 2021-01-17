@@ -1,19 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Role Management</h2>
-            </div>
-            <div class="pull-right">
-                @can('role-create')
-                    <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
-                @endcan
-            </div>
+<div class="container mt-2">
+    <div class="mb-4">
+
+        <h2 class="text-center py-2"
+            style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
+             {{ __('lang.roles') }}
+        </h2>
+
+        <div class="col-md-3">
+            @can('role-create')
+            <a style="background:rgb(108, 192, 115);color:white;float: right; width:250px;" class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
+        @endcan
         </div>
+
     </div>
+</div>
 
 
     @if ($message = Session::get('success'))
@@ -22,8 +26,8 @@
         </div>
     @endif
 
-
-    <table class="table table-bordered">
+    <div class="card-body" style="padding-left:50px">
+    <table class="table table-bordered" style="text-align: left;padding-left:5px">
         <tr>
             <th>No</th>
             <th>Name</th>
@@ -47,7 +51,7 @@
             </tr>
         @endforeach
     </table>
-
+    </div>
 
     {!! $roles->render() !!}
 

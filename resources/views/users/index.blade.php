@@ -1,17 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Users Management</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-            </div>
+<div class="container mt-2">
+    <div class="mb-4">
+
+        <h2 class="text-center py-2"
+            style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
+            Users Management
+        </h2>
+
+        <div class="col-md-3">
+            @can('role-create')
+            <a style="background:rgb(108, 192, 115);color:white;float: right; width:250px;" class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+        @endcan
         </div>
+
     </div>
+</div>
+
 
 
     @if ($message = Session::get('success'))
@@ -20,8 +27,8 @@
         </div>
     @endif
 
-
-    <table class="table table-bordered">
+    <div class="card-body" style="padding-left:50px">
+    <table class="table table-bordered" style="text-align: left">
         <tr>
             <th>No</th>
             <th>Name</th>
@@ -36,7 +43,7 @@
                 <td>{{ $user->name }}</td>
                 {{-- <td>
                     @if($user->image)
-                    <img style='max-width:75px' src='{{asset("storage/$user->image")}}' />  
+                    <img style='max-width:75px' src='{{asset("storage/$user->image")}}' />
                     @endif
                 </td> --}}
                 <td>{{ $user->email }}</td>
@@ -57,7 +64,7 @@
             </tr>
         @endforeach
     </table>
-
+</div>
 
     {!! $data->render() !!}
 

@@ -19,21 +19,22 @@
                         <div class="card">
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                  <label for="formGroupExampleInput">Name</label>
-                                  <input type="text" name="name"  value="{{ $articles->name }}" class="col-md-5 form-control" id="formGroupExampleInput" placeholder="Please enter title" value="{{ $articles->title }}">
+                                  <label style="float: left" for="formGroupExampleInput">Name</label>
+                                  <br>
+                                  <input style="margin-left: 60px" type="text" name="name"  value="{{ $articles->name }}" class="col-md-5 form-control" id="formGroupExampleInput" placeholder="Please enter title" value="{{ $articles->title }}">
                                   <span class="text-danger">{{ $errors->first('name') }}</span>
                                 </blockquote>
                                 <br>
                                 <blockquote class="blockquote mb-0">
-                                    <label for="message">Description</label>
+                                    <label style="float: left" for="message">Description</label>
+                                    <br>
                                     <textarea class="form-control col-md-5" name="description"
                                 placeholder="Please enter description">{{$articles->description}}</textarea>
                                     <span class="text-danger">{{ $errors->first('description') }}</span>
                                 </blockquote>
                                 <br>
                                 <blockquote>
-                                    <div class="col-md-5">
-                                        <label for="image">Choose articles Image</label>
+                                    <div class="col-md-4" style="margin-left: -81px">
                                         <input id="image" type="file" name="image" value="{{ old('image') }}"
                                             onchange="loadFile(event)">
                                     </div>
@@ -43,7 +44,7 @@
                                 </blockquote>
                                 <br>
                                 <blockquote class="blockquote mb-0">
-                                    <div class="slideOne">
+                                    <div style="float: left" class="slideOne">
                                         <input {{$articles->status=='1'?"checked":""}} type="checkbox"  value="1" id="published" name="status" />
                                         <label for="slideOne">Active</label>
                                     </div>

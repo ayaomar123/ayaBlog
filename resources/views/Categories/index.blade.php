@@ -55,7 +55,7 @@
 
                                 <div class="left form-check" style="">
                                     <select class="mdb-select md-form" searchable="Search here.." name='category'
-                                        id="category" style="width:650px;>
+                                        id="category" style="width:650px;">
                                         <option value="">{{ __('lang.select') }}</option>
                                         @foreach ($items as $item)
                                             <option {{ old('name') == $item->id ? 'selected' : '' }}

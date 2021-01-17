@@ -10,29 +10,29 @@
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <style>
-	html[dir="rtl"] .aside {
-float: right;
-display: inline;
-margin-left: 150px;
-margin-right: 0px;
+html[dir="rtl"] .aside {
+    float: right;
+    display: inline;
+    margin-left: 150px;
+    margin-right: 0px;
 }
 html[dir="ltr"] .aside {
-float: right;
-display: inline;
-margin-left: 0px;
-margin-right: 150px;
+    float: right;
+    display: inline;
+    left: 0px;
+    margin-right: 150px;
 }
 html[dir="rtl"] .mycontent {
-float: right;
-display: inline;
-margin-left: 0px;
-margin-right: 150px;
+    float: right;
+    display: inline;
+    margin-left: 0px;
+    margin-right: 150px;
 }
 html[dir="ltr"] .mycontent {
-float: right;
-display: inline;
-margin-left: 150px;
-margin-right: 0px;
+    float: left;
+    display: inline;
+    margin-left: 150px;
+    margin-right: 0px;
 }
 </style>
 		<!--begin::Fonts-->
@@ -40,7 +40,7 @@ margin-right: 0px;
 		<!--begin::Page Vendors Styles(used by this page)-->
 		<link href="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendors Styles-->
-		
+
 		<link href="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
 
 		<!--begin::Global Theme Styles(used by all pages)-->
@@ -53,15 +53,15 @@ margin-right: 0px;
 		<link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets/css/style.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets/css/my.css')}}" rel="stylesheet" type="text/css" />
-	   
+
 	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
 	   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
-   
-	   <link rel="stylesheet" type="text/css" 
+
+	   <link rel="stylesheet" type="text/css"
 		href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-	   
+
 	   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
@@ -210,4 +210,3 @@ margin-right: 0px;
 		</div>
 				<!--end::Aside-->
 
-	
