@@ -8,6 +8,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\EditPagesController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LocalizationController;
 
 /*
@@ -25,15 +28,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes();
-  
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-  
+
 Route::group(['middleware' => ['auth']], function() {
     Route::get('home/{locale}', [LocalizationController::class, 'lang']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
-    
+    Route::resource('slider', SliderController::class);
+    Route::get("slider/{id}/delete",[SliderController::class,'destroy'])->name("slider.delete");
+
+    //Route::resource('editPages', EditPagesController::class);
+    Route::resource('pages', PagesController::class);
+    Route::get("pages/{id}/delete",[StaticPageController::class,'destroy'])->name("pages.delete");
+    Route::get('front/{pages}', [EditPagesController::class, 'page']);
+
+    Route::resource('editPages', EditPagesController::class);
+
     Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
         Route::get('/',[CategoryController::class, 'index'])->name('index');
         Route::get('data',[CategoryController::class, 'data'])->name('data');
@@ -64,7 +76,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::put('deactive',[ArticleController::class, 'deactive'])->name('deactive');
         Route::put('activate',[ArticleController::class, 'activate'])->name('activate');
         Route::delete('myproductsDeleteAll',[ArticleController::class, 'deleteAll'])->name('multiple-delete');
-    
+
     });
 
 
@@ -73,5 +85,4 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get("change-password",[ChangePasswordController::class,'changePassword'])->name('change-password');
     Route::post("change-password",[ChangePasswordController::class,'postChangePassword'])->name('post-change-password');
-
 });

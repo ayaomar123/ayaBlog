@@ -15,12 +15,12 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('face-URL');
-            $table->string('twitter-URL');
-            $table->string('youtube-URL');
-            $table->string('instagram-URL');
-            $table->string('snapchat-URL');
-            $table->string('linkedin-URL');
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('youtube');
+            $table->string('instagram');
+            $table->string('snapchat');
+            $table->string('linkedin');
             $table->timestamps();
         });
     }
