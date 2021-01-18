@@ -15,6 +15,7 @@
         </div>
 
     </div>
+
 </div>
 
     @if (count($errors) > 0)
@@ -29,16 +30,20 @@
     @endif
 
     {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
+
     <div class="card mt-3" style="margin-left:50px;margin-right:50px;text-align:left;padding-left:25px ">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="form-group mt-2">
-                    <strong>Name:</strong>
-                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                    <strong>Role Name:</strong>
+                    {!! Form::text('name', null, array('placeholder' => 'Role Name','class' => 'form-control')) !!}
                 </div>
             </div>
         </div>
-    <table class="table table-hover">
+        <label><input name="check_all" id="check_all" type="checkbox" id="select_all" >Select All</label>
+
+
+        <table class="table table-hover">
         <thead>
             <tr>
               <th scope="col">Permission</th>
@@ -79,32 +84,20 @@
         </tr>
         </tbody>
     </table>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <button type="submit" class="btn btn-primary" style="margin-bottom:25px;float: left;">Submit</button>
     </div>
-    <div class="card mt-3" style="margin-left:50px;margin-right:50px;text-align:left;padding-left:25px ">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group mt-2">
-                    <strong>Name:</strong>
-                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Permission:</strong>
-                    <br/>
-                    @foreach($permission as $value)
-                        <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                            {{ $value->name }}</label>
-                        <br/>
-                    @endforeach
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary" style="margin-bottom:25px;float: left;">Submit</button>
-            </div>
-        </div>
     </div>
+
+
     {!! Form::close() !!}
 
 
+@endsection
+@section('script')
+    <script>
+    $('#check_all').change(function() {
+        $(".name").prop('checked', $(this).prop('checked'));
+    });
+    </script>
 @endsection

@@ -1,12 +1,19 @@
 @extends('layouts.admin')
 
+@section('mtitle','Edit Roles')
 
+@section('style')
+    <style>
+        .container{
+            margin-top: 110px;
+        }
+    </style>
+@endsection
 @section('content')
-<div class=" container mt-2">
+<div class=" container">
     <div class="mb-4">
 
-        <h2 class="text-center py-2"
-            style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
+        <h2 class="text-center py-2" style="width:100%;height:40px;background:#1f1e2e;color:whitesmoke;font-family: Arial, Helvetica, sans-serif;">
             Edit Role
         </h2>
 
@@ -38,6 +45,8 @@
                 {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
             </div>
         </div>
+        <label><input name="check_all" id="check_all" type="checkbox" id="select_all" >Select All</label>
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -50,21 +59,21 @@
             </thead>
             <tbody>
                 <tr>
-                  <th scope="row">Category</th>
+                  <th scope="row">Article</th>
                   <td><input class="name" name="permission[]" type="checkbox" value="9" {{in_array(9, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="10" {{in_array(10, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="11" {{in_array(11, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="12" {{in_array(12, $rolePermissions) ? "checked" : ""}}></td>
                 </tr>
                 <tr>
-                  <th scope="row">Product</th>
+                  <th scope="row">Category</th>
                   <td><input class="name" name="permission[]" type="checkbox" value="5" {{in_array(5, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="6" {{in_array(6, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="7" {{in_array(7, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="8" {{in_array(8, $rolePermissions) ? "checked" : ""}}></td>
                 </tr>
                 <tr>
-                  <th scope="row">Article</th>
+                  <th scope="row">Product</th>
                   <td><input class="name" name="permission[]" type="checkbox" value="13" {{in_array(13, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="14" {{in_array(14, $rolePermissions) ? "checked" : ""}}></td>
                   <td><input class="name" name="permission[]" type="checkbox" value="15" {{in_array(15, $rolePermissions) ? "checked" : ""}}></td>
@@ -89,4 +98,11 @@
     {!! Form::close() !!}
 
 
+@endsection
+@section('script')
+    <script>
+    $('#check_all').change(function() {
+        $(".name").prop('checked', $(this).prop('checked'));
+    });
+    </script>
 @endsection

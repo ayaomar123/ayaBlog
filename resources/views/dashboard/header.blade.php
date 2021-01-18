@@ -74,7 +74,7 @@
             <!--end::User-->
 
             <!-- begin::User Panel-->
-            <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
+            <div id="kt_quick_user" class="myUser offcanvas offcanvas-right p-10">
 
                 <!--begin::Header-->
                 <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
@@ -235,7 +235,7 @@
     <!--end::Container-->
 
 </div>
-<div class="mycontent d-flex flex-column flex-row-fluid wrapper"" id="kt_wrapper">
+<div class="mycontent d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
     <div class=" container">
         <div class="row">
             <div class="fixed py-2 col-md-6 btn-group btn-breadcrumb">

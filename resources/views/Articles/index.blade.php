@@ -65,7 +65,7 @@
                                             @endforeach
                                             @endforeach
                                         </select>
-                                        
+
                                     </div>
 
                                     <div class="form-check" style="float: right">
@@ -120,7 +120,7 @@
                                     class="far fa-plus-square" style="color: white;width:25px"></i>Create Article
                             </a>
                         </div>
-                    
+
                     </div>
 
                 </div>
@@ -157,7 +157,7 @@
 
             <tbody>
             </tbody>
-            
+
         </table>
 
     </div>

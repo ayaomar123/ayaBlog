@@ -6,9 +6,6 @@
 
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
-
-
-
     <script>
         $(document).ready(function() {
             $('.mdb-select').select2();
@@ -64,7 +61,7 @@
                         name: 'image',
                         data: 'image',
                         render: function(data) {
-                            
+
                             return "<img src='" + data + "' width=auto height='70' />"
 
                         },

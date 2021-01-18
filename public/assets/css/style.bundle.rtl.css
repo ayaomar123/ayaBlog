@@ -4753,8 +4753,6 @@ input[type="button"].btn-block {
     color: #ffffff;
     border-color: #3699FF;
     background-color: #3699FF;
-    -webkit-box-shadow: ;
-    box-shadow: ;
 }
 
 .custom-control-input:focus~.custom-control-label::before {
@@ -4770,8 +4768,6 @@ input[type="button"].btn-block {
     color: #ffffff;
     background-color: #e9f4ff;
     border-color: #e9f4ff;
-    -webkit-box-shadow: ;
-    box-shadow: ;
 }
 
 .custom-control-input[disabled]~.custom-control-label,
@@ -86527,7 +86523,7 @@ body {
 
 @media (min-width: 992px) {
     .header-fixed .wrapper {
-        padding-top: 65px;
+        padding-top: 55px;
     }
     .aside-fixed .wrapper {
         display: flex;
@@ -86545,7 +86541,7 @@ body {
 
 @media (max-width: 991.98px) {
     .header-mobile-fixed .wrapper {
-        padding-top: 55px;
+        padding-top: 0px;
     }
     .container,
     .container-fluid,

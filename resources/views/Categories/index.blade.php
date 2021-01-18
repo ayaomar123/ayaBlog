@@ -109,10 +109,12 @@
                         </div>
 
                         <div class="col-md-3">
+
                             <a href="{{ url('categories/create') }}" class="px-5 btn-lg btn"
                                 style="background:rgb(108, 192, 115);color:white;float: right; width:250px;"><i
                                     class="far fa-plus-square" style="color: white;"></i>  {{ __('lang.create') }}
                             </a>
+
                         </div>
 
                     </div>

@@ -9,7 +9,7 @@
                 <span class="text-muted">Copyright 2020</span>
             </div>
         </footer>
-        <!--end::Copyright--> 
+        <!--end::Copyright-->
     </div>
     <!--end::Container-->
 </div>
@@ -37,6 +37,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
 <!--end::Page Scripts-->
-</body>
+
 <!--end::Body-->
 </html>

@@ -1,8 +1,15 @@
 @extends('layouts.admin')
 
-
+@section('mtitle','User')
+@section('style')
+    <style>
+        .container{
+            margin-top: 70px;
+        }
+    </style>
+@endsection
 @section('content')
-<div class="container mt-2">
+<div class="container">
     <div class="mb-4">
 
         <h2 class="text-center py-2"

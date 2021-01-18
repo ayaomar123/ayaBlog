@@ -13,9 +13,16 @@ use Session;
 
 class ArticleController extends Controller
 {
-    
+    function __construct()
+    {
+         $this->middleware('permission:article-list|article-create|article-edit|article-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:article-create', ['only' => ['create','store']]);
+         $this->middleware('permission:article-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:article-delete', ['only' => ['destroy']]);
+    }
+
     /**
-     * 
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -54,19 +61,19 @@ class ArticleController extends Controller
                     $instance->where('name', 'like', '%'.\request('search').'%')
                     ->orWhere('status', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('description', 'LIKE', '%' . $request->search . '%');
-                }  
+                }
             })
             ->rawColumns(['status'])
-            ->addColumn('action', function($data){                   
-                $editUrl = url('articles/'.$data->id);                   
+            ->addColumn('action', function($data){
+                $editUrl = url('articles/'.$data->id);
                 $btn = '<a style="width:100px" href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
                 $btn = $btn.' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
                 return $btn;
             })
             ->rawColumns(['action'])
-            ->make(true);            
+            ->make(true);
         }
-        
+
     }
 
     /**
@@ -121,7 +128,7 @@ class ArticleController extends Controller
             return view('articles.edit',compact('articles'));
         }catch(\Exception $e){
             throw $e;
-        }   
+        }
     }
 
     /**
@@ -134,7 +141,7 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $data = $this->rules();
-    
+
         $this->queryModel()
         ->where('id', $request->id)
         ->update($data);
@@ -154,26 +161,26 @@ class ArticleController extends Controller
          ->find($id)
          ->delete();
 
-         return  response()->json(['success' => 'Article Deleted successfully.']); 
+         return  response()->json(['success' => 'Article Deleted successfully.']);
     }
 
     //delete all records
     public function deleteAll(){
-        
+
         $this->queryModel()
         ->whereIn('id',\request('id'))
         ->delete();
-        
+
         return response()->json(['success'=>"Article Deleted successfully."]);
     }
 
     //Deactivate all records
-    public function deactive(){  
+    public function deactive(){
 
         $this->queryModel()
         ->whereIn('id',\request('id'))
         ->update(['status'=> \request('status')]);
-       
+
         return response()->json(['success'=>"Categories updated successfully."]);
     }
 
@@ -189,7 +196,7 @@ class ArticleController extends Controller
     }
 
     //toggle switch
-    public function changeStatus() 
+    public function changeStatus()
     {
         $this->queryModel()
         ->find(\request('id'))

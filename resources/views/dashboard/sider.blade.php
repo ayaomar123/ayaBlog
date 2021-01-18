@@ -1,40 +1,15 @@
 <!DOCTYPE html>
 <html  lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar'? 'rtl' : 'ltr' }}">
 	<!--begin::Head-->
-	<head><base href="">
+	<head>
+        <base href="">
 		<meta charset="utf-8" />
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<title>Mange | @yield('title') </title>
+		<title>Mange | @yield('mtitle') </title>
 		<meta name="description" content="Updates and statistics" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<style>
-html[dir="rtl"] .aside {
-    float: right;
-    display: inline;
-    margin-left: 150px;
-    margin-right: 0px;
-}
-html[dir="ltr"] .aside {
-    float: right;
-    display: inline;
-    left: 0px;
-    margin-right: 150px;
-}
-html[dir="rtl"] .mycontent {
-    float: right;
-    display: inline;
-    margin-left: 0px;
-    margin-right: 150px;
-}
-html[dir="ltr"] .mycontent {
-    float: left;
-    display: inline;
-    margin-left: 150px;
-    margin-right: 0px;
-}
-</style>
 		<!--begin::Fonts-->
 		<!--end::Fonts-->
 		<!--begin::Page Vendors Styles(used by this page)-->
@@ -53,7 +28,37 @@ html[dir="ltr"] .mycontent {
 		<link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets/css/style.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets/css/my.css')}}" rel="stylesheet" type="text/css" />
+        <style>
+            html[dir="rtl"] .aside {
+                float: right;
+                display: inline;
+                margin-left: 150px;
+                margin-right: 0px;
+            }
+            html[dir="ltr"] .aside {
+                float: right;
+                display: inline;
+                left: 0px;
+                margin-right: 150px;
+            }
+            html[dir="rtl"] .mycontent {
+                float: right;
+                display: inline;
+                margin-left: 0px;
+                margin-right: 150px;
+                margin-top: -15%;
+            }
+            html[dir="ltr"] .mycontent{
+                float: left;
+                display: inline;
+                margin-left: 150px;
+                margin-right: 0px;
+                margin-top: -15%;
 
+            }
+
+
+            </style>
 	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
 	   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
@@ -163,12 +168,14 @@ html[dir="ltr"] .mycontent {
 												</span>
 											</li>
 											<li class="menu-item" aria-haspopup="true">
+                                                @can('category-create')
 												<a href="{{url('categories/create')}}" class="menu-link">
 													<i class="menu-bullet menu-bullet-line">
 														<span></span>
 													</i>
 													<span class="menu-text">{{ __('lang.create') }}</span>
-												</a>
+                                                </a>
+                                                @endcan
 											</li>
 											<li class="menu-item" aria-haspopup="true">
 											<a href="{{route('categories.index')}}" class="menu-link">
@@ -210,3 +217,4 @@ html[dir="ltr"] .mycontent {
 		</div>
 				<!--end::Aside-->
 
+    </body>
