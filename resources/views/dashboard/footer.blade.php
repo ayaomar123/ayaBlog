@@ -1,5 +1,5 @@
 <!--begin::Footer-->
-
+</div>
 <div class="mb-0 py-4 d-flex flex-lg-column" id="">
     <!--begin::Container-->
     <div class="footer container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">

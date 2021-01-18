@@ -1,6 +1,14 @@
 @extends('layouts.admin')
 
-@section('title', 'Category')
+@section('mtitle',"Category" )
+
+@section('style')
+    <style>
+        .container{
+            margin-top: 110px;
+        }
+    </style>
+@endsection
 
 @section('style')
 
@@ -37,7 +45,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-2">
+    <div class="container">
         <div class="mb-4">
 
             <h2 class="text-center py-2"

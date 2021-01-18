@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 <title>{{__('lang.createCategory')}}</title>
+
 @section('name')
     <a href="#" class="btn btn-primary">{{__('lang.createCategory')}}</a>
 @endsection
