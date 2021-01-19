@@ -1,0 +1,33 @@
+<style>html[dir="rtl"] #kt_aside {
+    float: right;
+    display: inline;
+    margin-left: 90%;
+    margin-right: 0px;
+}
+
+html[dir="ltr"] #kt_aside {
+    float: right;
+    display: inline;
+    left: 0px;
+    margin-right: 150px;
+}
+
+html[dir="rtl"] .footer {
+    margin-left: 0px;
+    padding-right: 10%;
+}
+
+html[dir="ltr"] .footer {
+    padding-left: 10%;
+    margin-right: 0px;
+}
+
+html[dir="ltr"] #kt_header {
+    padding-left: 0%;
+    margin-right: 0px;
+}
+
+html[dir="rtl"] #kt_header {
+    margin-left: -150px;
+    padding-right: 10%;
+}

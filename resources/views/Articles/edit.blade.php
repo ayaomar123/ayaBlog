@@ -1,8 +1,6 @@
-@extends('layouts.admin')
-<title>Edit Article</title>
-@section('name')
-    <a href="#" class="btn btn-primary">Edit Article</a>
-@endsection
+@extends('Admin.board')
+@section('title','Edit')
+
 @section('content')
 
     <div class="container ">
@@ -34,7 +32,7 @@
                                 </blockquote>
                                 <br>
                                 <blockquote>
-                                    <div class="col-md-4" style="margin-left: -81px">
+                                    <div class="col-md-4">
                                         <input id="image" type="file" name="image" value="{{ old('image') }}"
                                             onchange="loadFile(event)">
                                     </div>

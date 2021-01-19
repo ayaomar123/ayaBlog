@@ -23,10 +23,10 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /* public function create()
     {
         return view('Slider.create');
-    }
+    } */
 
     /**
      * Store a newly created resource in storage.
@@ -34,13 +34,13 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SliderRequest $request)
+    /* public function store(SliderRequest $request)
     {
         //dd($request);
         $data = $request->validated();
         Slider::create($data);
         return redirect(route('slider.index'));
-    }
+    } */
 
     /**
      * Display the specified resource.

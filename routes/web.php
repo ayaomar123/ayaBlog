@@ -23,9 +23,11 @@ use App\Http\Controllers\LocalizationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('Auth.login');
+});
+Route::get('/aya', function () {
+    return view('Admin.board');
 });
 Auth::routes();
 

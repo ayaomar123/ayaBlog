@@ -1,17 +1,13 @@
-@extends('layouts.admin')
-<title>{{__('lang.createCategory')}}</title>
+@extends('Admin.board')
 
-@section('name')
-    <a href="#" class="btn btn-primary">{{__('lang.createCategory')}}</a>
-@endsection
+@section('title',"Create Category" )
 @section('content')
-
-    <div class="container mt-2 ">
         <div class="mb-4">
             <h2 class="text-center py-2"
                 style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
                 {{__('lang.createCategory')}}
             </h2>
+        </div>
 
             <form id="add-category" method="post" action="{{ url('categories') }}">
                 @csrf
@@ -61,8 +57,6 @@
                 </div>
             </form>
 
-        </div>
-    </div>
         <script>
             var loadFile = function(event) {
                 var out = document.getElementById('out');

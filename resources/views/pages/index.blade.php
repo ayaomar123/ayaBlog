@@ -7,160 +7,40 @@
 <section class="artical-a" style="margin-top: 3rem;">
     <div class="container">
         <div class="row">
-                  <div class="col-lg-9 card-artical-a-parent ">
-                   <div class="row">
-                       <div class="col-lg-4">
-                           <div class="card-artical-a">
-                               <div class="card-overlay-artical-a">
-                                    <a href="department.html" class="badge badge-card badge-info">سياحة</a>
+            <div class="col-lg-9 card-artical-a-parent ">
+                <div class="row">
+                    @foreach ($categories as $category)
+                    <div class="col-lg-4">
+                        <div class="card-artical-a">
+                            <div class="card-overlay-artical-a">
+                                 <a href="department.html" class="badge badge-card badge-info">سياحة</a>
 
-                                    <h3><i class="far fa-eye"></i> 1500</h3>
+                                 <h3><i class="far fa-eye"></i> 1500</h3>
 
-                                        <div class="star-header">
-                                                <!--================-->
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
+                                     <div class="star-header">
+                                             <!--================-->
+                                             <span class="fa fa-star checked"></span>
+                                             <span class="fa fa-star checked"></span>
+                                             <span class="fa fa-star checked"></span>
+                                             <span class="fa fa-star"></span>
+                                             <span class="fa fa-star"></span>
 
-                                                    </div>
-                                                <!--=======End-Star-header=========-->
-                                                <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
-                               </div>
-                               <img src="../img/backpack.png" alt="">
-                              <h1><a href="detials.html"> مقالات قصيرة عن الحياة</a></h1>
-                                   <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
+                                                 </div>
+                                             <!--=======End-Star-header=========-->
+                                             <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
                             </div>
-                       </div>
-                       <div class="col-lg-4">
-                            <div class="card-artical-a">
-                                    <div class="card-overlay-artical-a">
-                                         <a href="department.html" class="badge badge-card badge-info">سياحة</a>
-
-                                         <h3><i class="far fa-eye"></i> 1500</h3>
-
-                                             <div class="star-header">
-                                                     <!--================-->
-                                                     <span class="fa fa-star checked"></span>
-                                                     <span class="fa fa-star checked"></span>
-                                                     <span class="fa fa-star checked"></span>
-                                                     <span class="fa fa-star"></span>
-                                                     <span class="fa fa-star"></span>
-
-                                                         </div>
-                                                     <!--=======End-Star-header=========-->
-                                                     <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
-                                    </div>
-                                    <img src="../img/backpack.png" alt="">
-                                   <h1><a href="detials.html">مقالات قصيرة عن الحياة </a></h1>
-                                        <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
-                                 </div>
-                       </div>
-                       <div class="col-lg-4">
-                            <div class="card-artical-a">
-                                    <div class="card-overlay-artical-a">
-                                         <a href="department.html" class="badge badge-card badge-info">سياحة</a>
-
-                                         <h3><i class="far fa-eye"></i> 1500</h3>
-
-                                             <div class="star-header">
-                                                     <!--================-->
-                                                     <span class="fa fa-star checked"></span>
-                                                     <span class="fa fa-star checked"></span>
-                                                     <span class="fa fa-star checked"></span>
-                                                     <span class="fa fa-star"></span>
-                                                     <span class="fa fa-star"></span>
-
-                                                         </div>
-                                                     <!--=======End-Star-header=========-->
-                                                     <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
-                                    </div>
-                                    <img src="../img/backpack.png" alt="">
-                                   <h1><a href="detials.html">مقالات قصيرة عن الحياة </a></h1>
-                                        <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
-                                 </div>
-                       </div>
-                       <!--========================================-->
-                       <div class="col-lg-4">
-                            <div class="card-artical-a">
-                                <div class="card-overlay-artical-a">
-                                     <a href="department.html" class="badge badge-card badge-info">سياحة</a>
-
-                                     <h3><i class="far fa-eye"></i> 1500</h3>
-
-                                         <div class="star-header">
-                                                 <!--================-->
-                                                 <span class="fa fa-star checked"></span>
-                                                 <span class="fa fa-star checked"></span>
-                                                 <span class="fa fa-star checked"></span>
-                                                 <span class="fa fa-star"></span>
-                                                 <span class="fa fa-star"></span>
-
-                                                     </div>
-                                                 <!--=======End-Star-header=========-->
-                                                 <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
-                                </div>
-                                <img src="../img/backpack.png" alt="">
-                               <h1><a href="detials.html">مقالات قصيرة عن الحياة </a></h1>
-                                    <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
-                             </div>
-                        </div>
-                        <div class="col-lg-4">
-                             <div class="card-artical-a">
-                                     <div class="card-overlay-artical-a">
-                                          <a href="department.html" class="badge badge-card badge-info">سياحة</a>
-
-                                          <h3><i class="far fa-eye"></i> 1500</h3>
-
-                                              <div class="star-header">
-                                                      <!--================-->
-                                                      <span class="fa fa-star checked"></span>
-                                                      <span class="fa fa-star checked"></span>
-                                                      <span class="fa fa-star checked"></span>
-                                                      <span class="fa fa-star"></span>
-                                                      <span class="fa fa-star"></span>
-
-                                                          </div>
-                                                      <!--=======End-Star-header=========-->
-                                                      <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
-                                     </div>
-                                     <img src="../img/backpack.png" alt="">
-                                    <h1><a href="detials.html">مقالات قصيرة عن الحياة </a></h1>
-                                         <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
-                                  </div>
-                        </div>
-                        <div class="col-lg-4">
-                             <div class="card-artical-a">
-                                     <div class="card-overlay-artical-a">
-                                          <a href="department.html" class="badge badge-card badge-info">سياحة</a>
-
-                                          <h3><i class="far fa-eye"></i> 1500</h3>
-
-                                              <div class="star-header">
-                                                      <!--================-->
-                                                      <span class="fa fa-star checked"></span>
-                                                      <span class="fa fa-star checked"></span>
-                                                      <span class="fa fa-star checked"></span>
-                                                      <span class="fa fa-star"></span>
-                                                      <span class="fa fa-star"></span>
-
-                                                          </div>
-                                                      <!--=======End-Star-header=========-->
-                                                      <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
-                                     </div>
-                                     <img src="../img/backpack 4.png" alt="">
-                                    <h1><a href="detials.html">مقالات قصيرة عن الحياة </a></h1>
-                                         <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
-                                  </div>
-                        </div>
-                   </div>
+                            <img src="../img/backpack.png" alt="">
+                           <h1><a href="detials.html">مقالات قصيرة عن الحياة</a></h1>
+                                <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
+                         </div>
+                    </div>
+                    @endforeach
                 </div>
-                  <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3">
                    <img src="../img/ADS 2.png" alt="">
-                  </div>
+            </div>
 
-        </div>
     </div>
 
 </section>
@@ -249,7 +129,7 @@
                             </div>
                        </div>
                     </div>
-                      <div class="col-lg-3 artical-a-col-lg">
+                    <div class="col-lg-3 artical-a-col-lg">
                        <div class="row">
                            <div class="col-lg-12">
                                <h1>أهم المقالات</h1>

@@ -1,16 +1,12 @@
-@extends('layouts.admin')
-<title>Edit Category</title>
-@section('name')
-    <a href="#" class="btn btn-primary">Edit Ctegory</a>
-@endsection
-@section('content')
+@extends('Admin.board')
 
-    <div class="container ">
+@section('title',"Edit Category" )
+@section('content')
         <div class="mb-4">
             <h2 class="text-center " style="width: 100%;height:40px; background:#1F1E2E;color:whitesmoke">
-                Create Category</h2>
-
-            <form id="add-category" method="post" action="{{route('categories.update',[$category->id])}}">
+                Edit Category</h2>
+        </div>
+        <form id="add-category" method="post" action="{{route('categories.update',[$category->id])}}">
                 @csrf
                 <input type="hidden" name="id" class="form-control" value="{{ $category->id }}" id="formGroupExampleInput">
 
@@ -59,10 +55,7 @@
 
                     </div>
                 </div>
-            </form>
-
-        </div>
-    </div>
+        </form>
         <script>
             var loadFile = function(event) {
                 var out = document.getElementById('out');

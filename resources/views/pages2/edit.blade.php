@@ -1,39 +1,43 @@
-@extends('layouts.admin')
+@extends('Admin.board')
+@section('title','Edit Pages')
+@section('style')
+    <style>
+        .form-control{
+            width: 50%;
+        }
+        .card{
+            padding: 30px;
+        }
+    </style>
+@endsection
 @section('content')
-    <div class="container">
-        <h1>Edit pages</h1>
-        @if (count($errors) > 0)
-            <div class = "alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <form class="" action="{{route('pages.update',[$pages->id])}}" method="post">
-            {{--<!--    --><?php=// csrf_token() ?>--}}
-            <input type="hidden" name="_token" value=" {{csrf_token()}} ">
-
-            <div class="form-group">
-                <label for="name">pages Title</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp" value="{{ $pages->title }}">
-            </div>
-
-            <div class="form-group">
-                <label for="description">pages Link</label>
-                <input type="text" name="link" class="form-control" id="link" aria-describedby="emailHelp" value="{{$pages->link}}">
-            </div>
-
-            <div class="form-group">
-                <label for="status">pages Status</label>
-                <input type="checkbox" name="status" class="form-control" value="1">
-            </div>
-
-
-
-            <button type="submit" class="btn btn-primary">Edit pages</button>
-        </form>
-
+    <div class="mb-4">
+        <h2 class="text-center py-2"
+            style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
+            Create Pages
+        </h2>
     </div>
+    <form class="card" action="{{route('pages.update',[$pages->id])}}" method="post">
+        @csrf
+
+        <div class="form-group">
+            <label for="name">pages Title</label>
+            <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp" value="{{ $pages->title }}">
+        </div>
+
+        <div class="form-group">
+            <label for="description">pages description</label>
+            <input type="text" name="description" class="form-control" id="description" aria-describedby="emailHelp" value="{{$pages->description}}">
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="status">
+                <label class="form-check-label" for="status"> Active </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary col-md-2">Edit pages</button>
+    </form>
+
 @endsection

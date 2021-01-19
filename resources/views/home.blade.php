@@ -1,5 +1,4 @@
-@extends('layouts.admin')
-@section('style')
+@extends('Admin.board')@section('style')
     <style>
         .card {
     position: relative;

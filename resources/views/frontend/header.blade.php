@@ -20,45 +20,44 @@
 <body>
     <div class="responsive">
         <div class="container">
-                <div class="logo">
-                    <a href="#"><img src="img/logo.png" alt="logo"></a>
-                </div>
-            <div class="navbar"   >
-
-            <div class="icon-bar" onclick="Show()">
-                <i></i>
-                <i></i>
-                <i></i>
+            <div class="logo">
+                <a href="#"><img src="img/logo.png" alt="logo"></a>
             </div>
+            <div class="navbar"   >
+                <div class="icon-bar" onclick="Show()">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
 
-<ul id="nav-lists">
-    <li class="close"><span onclick="Hide()">×</span></li>
-    <li><a href="{{ url('home') }}">الرئيسية</a></li>
-    <li><a href="department.html">التحليل الاقتصادي</a></li>
-    <li><a href="department.html">البحث العلمي </a></li>
-    <li><a href="department.html">الصحة</a></li>
-    <li><a href="department.html">تنمية الذات</a></li>
-    <li><a href="department.html">المرأة والطفل</a></li>
-    <li><a href="department.html">ثقافة دينية </a></li>
-    <li><a href="department.html">علوم وفنون</a></li>
-    <li><a href="department.html">اخبار المجتمع</a></li>
-    <li><a href="department.html">عجائب وغرائب</a></li>
-     <li><a href="department.html">السفر والسياحة</a></li>
-     <li><a href="team.html">فريق التحرير</a></li>
-    <li><a href="#">سياسية الخصوصية</a></li>
-    <li><a href="#">القوانين والاحكام</a></li>
-    <li><a href="about-as.html">عن موقع</a></li>
-    <li><a href="#">من نحن</a></li>
-    <li><a href="contact.html">اتصل بنا</a></li>
+                <ul id="nav-lists">
+                    <li class="close"><span onclick="Hide()">×</span></li>
+                    <li><a href="{{ url('home') }}">الرئيسية</a></li>
+                    <li><a href="department.html">التحليل الاقتصادي</a></li>
+                    <li><a href="department.html">البحث العلمي </a></li>
+                    <li><a href="department.html">الصحة</a></li>
+                    <li><a href="department.html">تنمية الذات</a></li>
+                    <li><a href="department.html">المرأة والطفل</a></li>
+                    <li><a href="department.html">ثقافة دينية </a></li>
+                    <li><a href="department.html">علوم وفنون</a></li>
+                    <li><a href="department.html">اخبار المجتمع</a></li>
+                    <li><a href="department.html">عجائب وغرائب</a></li>
+                    <li><a href="department.html">السفر والسياحة</a></li>
+                    <li><a href="team.html">فريق التحرير</a></li>
+                    <li><a href="#">سياسية الخصوصية</a></li>
+                    <li><a href="#">القوانين والاحكام</a></li>
+                    <li><a href="about-as.html">عن موقع</a></li>
+                    <li><a href="#">من نحن</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
 
 
 
 
-</ul>
+                </ul>
 
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 
 <header class="upper-top">
 <div class="container-fluid">
@@ -92,8 +91,8 @@
                <a href="{{$setting->twitter}}" target="_blank"><i class="fab fa-twitter"></i></a>
                <a href="{{$setting->instagram}}" target="_blank"><i class="fab fa-instagram" ></i></a>
                @endforeach
-                </div>
-                </div>
+            </div>
+        </div>
 
        <!--==================  End social===============================-->
        <!--==================  Start search ===============================-->
@@ -101,7 +100,7 @@
             <div class="row">
                 <a href="{{asset('home')}}"><i class="fas fa-user-alt"></i></a>
                 </div>
-                </div>
+            </div>
        <!--==================  End search ===============================-->
 
     </div>

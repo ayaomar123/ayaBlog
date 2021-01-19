@@ -1,11 +1,7 @@
-@extends('layouts.admin')
-@section('mtitle','Create Slider')
+@extends('Admin.board')
+@section('title','Create Slider')
 @section('style')
     <style>
-        .container{
-            margin-top: 50px;
-            text-align: left
-        }
         .form-control{
             width: 50%;
         }
@@ -15,21 +11,14 @@
     </style>
 @endsection
 @section('content')
-<div class="container">
-    <div class="mb-4">
 
+    <div class="mb-4">
         <h2 class="text-center py-2"
             style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
             Create Slider
         </h2>
-
-        <div class="" style="float: left">
-            <a  class="btn btn-primary" href="{{ route('slider.index') }}"> Back</a>
-        </div>
-
     </div>
 
-</div>
     <div class="container">
         @if (count($errors) > 0)
             <div class = "alert alert-danger">

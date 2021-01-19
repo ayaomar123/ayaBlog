@@ -1,27 +1,12 @@
-@extends('layouts.admin')
-@section('mtitle','Create User')
-@section('style')
-    <style>
-        .container{
-            margin-top: 110px;
-        }
-    </style>
-@endsection
-
+@extends('Admin.board')
+@section('title','Create User')
 @section('content')
-    <div class="container">
         <div class="mb-4">
             <h2 class="text-center py-2"
             style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
             Create New User
             </h2>
-
-        <div  style="float: left">
-            <a  class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
         </div>
-
-        </div>
-    </div>
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -35,7 +20,7 @@
     @endif
 
     {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-    <div class="card mt-3" style="margin-left:50px;margin-right:50px;text-align:left;padding-left:25px ">
+    <div class="card mt-3" style="text-align:left;padding-left:25px ">
         <div class="row" style="margin-right: 50px;">
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group mt-3">
