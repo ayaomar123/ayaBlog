@@ -12,7 +12,6 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\EditPagesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LocalizationController;
-use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +33,6 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('photo', ImageController::class,'index');
-Route::post('save-photo',ImageController::class,'save');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('home/{locale}', [LocalizationController::class, 'lang']);
