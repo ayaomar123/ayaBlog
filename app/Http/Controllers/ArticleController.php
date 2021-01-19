@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\Article;
+use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\CategoryController;
 use App\models\Category;
 use Validator,Redirect,Response;
@@ -93,10 +94,16 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $data = $this->rules();
-        $article = $this->queryModel()->create($data);
+        $requestData = $request->all();
+
+        if ($request->image) {
+            $fileName = $request->image->store("public/articles");
+            $imageName = $request->image->hashName();
+            $requestData['image'] = $imageName;
+        }
+        $article = $this->queryModel()->create($requestData);
         $article->categories()->attach($request->category_id);
         return redirect(route('articles.index'))->with('msg', 'Article Created Successfully');
     }
@@ -138,13 +145,17 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
-        $data = $this->rules();
 
         $this->queryModel()
         ->where('id', $request->id)
-        ->update($data);
+        ->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'image' => $request['image'],
+            'status' => $request['status'],
+        ]);
         return redirect(route('articles.index'))->with('info', 'Article Edited Successfully');
     }
 
@@ -216,13 +227,4 @@ class ArticleController extends Controller
         return $this->model()->query();
     }
 
-    public function rules()
-    {
-        return request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-            //'category_id' => 'required',
-            ]);
-    }
 }

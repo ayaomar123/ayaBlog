@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('Admin.board')
 @section('title', 'Create Article')
 @section('name')
     <a href="#" class="btn btn-primary">Article</a>
@@ -11,7 +11,7 @@
                 style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
                 Create Article
             </h2>
-            <form id="add-article" method="post" action="{{ url('articles') }}">
+            <form enctype="multipart/form-data" id="add-article" method="post" action="{{ url('articles') }}">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-12">

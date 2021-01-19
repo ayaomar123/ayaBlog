@@ -63,13 +63,13 @@
                 },
                 {
                     name: 'categories',
-                    data: 'categories[0].name',                    
+                    data: 'categories[0].name',
                 },
                 {
                     name: 'image',
                     data: 'image',
                     render: function(data) {
-                        return "<img src='" + data + "' width=auto height='70' />"
+                        return "<img width='150px' src='storage/articles/" + data + " ' />"
 
                     },
                 },

@@ -9,7 +9,7 @@
             </h2>
         </div>
 
-            <form id="add-category" method="post" action="{{ url('categories') }}">
+            <form enctype="multipart/form-data" id="add-category" method="post" action="{{ url('categories') }}">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-12">

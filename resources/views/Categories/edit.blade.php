@@ -3,10 +3,10 @@
 @section('title',"Edit Category" )
 @section('content')
         <div class="mb-4">
-            <h2 class="text-center " style="width: 100%;height:40px; background:#1F1E2E;color:whitesmoke">
+            <h2  class="py-2 text-center " style="width: 100%;height:40px; background:#1F1E2E;color:whitesmoke">
                 Edit Category</h2>
         </div>
-        <form id="add-category" method="post" action="{{route('categories.update',[$category->id])}}">
+        <form enctype="multipart/form-data" id="add-category" method="post" action="{{route('categories.update',[$category->id])}}">
                 @csrf
                 <input type="hidden" name="id" class="form-control" value="{{ $category->id }}" id="formGroupExampleInput">
 

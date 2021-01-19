@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\models\Category;
+use App\Http\Requests\CategoryRequest;
 use App\models\Article;
 use Illuminate\Http\Request;
-use Validator,Redirect,Response;
+use Validator, Redirect, Response;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DataTables;
@@ -15,18 +17,18 @@ class CategoryController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:category-create', ['only' => ['create','store']]);
-         $this->middleware('permission:category-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:category-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:category-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:category-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:category-delete', ['only' => ['destroy']]);
     }
 
-    public function index(){
+    public function index()
+    {
 
-    $items = $this->queryModel()->get();
-    return view('categories.index',compact('items'));
-
-}
+        $items = $this->queryModel()->get();
+        return view('categories.index', compact('items'));
+    }
 
     /**
      * Display a listing of the resource.
@@ -36,44 +38,42 @@ class CategoryController extends Controller
     public function data(Request $request)
     {
 
-        if(request()->ajax()) {
+        if (request()->ajax()) {
 
             $data = $this->queryModel()->select('*');
 
             return datatables()::of($data)
-            ->addIndexColumn()
-            ->filter(function ($instance) use ($request) {
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request) {
 
-                if (isset($request->category)) {
-                    $instance->where('name', $request->category);
-                }
+                    if (isset($request->category)) {
+                        $instance->where('name', $request->category);
+                    }
 
-                if (isset($request->status)) {
-                    $instance->where('status', $request->status);
-                }
+                    if (isset($request->status)) {
+                        $instance->where('status', $request->status);
+                    }
 
-                if (isset($request->search)) {
-                    $instance->where('name', 'like', '%'.\request('search').'%')
-                    ->orWhere('status', 'LIKE', '%' . $request->search . '%')
-                    ->orWhere('description', 'LIKE', '%' . $request->search . '%');
+                    if (isset($request->search)) {
+                        $instance->where('name', 'like', '%' . \request('search') . '%')
+                            ->orWhere('status', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('description', 'LIKE', '%' . $request->search . '%');
+                    }
+                })
+                ->rawColumns(['status'])
+                ->addColumn('action', function ($data) {
 
-                }
-            })
-            ->rawColumns(['status'])
-            ->addColumn('action', function($data){
+                    $editUrl = url('categories/' . $data->id);
 
-                   $editUrl = url('categories/'.$data->id);
+                    $btn = '<a style="width:100px" href="' . $editUrl . '" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
 
-                   $btn = '<a style="width:100px" href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
-
-                   $btn = $btn.' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
+                    $btn = $btn . ' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
 
                     return $btn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
-
     }
 
     /**
@@ -93,19 +93,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(CategoryRequest $request)
     {
-        $data = $this->rules();
-        $data['status'] = !empty(\request('status')) ? \request('status') : 0;
+        //dd(request()->all());
+        $requestData = $request->all();
+        //$data['status'] = !empty($request('status')) ? $request('status') : 0;
 
+        if ($request->image) {
+            $fileName = $request->image->store("public/categories");
+            $imageName = $request->image->hashName();
+            $requestData['image'] = $imageName;
+        }
 
-        /* if(\request('image')){
-            $fileName = \request('image')->store("public/categories");
-            $imageName = \request('image')->hashName();
-            $data['image'] = $imageName;
-        } */
-
-        $this->queryModel()->create($data);
+        $this->queryModel()->create($requestData);
 
         return Redirect::to("categories")->with('msg', 'Category Created Successfully');
     }
@@ -120,7 +120,7 @@ class CategoryController extends Controller
     {
         $items = $this->queryModel()->find($id);
 
-        return view("categories.show",compact('items'));
+        return view("categories.show", compact('items'));
     }
 
     /**
@@ -132,13 +132,13 @@ class CategoryController extends Controller
     public function edit($id)
     {
 
-        try{
+        try {
             $category = $this->queryModel()
-            ->where('id', $id)
-            ->first();
+                ->where('id', $id)
+                ->first();
 
-            return view('categories.edit',compact('category'));
-        }catch(\Exception $e){
+            return view('categories.edit', compact('category'));
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -150,13 +150,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $data = $this->rules();
 
         $this->queryModel()
-        ->where('id', $request->id)
-        ->update($data);
+            ->where('id', $id)
+            ->update([
+                'name' => $request['name'],
+                'description' => $request['description'],
+                'image' => $request['image'],
+                'status' => $request['status'],
+            ]);
 
         return Redirect::to("categories")->with('info', 'Category Edited Successfully');
     }
@@ -170,65 +174,66 @@ class CategoryController extends Controller
     public function destroy($id)
     {
 
-         $this->queryModel()
-         ->find($id)
-         ->delete();
+        $this->queryModel()
+            ->find($id)
+            ->delete();
 
-         return  response()->json(['success' => 'success']);
+        return  response()->json(['success' => 'success']);
     }
 
-    public function deleteAll(){
+    public function deleteAll()
+    {
 
         $this->queryModel()
-        ->whereIn('id',\request('id'))
-        ->delete();
+            ->whereIn('id', \request('id'))
+            ->delete();
 
-        return response()->json(['success'=>"Category Deleted successfully."]);
+        return response()->json(['success' => "Category Deleted successfully."]);
     }
 
-    public function deactivate(){
+    public function deactivate()
+    {
 
         $this->queryModel()
-        ->whereIn('id',\request('id'))
-        ->update(['status'=> \request('status')]);
+            ->whereIn('id', \request('id'))
+            ->update(['status' => \request('status')]);
 
-        return response()->json(['success'=>"Categories updated successfully."]);
+        return response()->json(['success' => "Categories updated successfully."]);
     }
 
 
-    public function activate(){
+    public function activate()
+    {
 
         $this->queryModel()
-        ->whereIn('id',\request('id'))
-        ->update(['status'=> !\request('status')]);
+            ->whereIn('id', \request('id'))
+            ->update(['status' => !\request('status')]);
 
-        return response()->json(['success'=>"Categories updated successfully."]);
-
+        return response()->json(['success' => "Categories updated successfully."]);
     }
     public function changeStatus(Request $request)
     {
 
         $category = Category::find($request->id);
         $status = $request->status;
-        $category->update(['status'=>$status]);
+        $category->update(['status' => $status]);
 
-        return response()->json(['success'=>"Category Status Updated successfully."]);
+        return response()->json(['success' => "Category Status Updated successfully."]);
     }
 
     public function searching()
     {
         $items = $this->queryModel();
 
-        if(request('category')){
+        if (request('category')) {
             $items->where('name', request('category'));
-
-        }elseif(request('status')){
+        } elseif (request('status')) {
             $items->where('status', request('status'));
         }
 
         $items->get();
 
-        return view("categories.index")->with('items',$items);
+        return view("categories.index")->with('items', $items);
     }
 
     private function model()
@@ -239,14 +244,5 @@ class CategoryController extends Controller
     private function queryModel()
     {
         return $this->model()->query();
-    }
-
-    public function rules()
-    {
-        return request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-            ]);
     }
 }

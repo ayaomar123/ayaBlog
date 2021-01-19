@@ -8,7 +8,7 @@
             <h2 class="text-center py-2 " style="width: 100%;height:40px; background:#1F1E2E;color:whitesmoke">
                 Edit Article</h2>
 
-            <form id="add-article" method="post" action="{{route('articles.update',[$articles->id])}}">
+            <form enctype="multipart/form-data" id="add-article" method="post" action="{{route('articles.update',[$articles->id])}}">
                 @csrf
                 <input type="hidden" name="id" class="form-control" value="{{ $articles->id }}" id="formGroupExampleInput">
 
