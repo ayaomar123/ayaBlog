@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-9 card-artical-a-parent ">
                 <div class="row">
-                    @foreach ($articles2 as $article2)
+                    @foreach ($randomArticles as $article2)
                         <div class="col-lg-4">
                             <div class="card-artical-a">
                                 <div class="card-overlay-artical-a">
@@ -89,7 +89,7 @@
                         <h1>أهم المقالات</h1>
                     </div>
                     <div class="col-lg-12">
-                        @foreach ($articles as $article)
+                        @foreach ($importantArticles as $article)
                             <div class="card-left-artical ">
                                 <img src="../img/ola.png" alt="">
                                 <a href="detials.html">

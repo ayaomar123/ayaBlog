@@ -7,13 +7,11 @@
             style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
              Slider
         </h2>
-        <div class="col-md-3 mb-5">
-            @can('role-create')
+        {{-- <div class="col-md-3 mb-5">
             <a style="background:rgb(108, 192, 115);color:white;float: right; width:250px;" class="btn btn-success" href="{{ route('slider.create') }}"> Create New Slider</a>
-            @endcan
-        </div>
+        </div> --}}
     </div>
-<div class="card" style="text-align:left;margin-top:60px">
+<div class="card" style="text-align:left;margin-top:30px">
 
     <table class="table table-hover" style="text-align:left;">
         <thead>
@@ -32,17 +30,17 @@
                         <?php for($i=1;$i<$slider->id;$i++) ?>
                         <td> <?php echo $i;?> </td>
                         <td>{{ $slider->title}} </td>
-                        <td><img src="{{ asset('storage/images/'.$slider->image)}}" alt="Img"></td>
-                        <td>{{ $slider->word}}</td>
+                        <td><img width="50px" src="{{ asset('storage/images/'.$slider->image)}}" alt="Img"></td>
+                        <td>{{strip_tags($slider->word)}}</td>
                         <td>{{ $slider->link}}</td>
-                        <td>{{ $slider->word}}</td>
+
                         <td>
                             <a href="{{ route('slider.edit',[$slider->id]) }}">Edit </a>
-                            <form class="" action="{{ route('slider.delete',[$slider->id]) }}" method="post">
+                            {{-- <form class="" action="{{ route('slider.delete',[$slider->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit"class="btn btn-danger" name="button">Delete</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach
@@ -51,3 +49,4 @@
 </div>
 
 @endsection
+

@@ -66,9 +66,9 @@
         <!--==================== right logo=============================-->
         <div class="img-header-left">
             <ul class="nav justify-content-Start">
-                @foreach ($categories as $category)
+                @foreach ($staticPages as $menu)
                 <li class="nav-item">
-                    <a class=" nav-link" href="{{$category->name}}">{{$category->name}}</a>
+                    <a class=" nav-link" href="{{$menu->link??''}}">{{$menu->name}}</a>
                 </li>
                 @endforeach
               </ul>

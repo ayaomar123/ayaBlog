@@ -11,47 +11,114 @@ use App\Models\Article;
 class EditPagesController extends Controller
 {
 
-    public function page($pages){
-        $categories = Category::paginate(7);
-        $sliders = Slider::paginate(3);
+    public function page($pages)
+    {
+        //top header menu
+        $staticPages = Category::where('status', 1)->paginate(7);
+
+        $activeSlider = Slider::orderBy('created_at', 'asc')->paginate(1);
+
+        $sliders = Slider::orderBy('created_at', 'desc')->paginate(2);
+
         $settings = Setting::all();
-        //أهم المقالات
-        $articles = Article::paginate(2);
-        //المقالات الشائعة
-        $internationalArticles =  Article::orderBy('created_at', 'desc')
-        ->take(3)
-        ->get();
 
-        $articles2 =  Article::where('status', 1)->get();
-        //dd($articles);
+        $importantArticles = Article::latest()->paginate(2);
 
-        if($pages== 'index')
-        return view('pages.index',
-        compact('categories',
-        'sliders',
-        'settings',
-        'articles',
-        'internationalArticles',
-        'articles2',
-    ));
+        $internationalArticles =  Article::orderBy('created_at', 'desc')->paginate(3);
 
-        if($pages== 'privacy')
-        return view('pages.privacy');
+        $sliderArticles =  Article::where('status', 1)->paginate(11);
 
-        if($pages== 'laws')
-        return view('pages.laws');
+        $randomArticles = Article::all()->random(6);
 
-        if($pages== 'editor')
-        return view('pages.editor');
+        if ($pages == 'index')
+            return view(
+                'pages.index',
+                compact(
+                    'staticPages',
+                    'activeSlider',
+                    'settings',
+                    'importantArticles',
+                    'internationalArticles',
+                    'sliderArticles',
+                    'sliders',
+                    'randomArticles',
+                )
+            );
 
-        if($pages== 'call')
-        return view('pages.call');
+        if ($pages == 'privacy')
+            return view(
+                'pages.privacy',
+                compact(
+                    'staticPages',
+                    'activeSlider',
+                    'settings',
+                    'importantArticles',
+                    'internationalArticles',
+                    'sliderArticles',
+                    'sliders',
+                    'randomArticles',
+                )
+            );
 
-        if($pages== 'who')
-        return view('pages.who');
+        if ($pages == 'laws')
+            return view(
+                'pages.laws',
+                compact(
+                    'staticPages',
+                    'activeSlider',
+                    'settings',
+                    'importantArticles',
+                    'internationalArticles',
+                    'sliderArticles',
+                    'sliders',
+                    'randomArticles',
+                )
+            );
 
-        if($pages== 'profile')
-        return view('pages.profile');
+        if ($pages == 'editor')
+            return view(
+                'pages.editor',
+                compact(
+                    'staticPages',
+                    'activeSlider',
+                    'settings',
+                    'importantArticles',
+                    'internationalArticles',
+                    'sliderArticles',
+                    'sliders',
+                    'randomArticles',
+                )
+            );
+
+        if ($pages == 'call')
+            return view(
+                'pages.call',
+                compact(
+                    'staticPages',
+                    'activeSlider',
+                    'settings',
+                    'importantArticles',
+                    'internationalArticles',
+                    'sliderArticles',
+                    'sliders',
+                    'randomArticles',
+                )
+            );
+
+        if ($pages == 'who')
+            return view(
+                'pages.who',
+                compact(
+                    'staticPages',
+                    'activeSlider',
+                    'settings',
+                    'importantArticles',
+                    'internationalArticles',
+                    'sliderArticles',
+                    'sliders',
+                    'randomArticles',
+                )
+            );
     }
     /**
      * Display a listing of the resource.

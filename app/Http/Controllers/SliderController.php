@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\SliderRequest;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -36,24 +37,19 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SliderRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'image' => 'required',
-            'word' => 'required',
-            'link' => 'required'
-        ]);
-        $parameters = request()->all();
+        //dd(request()->all());
 
-        if (request()->hasFile('image')) {
-            $imageURL = request()->file('image')->store('public');
+        $requestData = $request->all();
+
+        if($request->image){
+            $fileName = $request->image->store("public/images");
             $imageName = $request->image->hashName();
-            $parameters['image'] = $imageName;
+            $requestData['image'] = $imageName;
         }
 
-
-        Slider::create($request->all());
+        Slider::create($requestData);
 
         return redirect()->route('slider.index')
             ->with('success', 'Project created successfully.');
@@ -76,8 +72,9 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slider $slider)
+    public function edit($id)
     {
+        $slider = Slider::find($id);
         return view('sliders.edit', compact('slider'));
     }
 
@@ -88,16 +85,14 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slider $slider)
+    public function update(SliderRequest $request,$id)
     {
-        $request->validate([
-            'title' => 'required',
-            'image' => 'required',
-            'word' => 'required',
-            'link' => 'required'
+        Slider::where("id",$id)->update([
+            'title' => $request['title'],
+            'word' => $request['word'],
+            'image' => $request['image'],
+            'link' => $request['link'],
         ]);
-        $slider->update($request->all());
-
         return redirect()->route('slider.index')
             ->with('success', 'slider updated successfully');
     }

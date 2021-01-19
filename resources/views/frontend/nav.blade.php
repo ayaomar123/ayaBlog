@@ -6,9 +6,9 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
-                                    @foreach ($articles2 as $article2)
+                                    @foreach ($sliderArticles as $sliderArticle)
                                     <li class="nav-item">
-                                        <a class=" nav-link" href="aExperts">{{$article2->name}}</a>
+                                        <a class=" nav-link" href="#">{{$sliderArticle->name}}</a>
                                     </li>
                                     @endforeach
                                       </ul>

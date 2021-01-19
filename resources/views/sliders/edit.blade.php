@@ -17,22 +17,21 @@
         Edit Slider
     </h2>
 </div>
-<form id="edit-slider" method="PUT" action="{{route('slider.update',[$slider->id])}}">
+<form id="edit-slider" method="post" action="{{asset("slider/".$slider->id)}}">
     @csrf
-    <input type="hidden" name="id" class="form-control" value="{{ $slider->id }}" id="formGroupExampleInput">
-
+    @method("put")
     <div class="row">
         <div class="form-group col-md-12">
             <div class="card">
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <label for="title">Title</label>
-                      <input type="text" name="name"  value="{{ $slider->title }}" class="col-md-5 form-control" id="title" placeholder="Please enter title">
+                      <input type="text" name="title"  value="{{ $slider->title }}" class="col-md-5 form-control" id="title" placeholder="Please enter title">
                     </blockquote>
                     <br>
                     <blockquote class="blockquote mb-0">
                         <label for="word">Word</label>
-                        <textarea class="form-control col-md-5" name="description">{{$slider->word}}</textarea>
+                        <textarea id="mytextarea" class="form-control col-md-5" name="word">{{$slider->word}}</textarea>
                     </blockquote>
                     <br>
                     <blockquote>
@@ -48,7 +47,7 @@
                     <br>
                     <blockquote class="blockquote mb-0">
                       <label for="link">link</label>
-                      <input type="text" name="name"  value="{{ $slider->link }}" class="col-md-5 form-control" id="title" placeholder="Please enter title">
+                      <input type="text" name="link"  value="{{ $slider->link }}" class="col-md-5 form-control" id="title" placeholder="Please enter title">
                     </blockquote>
                     <br>
                     <div class="form-group" style="float: left">
@@ -71,5 +70,9 @@
         width: 900,
         height: 300
     });
+    var loadFile = function(event) {
+                var out = document.getElementById('out');
+                out.src = URL.createObjectURL(event.target.files[0]);
+            };
 </script>
 @endsection
