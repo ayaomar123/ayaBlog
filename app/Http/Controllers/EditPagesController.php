@@ -6,18 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Setting;
+use App\Models\Article;
 
 class EditPagesController extends Controller
 {
 
     public function page($pages){
-        $categories = Category::all();
-        $sliders = Slider::all();
+        $categories = Category::paginate(7);
+        $sliders = Slider::paginate(3);
         $settings = Setting::all();
-        //dd($settings);
+        //أهم المقالات
+        $articles = Article::paginate(2);
+        //المقالات الشائعة
+        $internationalArticles =  Article::orderBy('created_at', 'desc')
+        ->take(3)
+        ->get();
+
+        $articles2 =  Article::where('status', 1)->get();
+        //dd($articles);
 
         if($pages== 'index')
-        return view('pages.index',compact('categories','sliders','settings'));
+        return view('pages.index',
+        compact('categories',
+        'sliders',
+        'settings',
+        'articles',
+        'internationalArticles',
+        'articles2',
+    ));
 
         if($pages== 'privacy')
         return view('pages.privacy');

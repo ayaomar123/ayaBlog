@@ -32,7 +32,7 @@
                         <?php for($i=1;$i<$slider->id;$i++) ?>
                         <td> <?php echo $i;?> </td>
                         <td>{{ $slider->title}} </td>
-                        <td>{{ $slider->image}}</td>
+                        <td><img src="{{ asset('storage/images/'.$slider->image)}}" alt="Img"></td>
                         <td>{{ $slider->word}}</td>
                         <td>{{ $slider->link}}</td>
                         <td>{{ $slider->word}}</td>

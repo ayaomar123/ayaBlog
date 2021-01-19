@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    protected $fillable = ['title', 'link','word','image'];
-
-    public function Article()
-    {
-        return $this->belongsTo(Articles::class);
-    }
-
+    use HasFactory;
+    protected $fillable = [
+        'title',
+        'word',
+        'link',
+        'image',
+    ];
 }

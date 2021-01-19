@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\SliderRequest;
+
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -14,8 +14,10 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::all();
-        return view('Slider.index',compact('sliders'));
+        $sliders = Slider::latest()->paginate(5);
+
+        return view('sliders.index', compact('sliders'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,10 +25,10 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /* public function create()
+    public function create()
     {
-        return view('Slider.create');
-    } */
+        return view('sliders.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,21 +36,36 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    /* public function store(SliderRequest $request)
+    public function store(Request $request)
     {
-        //dd($request);
-        $data = $request->validated();
-        Slider::create($data);
-        return redirect(route('slider.index'));
-    } */
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'word' => 'required',
+            'link' => 'required'
+        ]);
+        $parameters = request()->all();
+
+        if (request()->hasFile('image')) {
+            $imageURL = request()->file('image')->store('public');
+            $imageName = $request->image->hashName();
+            $parameters['image'] = $imageName;
+        }
+
+
+        Slider::create($request->all());
+
+        return redirect()->route('slider.index')
+            ->with('success', 'Project created successfully.');
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Slider $slider)
     {
         //
     }
@@ -56,38 +73,46 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Slider $slider)
     {
-        $slider = Slider::find($id);
-        return view('Slider.edit',compact('slider'));
+        return view('sliders.edit', compact('slider'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Slider $slider)
     {
-        $data = $request->all();
-        Slider::query()->find($id)->update($data);
-        return redirect(route('slider.index'));
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'word' => 'required',
+            'link' => 'required'
+        ]);
+        $slider->update($request->all());
+
+        return redirect()->route('slider.index')
+            ->with('success', 'slider updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Slider $slider)
     {
-        Slider::query()->find($id)->delete();
-        return redirect(route('slider.index'));
+        $slider->delete();
+
+        return redirect()->route('slider.index')
+            ->with('success', 'slider deleted successfully');
     }
 }

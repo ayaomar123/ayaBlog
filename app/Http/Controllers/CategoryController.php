@@ -95,14 +95,15 @@ class CategoryController extends Controller
      */
     public function store()
     {
-
         $data = $this->rules();
         $data['status'] = !empty(\request('status')) ? \request('status') : 0;
-        // if(\request('image')){
-        //     $fileName = \request('image')->store("public/images");
-        //     $imageName = \request('image')->hashName();
-        //     $data['image'] = $imageName;
-        // }
+
+
+        /* if(\request('image')){
+            $fileName = \request('image')->store("public/categories");
+            $imageName = \request('image')->hashName();
+            $data['image'] = $imageName;
+        } */
 
         $this->queryModel()->create($data);
 
