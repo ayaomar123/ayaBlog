@@ -1,7 +1,6 @@
-@include('frontend.header')
-@include('frontend.headerads')
-@include('frontend.nav')
-@include('frontend.slider')
+
+@extends('frontend.home')
+@section('content')
 
 <section class="artical-a" style="margin-top: 3rem;">
     <div class="container">
@@ -108,7 +107,7 @@
                                 <a href="detials.html">
                                     <h3>{{ $article->name }}</h3>
                                 </a>
-                                <p>{{Str::limit($article->description,10)}} <a href="">المزيد</a>
+                                <p>{{Str::limit($article->description,10)}}
                                 </p>
                                 <br>
                             </div>
@@ -244,7 +243,7 @@
                                 <a href="detials.html">
                                     <h3>{{ $internationalArticle->name }}</h3>
                                 </a>
-                                <p> {{ $internationalArticle->description }} <a href="">المزيد</a> </p>
+                                <p> {{ $internationalArticle->description }}</p>
                             </div>
                         @endforeach
                         <img class="ads-s" src="../img/ADS 5.png" alt="">
@@ -257,4 +256,5 @@
         </div>
     </div>
 </section>
-@include('frontend.footer')
+
+@endsection

@@ -22,7 +22,7 @@ class HomeEditController extends Controller
         $sliderCategory =  Category::where('status', 1)->take(11)->get();
 
         //أهم المقالات
-        $importantArticles = Article::latest()->paginate(2);
+        $importantArticles = Article::latest()->take(2)->get();
 
         //مقالات شائعة
         $internationalArticles =  Article::take(3)->get();

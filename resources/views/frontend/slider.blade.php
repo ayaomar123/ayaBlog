@@ -14,8 +14,6 @@
                            <h1>{{ strip_tags($slider->word) }}</h1>
                            <ul>
                                <a href="{{ $slider->link }}" class="badge badge-info">{{ $slider->title }}</a>
-                               <a href="{{ $slider->link }}" class="badge badge-info">{{ $slider->title }}</a>
-                               <a href="{{ $slider->link }}" class="badge badge-info">{{ $slider->title }}</a>
                            </ul>
                    </div>
                    <img class="d-block w-100" src="{{ asset('storage/images/' . $slider->image) }}" alt="First slide">
