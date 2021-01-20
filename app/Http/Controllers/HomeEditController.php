@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Setting;
 use App\Models\Article;
-use App\Models\Pages;
 
 class HomeEditController extends Controller
 {

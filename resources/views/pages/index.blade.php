@@ -38,7 +38,7 @@
                                 <img src="{{ asset('storage/articles/' . $article2->image) }}" alt="">
                                 <h1><a href="detials.html">مقالات قصيرة عن {{ $article2->name }}</a></h1>
                                 <p>
-                                    الوصف {{ $article2->description }}
+                                    الوصف {{Str::limit($article2->description,10)}}  <a href="">المزيد</a>
                                 </p>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $internationalArticle->image) }}" alt="">
                                 <h1><a href="detials.html">مقالات قصيرة عن {{ $internationalArticle->name }} </a></h1>
-                                <p>{{ $internationalArticle->description }}</p>
+                                <p>{{Str::limit($internationalArticle->description,10)}} <a href="">المزيد</a> </p>
                             </div>
                         </div>
                     @endforeach
@@ -108,7 +108,8 @@
                                 <a href="detials.html">
                                     <h3>{{ $article->name }}</h3>
                                 </a>
-                                <p>{{ $article->description }}</p>
+                                <p>{{Str::limit($article->description,10)}} <a href="">المزيد</a>
+                                </p>
                                 <br>
                             </div>
                         @endforeach
@@ -146,7 +147,8 @@
                                             {{ $item->created_at->todatestring() }} </span>
                                     </div>
                                     <img src="{{ asset('storage/articles/' . $item->image) }}" alt="">
-                                    <h1><a href="detials.html">{{ $item->description}} </span>
+
+                                    <h1><a href="detials.html">{{Str::limit($item->description,50)}} <a href="">المزيد</a> </span>
                                         </a></h1>
                                 </div>
                             </div>
@@ -172,7 +174,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl->image) }}" alt="">
-                                <h1><a href="detials.html"> الوصف {{$articl->description}}
+                                <h1><a href="detials.html"> الوصف {{Str::limit($articl->description,50)}} <a href="">المزيد</a>
                                     </a></h1>
                             </div>
                         </div>
@@ -197,7 +199,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl2->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl2->image) }}" alt="">
-                                <h1><a href="detials.html"> الوصف {{$articl2->description}}
+                                <h1><a href="detials.html"> الوصف {{Str::limit($articl2->description,10)}} <a href="">المزيد</a>
                                     </a></h1>
                             </div>
                         </div>
@@ -221,7 +223,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl3->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl3->image) }}" alt="">
-                                <h1><a href="detials.html"> الوصف {{$articl3->description}}
+                                <h1><a href="detials.html"> الوصف {{Str::limit($articl2->description,10)}} <a href="">المزيد</a>
                                     </a></h1>
                             </div>
                         </div>
@@ -242,7 +244,7 @@
                                 <a href="detials.html">
                                     <h3>{{ $internationalArticle->name }}</h3>
                                 </a>
-                                <p> {{ $internationalArticle->description }}</p>
+                                <p> {{ $internationalArticle->description }} <a href="">المزيد</a> </p>
                             </div>
                         @endforeach
                         <img class="ads-s" src="../img/ADS 5.png" alt="">
