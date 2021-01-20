@@ -37,13 +37,12 @@ class PagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PageRequest $request)
     {
-        $data = $this->validate($request, [
-            'title' => 'required',
-            'status' => 'required',
-        ]);
-        Pages::create($data);
+        //dd($request->all());
+        $requestData = $request->all();
+        //$requestData['status']= $requestData['status']?? '0';
+        Pages::create($requestData);
         return redirect(route('pages.index'));
     }
 

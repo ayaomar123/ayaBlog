@@ -18,9 +18,10 @@
         </h2>
     </div>
         <form class="card" method="post" action="{{route('pages.store')}}">
+            @csrf
             <div class="form-group">
               <label for="tilte">Title</label>
-              <input type="text" class="form-control" id="tilte" placeholder="Enter tilte">
+              <input name="title" value="{{old('title')}}" type="text" class="form-control" id="tilte" placeholder="Enter tilte">
             </div>
 
             <div class="form-group">
@@ -30,7 +31,7 @@
 
             <div class="form-group">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="status">
+                  <input name="status" value="1" class="form-check-input" type="checkbox" id="status">
                   <label class="form-check-label" for="status">
                     Active
                   </label>

@@ -28,8 +28,8 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
-                    <td>{{ $item->description }}</td>
-                    <td>{{ $item->status }}</td>
+                    <td>{{ strip_tags($item->description) }}</td>
+                    <td>{{ $item->status}}</td>
                     <td>
                         <form method='post' action='{{asset("pages/".$item->id)}}'>
                             @csrf

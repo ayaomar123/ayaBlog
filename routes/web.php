@@ -9,7 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SliderController;
-use App\Http\Controllers\EditPagesController;
+use App\Http\Controllers\HomeEditController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LocalizationController;
 
@@ -29,6 +29,22 @@ Route::get('/', function () {
 Route::get('/aya', function () {
     return view('Admin.board');
 });
+
+Route::get('/front/privacy', function () {
+    return view('pages.privacy');
+});
+Route::get('/front/laws', function () {
+    return view('pages.laws');
+});
+Route::get('/front/about', function () {
+    return view('pages.about');
+});
+Route::get('/front/who', function () {
+    return view('pages.who');
+});
+Route::get('/front/call', function () {
+    return view('pages.call');
+});
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -43,12 +59,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get("slider/{id}",[SliderController::class,'destroy'])->name("slider.delete");
 
 
-    //Route::resource('editPages', EditPagesController::class);
     Route::resource('pages', PagesController::class);
     Route::get("pages/{id}/delete",[StaticPageController::class,'destroy'])->name("pages.delete");
-    Route::get('front/{pages}', [EditPagesController::class, 'page']);
+    Route::get('front/{pages}', [HomeEditController::class, 'page']);
 
-    //Route::resource('editPages', EditPagesController::class);
+
 
     Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
         Route::get('/',[CategoryController::class, 'index'])->name('index');

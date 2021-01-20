@@ -8,8 +8,8 @@
                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
            </ol>
            <div class="carousel-inner">
-            @foreach ($activeSlider as $slider)
-               <div class="carousel-item active">
+            @foreach ($sliders as $slider)
+               <div class="carousel-item {{$slider->id == "1" ? "active" : ""}}">
                    <div class="listslide">
                            <h1>{{ strip_tags($slider->word) }}</h1>
                            <ul>
@@ -21,18 +21,7 @@
                    <img class="d-block w-100" src="{{ asset('storage/images/' . $slider->image) }}" alt="First slide">
                </div>
             @endforeach
-            @foreach ($sliders as $slider2)
-                   <div class="carousel-item">
-                       <div class="listslide">
-                           <h1>{{ strip_tags($slider2->word) }}</h1>
-                           <ul>
-                               <a href="{{ $slider2->link }}" class="badge badge-info">{{ $slider2->title }}</a>
-                           </ul>
-                       </div>
-                       <img class="d-block w-100" src="{{ asset('storage/images/' . $slider2->image) }}"
-                           alt="First slide">
-                   </div>
-            @endforeach
+
            </div>
            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
