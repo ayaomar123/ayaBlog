@@ -1,15 +1,10 @@
 @extends('frontend.home')
 @section('style')
     <style>
-        body {
-            font-size: 14px;
-            padding: 1rem;
-        }
 
         .rating {
             font-size: 1.2rem;
             line-height: 1.2rem;
-            display: inline-block;
         }
 
         .rating .star {
@@ -52,10 +47,6 @@
             color: #e3cf7a;
         }
 
-        /* Floating this right, means that the stars
-         * fill from the left, because of the successor
-         * rule defined below. @see https://css-tricks.com/star-ratings/
-         */
         .rating--interactive .star {
             float: right;
         }
@@ -73,6 +64,7 @@
     </style>
 @endsection
 @section('content')
+
     @foreach ($articles as $article)
         <section class="artical-detials">
 
@@ -120,9 +112,9 @@
                                     <meta itemprop="ratingValue" content="1">
                                     Not yet rated
                                 </p>
-                                <form action="#" class="clearfix">
+                                <form action="{{route('ratePost')}}" class="clearfix">
                                     <!-- Buttons need to be reversed as they are floated right. -->
-                                    <button class="star" type="button" name="5" itemprop="bestRating">
+                                    <button  class="star" type="button" name="5" itemprop="bestRating">
                                         <span class="sr-only">Rate 5 star</span>
                                     </button>
                                     <button class="star" type="button" name="4">

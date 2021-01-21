@@ -71,7 +71,7 @@
                         <ul class="nav justify-content-Start">
 
                             <li class="nav-item">
-                                <a class=" nav-link" href="{{ asset('front/index') }}">الرئيسية</a>
+                                <a class=" nav-link" href="{{ asset('/index') }}">الرئيسية</a>
                             </li>
                             <li class="nav-item">
                                 <a class=" nav-link" href="{{ asset('front/privacy') }}"> سياسة الخصوصية</a>

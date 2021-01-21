@@ -2,6 +2,7 @@
 @section('content')
     <section class="artical-a department">
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-9 card-artical-a-parent">
                     @foreach ($categoryArticles as $categoryArticle)

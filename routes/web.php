@@ -13,6 +13,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\HomeEditController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\RatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,8 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/index', [HomeEditController::class, 'index'])->name('home');
 
+Route::get('/rate', [RatingController::class, 'rate'])->name('rate');
+Route::post('/ratePost', [RatingController::class, 'ratePost'])->name('ratePost');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('home/{locale}', [LocalizationController::class, 'lang']);
