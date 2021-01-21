@@ -1,7 +1,7 @@
 
 @extends('frontend.home')
 @section('content')
-
+@include('frontend.slider')
 <section class="artical-a" style="margin-top: 3rem;">
     <div class="container">
         <div class="row">
@@ -35,9 +35,11 @@
                                     </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $article2->image) }}" alt="">
-                                <h1><a href="detials.html">مقالات قصيرة عن {{ $article2->name }}</a></h1>
+                                @foreach ($myArticles as $item2)
+                                <h1><a href="{{url('details/'.$article2->id)}}"> {{ $article2->name }}</a></h1>
+                                @endforeach
                                 <p>
-                                    الوصف {{Str::limit($article2->description,10)}}  <a href="">المزيد</a>
+                                     {{Str::limit($article2->description,10)}}
                                 </p>
                             </div>
                         </div>
@@ -66,7 +68,7 @@
                         <div class="col-lg-4">
                             <div class="card-artical-a">
                                 <div class="card-overlay-artical-a">
-                                    <a href="department.html" class="badge badge-card badge-info">
+                                    <a href="{{url('details/'.$internationalArticle->id)}}" class="badge badge-card badge-info">
                                         @foreach ($internationalArticle->categories as $category)
                                             {{ $category->name }}
                                         @endforeach
@@ -88,8 +90,8 @@
                                         {{ $article2->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $internationalArticle->image) }}" alt="">
-                                <h1><a href="detials.html">مقالات قصيرة عن {{ $internationalArticle->name }} </a></h1>
-                                <p>{{Str::limit($internationalArticle->description,10)}} <a href="">المزيد</a> </p>
+                                <h1><a href="{{url('details/'.$internationalArticle->id)}}"> {{ $internationalArticle->name }} </a></h1>
+                                <p>{{Str::limit($internationalArticle->description,10)}}
                             </div>
                         </div>
                     @endforeach
@@ -104,7 +106,7 @@
                         @foreach ($importantArticles as $article)
                             <div class="card-left-artical ">
                                 <img src="{{ asset('storage/articles/' . $article->image) }}" alt="">
-                                <a href="detials.html">
+                                <a href="{{url('details/'.$article->id)}}">
                                     <h3>{{ $article->name }}</h3>
                                 </a>
                                 <p>{{Str::limit($article->description,10)}}
@@ -147,7 +149,7 @@
                                     </div>
                                     <img src="{{ asset('storage/articles/' . $item->image) }}" alt="">
 
-                                    <h1><a href="detials.html">{{Str::limit($item->description,50)}} <a href="">المزيد</a> </span>
+                                    <h1><a href="{{url('details/'.$item->id)}}">{{Str::limit($item->description,50)}}  </span>
                                         </a></h1>
                                 </div>
                             </div>
@@ -173,7 +175,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl->image) }}" alt="">
-                                <h1><a href="detials.html"> الوصف {{Str::limit($articl->description,50)}} <a href="">المزيد</a>
+                                <h1><a href="{{url('details/'.$articl->id)}}">  {{Str::limit($articl->description,50)}}
                                     </a></h1>
                             </div>
                         </div>
@@ -198,7 +200,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl2->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl2->image) }}" alt="">
-                                <h1><a href="detials.html"> الوصف {{Str::limit($articl2->description,10)}} <a href="">المزيد</a>
+                                <h1><a href="{{url('details/'.$articl2->id)}}"> {{Str::limit($articl2->description,10)}}
                                     </a></h1>
                             </div>
                         </div>
@@ -222,7 +224,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl3->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl3->image) }}" alt="">
-                                <h1><a href="detials.html"> الوصف {{Str::limit($articl2->description,10)}} <a href="">المزيد</a>
+                                <h1><a href="{{url('details/'.$articl3->id)}}">  {{Str::limit($articl2->description,10)}} </a>
                                     </a></h1>
                             </div>
                         </div>
@@ -240,7 +242,7 @@
                         @foreach ($internationalArticles as $internationalArticle)
                             <div class="card-left-artical ">
                                 <img src="{{ asset('storage/articles/' . $internationalArticle->image) }}" alt="">
-                                <a href="detials.html">
+                                <a href="{{url('details/'.$internationalArticle->id)}}">
                                     <h3>{{ $internationalArticle->name }}</h3>
                                 </a>
                                 <p> {{ $internationalArticle->description }}</p>

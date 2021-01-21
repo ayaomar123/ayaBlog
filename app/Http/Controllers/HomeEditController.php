@@ -11,7 +11,7 @@ use App\Models\Article;
 class HomeEditController extends Controller
 {
 
-    public function page($pages)
+    public function page($id)
     {
         $settings = Setting::all();
 
@@ -30,20 +30,30 @@ class HomeEditController extends Controller
         //مقالات عشوائية
         $impotrantArticles = Article::inRandomOrder()->take(3)->get();
 
+        $$impotrantArticles = Article::inRandomOrder()->take(3)->get();
         //6 مقالات عشوائية
         $randomArticles = Article::inRandomOrder()->take(6)->get();
 
-        if ($pages == 'index')
+        $categoryArticle = Category::query()->with('articles', function($query){
+            $query->orderBy('id', 'desc')->take(1)->get();
+        })->get();
+
+        $myArticles =  Article::where('id', $id)->get();
+
+
+
+
             return view(
                 'pages.index',
                 compact(
-                    'settings',
+                    //'settings',
                     'importantArticles',
                     'internationalArticles',
                     'sliderCategory',
                     'sliders',
                     'randomArticles',
-                    'impotrantArticles'
+                    'impotrantArticles',
+                    'myArticles'
                 )
             );
 
@@ -51,6 +61,7 @@ class HomeEditController extends Controller
 
 
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +69,41 @@ class HomeEditController extends Controller
      */
     public function index()
     {
-        //
+        $sliders = Slider::take(3)->get();
+
+        //عناوين المقالات في السلايدر
+        $sliderCategory =  Category::where('status', 1)->take(11)->get();
+
+        //أهم المقالات
+        $importantArticles = Article::latest()->take(2)->get();
+
+        //مقالات شائعة
+        $internationalArticles =  Article::take(3)->get();
+
+        //مقالات عشوائية
+        $impotrantArticles = Article::inRandomOrder()->take(3)->get();
+
+        $$impotrantArticles = Article::inRandomOrder()->take(3)->get();
+        //6 مقالات عشوائية
+        $randomArticles = Article::inRandomOrder()->take(6)->get();
+
+        $categoryArticle = Category::query()->with('articles', function($query){
+            $query->orderBy('id', 'desc')->take(1)->get();
+        })->get();
+
+        $myArticles =  Article::inRandomOrder()->take(1)->get();
+
+
+        return view('pages.index',compact(
+            //'settings',
+            'importantArticles',
+            'internationalArticles',
+            'sliderCategory',
+            'sliders',
+            'randomArticles',
+            'impotrantArticles',
+            'myArticles'
+        ));
     }
 
     /**

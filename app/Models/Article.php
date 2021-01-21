@@ -9,10 +9,15 @@ class Article extends Model
 {
 
     protected $with = ['categories'];
-    
+
     protected $fillable = [ 'name','description','image','status'];
 
     public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category','category_article');
+    }
+
+    public function aya()
     {
         return $this->belongsToMany('App\Models\Category','category_article');
     }
@@ -24,6 +29,6 @@ class Article extends Model
             $article->slug = Str::slug($article->name);
         });
     }
-   
-    
+
+
 }

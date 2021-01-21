@@ -98,14 +98,14 @@
                 <div class="col-lg-4 header-left">
                     <!--==================  Start social===============================-->
                     <div class="social ">
-                        <div class="row">
+                        {{-- <div class="row">
                             @foreach ($settings as $setting)
                                 <a href="{{ $setting->facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="{{ $setting->youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>
                                 <a href="{{ $setting->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
                                 <a href="{{ $setting->instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
                             @endforeach
-                        </div>
+                        </div> --}}
                     </div>
 
                     <!--==================  End social===============================-->

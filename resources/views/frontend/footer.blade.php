@@ -16,14 +16,14 @@
             </div>
             <div class="col-lg-6">
                 <ul class="soical-footer">
-                    @foreach ($settings as $setting)
+                    {{-- @foreach ($settings as $setting)
                     <a href="{{$setting->youtube}}"><i class="fab fa-youtube"></i></a>
                     <a href="{{$setting->snapchat}}"><i class="fab fa-snapchat-ghost"></i></a>
                     <a href="{{$setting->linkedin}}"><i class="fab fa-linkedin-in"></i></a>
                     <a href="{{$setting->instagram}}"><i class="fab fa-instagram"></i></a>
                     <a href="{{$setting->twitter}}"><i class="fab fa-twitter"></i></a>
                     <a href="{{$setting->facebook}}"><i class="fab fa-facebook-f"></i></a>
-                    @endforeach
+                    @endforeach --}}
                 </ul>
             </div>
 

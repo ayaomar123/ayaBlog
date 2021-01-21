@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\EconmoyController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\HomeEditController;
 use App\Http\Controllers\PagesController;
@@ -33,6 +34,8 @@ Route::get('/aya', function () {
 Route::get('/front/privacy', function () {
     return view('pages.privacy');
 });
+
+
 Route::get('/front/laws', function () {
     return view('pages.laws');
 });
@@ -42,12 +45,11 @@ Route::get('/front/about', function () {
 Route::get('/front/who', function () {
     return view('pages.who');
 });
-Route::get('/front/call', function () {
-    return view('pages.call');
-});
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/index', [HomeEditController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => ['auth']], function() {
@@ -61,8 +63,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('pages', PagesController::class);
     Route::get("pages/{id}/delete",[StaticPageController::class,'destroy'])->name("pages.delete");
-    Route::get('front/{pages}', [HomeEditController::class, 'page']);
+    Route::get('index/{id}', [HomeEditController::class, 'page'])
+    ->withoutMiddleware(['auth']);
+    Route::get('economy/{id}', [EconmoyController::class, 'economy'])->withoutMiddleware(['auth']);
+    Route::get('details/{id}', [EconmoyController::class, 'details'])->withoutMiddleware(['auth']);
 
+
+    //Route::get('/{slug}', [TravelController::class, 'show']);
 
 
     Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
