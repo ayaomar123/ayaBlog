@@ -62,17 +62,3 @@
 </form>
 @endsection
 
-@section('script')
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>
-    tinymce.init({
-        selector: '#mytextarea',
-        width: 900,
-        height: 300
-    });
-    var loadFile = function(event) {
-                var out = document.getElementById('out');
-                out.src = URL.createObjectURL(event.target.files[0]);
-            };
-</script>
-@endsection

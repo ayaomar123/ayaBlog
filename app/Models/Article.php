@@ -10,7 +10,7 @@ class Article extends Model
 
     protected $with = ['categories'];
 
-    protected $fillable = [ 'name','description','image','status'];
+    protected $fillable = [ 'name','description','image','status','viewer'];
 
     public function categories()
     {

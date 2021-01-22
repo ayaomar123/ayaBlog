@@ -146,7 +146,7 @@
                     </div>
                 </li>
                 <li class="menu-item" aria-haspopup="true">
-                    <a href="{{asset('slider/1/edit')}}" class="menu-link">
+                    <a href="{{asset('slider')}}" class="menu-link">
                         <i class="menu-icon flaticon2-console"></i>
                         <span class="menu-text">Sliders</span>
                     </a>

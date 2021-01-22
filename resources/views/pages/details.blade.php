@@ -74,7 +74,7 @@
                     <div class="row">
                         <p><i class="far fa-user"></i>Name</p>
                         <p><i class="far fa-calendar-alt"></i> {{ $article->created_at->todatestring() }}</p>
-                        <h3><i class="far fa-eye"></i> 1500</h3>
+                        <h3><i class="far fa-eye"></i>المشاهدات {{$views->viewer}}</h3>
 
                         <div class="star-header">
                             <!--================-->

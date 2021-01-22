@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
-use App\Models\Slider;
 use App\Models\Setting;
+use App\Events\ArticleViewer;
 
 class EconmoyController extends Controller
 {
@@ -53,12 +53,16 @@ class EconmoyController extends Controller
         $related =  Article::inRandomOrder()->take(3)->get();
         //dd($article);
 
+        $views = Article::where('id', $id)->first();
+        event(new ArticleViewer($views));
+
         return view('pages.details', compact(
             //'settings',
             'sliderCategory',
             'articles',
             'related',
-            'article'
+            'article',
+            'views'
         ));
     }
 }
