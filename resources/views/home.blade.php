@@ -1,4 +1,5 @@
-@extends('Admin.board')@section('style')
+@extends('Admin.board')
+@section('style')
     <style>
         .card {
     position: relative;
@@ -40,10 +41,10 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    @if(auth()->user()->is_admin == 1)
+                    <a href="{{url('admin/routes')}}">Admin</a>
+                    @else
+                    <div class="panel-heading">Normal User</div>
                     @endif
 
                     {{ __('You are logged in!') }}

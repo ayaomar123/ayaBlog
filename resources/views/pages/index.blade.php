@@ -18,7 +18,7 @@
 
                                     </a>
 
-                                    <h3><i class="far fa-eye"></i> 1500</h3>
+                                    <h3><i class="far fa-eye"></i> {{ $article2->viewer }}</h3>
 
                                     <div class="star-header">
                                         <!--================-->
@@ -74,7 +74,7 @@
                                         @endforeach
                                     </a>
 
-                                    <h3><i class="far fa-eye"></i> 1500</h3>
+                                    <h3><i class="far fa-eye"></i> {{ $internationalArticle->viewer }}</h3>
 
                                     <div class="star-header">
                                         <!--================-->

@@ -1,7 +1,7 @@
 @extends('frontend.home')
+
 @section('style')
     <style>
-
         .rating {
             font-size: 1.2rem;
             line-height: 1.2rem;
@@ -63,6 +63,7 @@
 
     </style>
 @endsection
+
 @section('content')
 
     @foreach ($articles as $article)
@@ -74,7 +75,7 @@
                     <div class="row">
                         <p><i class="far fa-user"></i>Name</p>
                         <p><i class="far fa-calendar-alt"></i> {{ $article->created_at->todatestring() }}</p>
-                        <h3><i class="far fa-eye"></i>المشاهدات {{$views->viewer}}</h3>
+                        <h3><i class="far fa-eye"></i>المشاهدات {{ $views->viewer }}</h3>
 
                         <div class="star-header">
                             <!--================-->
@@ -106,35 +107,36 @@
                         <h1>{{ $article->name }}</h1>
                         <p>{{ $article->description }}</p>
                         <div class="container">
-                            <div class="rating rating--interactive" itemprop="reviewRating" itemscope
-                                itemtype="https://schema.org/Rating">
-                                <p class="sr-only">
-                                    <meta itemprop="ratingValue" content="1">
-                                    Not yet rated
-                                </p>
-                                <form action="{{route('ratePost')}}" class="clearfix">
-                                    <!-- Buttons need to be reversed as they are floated right. -->
-                                    <button  class="star" type="button" name="5" itemprop="bestRating">
-                                        <span class="sr-only">Rate 5 star</span>
-                                    </button>
-                                    <button class="star" type="button" name="4">
-                                        <span class="sr-only">Rate 4 star</span>
-                                    </button>
-                                    <button class="star" type="button" name="3">
-                                        <span class="sr-only">Rate 3 star</span>
-                                    </button>
-                                    <button class="star" type="button" name="2">
-                                        <span class="sr-only">Rate 2 star</span>
-                                    </button>
-                                    <button class="star" type="button" name="1" itemprop="worstRating">
-                                        <span class="sr-only">Rate 1 star</span>
-                                    </button>
-                                </form>
+                            <div class="row">
+                                <h1 href="{{url('reviews/'.$article->id)}}">قيم المقالة</h1>
+                                <div class="container">
+                                    <div class="rating rating--interactive" itemprop="reviewRating" itemscope>
+                                        <p class="sr-only">
+                                            <meta itemprop="ratingValue" content="1">
+                                            Not yet rated
+                                        </p>
+                                        <form class="clearfix">
+                                            <!-- Buttons need to be reversed as they are floated right. -->
+                                            <button class="star" type="radio" name="5" itemprop="bestRating">
+                                                <span class="sr-only">Rate 5 star</span>
+                                            </button>
+                                            <button class="star" type="radio" name="4">
+                                                <span class="sr-only">Rate 4 star</span>
+                                            </button>
+                                            <button class="star" type="radio" name="3">
+                                                <span class="sr-only">Rate 3 star</span>
+                                            </button>
+                                            <button class="star" type="radio" name="2">
+                                                <span class="sr-only">Rate 2 star</span>
+                                            </button>
+                                            <button class="star" type="radio" name="1" itemprop="worstRating">
+                                                <span class="sr-only">Rate 1 star</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <img class="ads-det" src="img/ADS 1.png" alt="">
-
                         <div class="edit-team-artical">
                             <div class="row">
                                 <div class="over-lay-img-team">

@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeEditController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,11 +50,11 @@ Route::get('/front/who', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('/index', [HomeEditController::class, 'index'])->name('home');
 
-Route::get('/rate', [RatingController::class, 'rate'])->name('rate');
-Route::post('/ratePost', [RatingController::class, 'ratePost'])->name('ratePost');
+Route::get('reviews/{id}', [RatingController::class, 'index'])->withoutMiddleware(['auth']);
+Route::resource('reviews', RatingController::class);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('home/{locale}', [LocalizationController::class, 'lang']);
@@ -72,7 +73,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('details/{id}', [EconmoyController::class, 'details'])->withoutMiddleware(['auth']);
 
 
-    //Route::get('/{slug}', [TravelController::class, 'show']);
+    Route::resource('setting', SettingController::class);
 
 
     Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
