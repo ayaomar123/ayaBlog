@@ -79,12 +79,22 @@
 
                         <div class="star-header">
                             <!--================-->
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
 
+                            @php $rating = $ratings; @endphp
+                            @foreach(range(1,5) as $i)
+                                <span class="fa-stack" style="width:1em">
+                                    <i class="far fa-star fa-stack-1x"></i>
+
+                                    @if($rating >0)
+                                        @if($rating >0.5)
+                                            <i class="fas fa-star fa-stack-1x"></i>
+                                        @else
+                                            <i class="fas fa-star-half fa-stack-1x"></i>
+                                        @endif
+                                    @endif
+                                    @php $rating--; @endphp
+                                </span>
+                            @endforeach
                         </div>
                     </div>
                     <ul class="soical-header-artical">
@@ -107,33 +117,35 @@
                         <h1>{{ $article->name }}</h1>
                         <p>{{ $article->description }}</p>
                         <div class="container">
+
                             <div class="row">
-                                <h1 href="{{url('reviews/'.$article->id)}}">قيم المقالة</h1>
+                                <h1></h1>
                                 <div class="container">
-                                    <div class="rating rating--interactive" itemprop="reviewRating" itemscope>
-                                        <p class="sr-only">
-                                            <meta itemprop="ratingValue" content="1">
-                                            Not yet rated
-                                        </p>
-                                        <form class="clearfix">
-                                            <!-- Buttons need to be reversed as they are floated right. -->
-                                            <button class="star" type="radio" name="5" itemprop="bestRating">
+                                    <form class="form-horizontal poststars" action="{{ route('rating', $article->id) }}"
+                                        id="addStar" method="get">
+
+                                        <div class="rating rating--interactive" itemprop="reviewRating" itemscope>
+                                            <p class="sr-only">
+                                                <meta itemprop="ratingValue" content="1">
+                                                Not yet rated
+                                            </p>
+                                            <button class="star" type="radio" value="5" name="star" itemprop="bestRating">
                                                 <span class="sr-only">Rate 5 star</span>
                                             </button>
-                                            <button class="star" type="radio" name="4">
+                                            <button class="star" type="radio" value="4" name="star">
                                                 <span class="sr-only">Rate 4 star</span>
                                             </button>
-                                            <button class="star" type="radio" name="3">
+                                            <button class="star" type="radio" value="3" name="star">
                                                 <span class="sr-only">Rate 3 star</span>
                                             </button>
-                                            <button class="star" type="radio" name="2">
+                                            <button class="star" value="2" type="radio" name="star">
                                                 <span class="sr-only">Rate 2 star</span>
                                             </button>
-                                            <button class="star" type="radio" name="1" itemprop="worstRating">
+                                            <button class="star" type="radio" value="1" name="star" itemprop="worstRating">
                                                 <span class="sr-only">Rate 1 star</span>
                                             </button>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -208,4 +220,12 @@
 
         </section>
     @endforeach
+@endsection
+@section('script')
+    <script>
+        $('#addStar').change('.star', function(e) {
+            $(this).submit();
+        });
+
+    </script>
 @endsection

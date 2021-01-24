@@ -17,7 +17,7 @@
             Create pages
         </h2>
     </div>
-        <form class="card" method="post" action="{{route('pages.store')}}">
+        <form class="card" method="post" action="{{route('staticPages.store')}}">
             @csrf
             <div class="form-group">
               <label for="tilte">Title</label>

@@ -7,6 +7,10 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Events\ArticleViewer;
+use App\Models\StaticPages;
+use App\Models\Rating;
+use Illuminate\Support\Facades\Auth;
+
 
 class EconmoyController extends Controller
 {
@@ -25,21 +29,27 @@ class EconmoyController extends Controller
             $article->orderBy('id', 'desc')->get();
         })->get();
 
+        $mypages = StaticPages::all();
+
         $article =  Article::where('id', $id)->take(3)->get();
-        //dd($article);
+
+
 
         return view('pages.economy', compact(
-            //'settings',
+            'settings',
             'sliderCategory',
             'articles',
             'categoryArticles',
-            'article'
+            'article',
+            'mypages'
         ));
     }
 
     public function details($id)
     {
         $settings = Setting::all();
+
+        $mypages = StaticPages::all();
 
         //عناوين المقالات في السلايدر
         $sliderCategory =  Category::where('status', 1)->take(11)->get();
@@ -56,13 +66,34 @@ class EconmoyController extends Controller
         $views = Article::where('id', $id)->first();
         event(new ArticleViewer($views));
 
+
+        $ArticleRatings = Article::query()->where('id', $id)->with('ratings', function ($rating) {
+            $rating->avg('rating');
+        })->get();
+
+        $ratings = Rating::where('article_id',$id)->first()->avg('rating');
+        //dd($ratings);
         return view('pages.details', compact(
-            //'settings',
+            'settings',
             'sliderCategory',
             'articles',
             'related',
             'article',
-            'views'
+            'views',
+            'mypages',
+            'ratings'
         ));
+    }
+
+
+    public function postRating($article, Request $request)
+    {
+        //$requestData = $request->all();
+        $requestData['user_id'] = Auth::id();
+        $requestData['article_id'] = $article;
+        $requestData['rating'] = $request->star;
+        Rating::create($requestData);
+        return redirect()->back();
+        //dd($requestData);
     }
 }

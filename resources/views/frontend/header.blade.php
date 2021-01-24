@@ -21,46 +21,6 @@
 </head>
 
 <body>
-    <div class="responsive">
-        <div class="container">
-            <div class="logo">
-                <a href="#"><img src="img/logo.png" alt="logo"></a>
-            </div>
-            <div class="navbar">
-                <div class="icon-bar" onclick="Show()">
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                </div>
-
-                <ul id="nav-lists">
-                    <li class="close"><span onclick="Hide()">×</span></li>
-                    <li><a href="{{ url('home') }}">الرئيسية</a></li>
-                    <li><a href="department.html">التحليل الاقتصادي</a></li>
-                    <li><a href="department.html">البحث العلمي </a></li>
-                    <li><a href="department.html">الصحة</a></li>
-                    <li><a href="department.html">تنمية الذات</a></li>
-                    <li><a href="department.html">المرأة والطفل</a></li>
-                    <li><a href="department.html">ثقافة دينية </a></li>
-                    <li><a href="department.html">علوم وفنون</a></li>
-                    <li><a href="department.html">اخبار المجتمع</a></li>
-                    <li><a href="department.html">عجائب وغرائب</a></li>
-                    <li><a href="department.html">السفر والسياحة</a></li>
-                    <li><a href="team.html">فريق التحرير</a></li>
-                    <li><a href="#">سياسية الخصوصية</a></li>
-                    <li><a href="#">القوانين والاحكام</a></li>
-                    <li><a href="about-as.html">عن موقع</a></li>
-                    <li><a href="#">من نحن</a></li>
-                    <li><a href="contact.html">اتصل بنا</a></li>
-
-
-
-
-                </ul>
-
-            </div>
-        </div>
-    </div>
 
     <header class="upper-top">
         <div class="container-fluid">
@@ -73,21 +33,11 @@
                             <li class="nav-item">
                                 <a class=" nav-link" href="{{ asset('/index') }}">الرئيسية</a>
                             </li>
-                            <li class="nav-item">
-                                <a class=" nav-link" href="{{ asset('front/privacy') }}"> سياسة الخصوصية</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class=" nav-link" href="{{ asset('front/laws') }}">القوانين والأحكام</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-link" href="{{ asset('front/who') }}">عن موقع</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-link" href="{{ asset('front/editor') }}">فريق التحرير</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-link" href="{{ asset('front/call') }}">اتصل بنا</a>
-                        </li>
+                            @foreach ($mypages as $item)
+                                <li class="nav-item">
+                                    <a class=" nav-link" href="{{ asset('pages/' . $item->id) }}">{{ $item->title }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!--=================================================-->
@@ -98,23 +48,47 @@
                 <div class="col-lg-4 header-left">
                     <!--==================  Start social===============================-->
                     <div class="social ">
-                        {{-- <div class="row">
+                        <div class="row">
                             @foreach ($settings as $setting)
                                 <a href="{{ $setting->facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="{{ $setting->youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>
                                 <a href="{{ $setting->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
                                 <a href="{{ $setting->instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
                             @endforeach
-                        </div> --}}
+                        </div>
                     </div>
 
                     <!--==================  End social===============================-->
                     <!--==================  Start search ===============================-->
-                    <div class="search ">
-                        <div class="row">
-                            <a href="{{ asset('home') }}"><i class="fas fa-user-alt"></i></a>
-                        </div>
-                    </div>
+                   <div class="mr-2">
+                        <!-- Authentication Links -->
+                        @guest
+                            <a style="color: white" class="mr-2 p-2" href="{{ route('login') }}"><i class="fab fa-instagram"></i>تسجيل دخول</a>
+                            <a style="color: white" href="{{ route('register') }}"><i class="fab fa-instagram"></i>اشتراك</a>
+                        @else
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                                <a style="color: white" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                   </div>
                     <!--==================  End search ===============================-->
 
                 </div>

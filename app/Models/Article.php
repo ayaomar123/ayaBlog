@@ -7,20 +7,21 @@ use Illuminate\Support\Str;
 
 class Article extends Model
 {
-
     protected $with = ['categories'];
 
-    protected $fillable = [ 'name','description','image','status','viewer'];
+    protected $fillable = ['name', 'description', 'image', 'status', 'viewer'];
 
     public function categories()
     {
-        return $this->belongsToMany('App\Models\Category','category_article');
+        return $this->belongsToMany('App\Models\Category', 'category_article');
     }
 
-    public function aya()
+    public function ratings()
     {
-        return $this->belongsToMany('App\Models\Category','category_article');
+        return $this->hasMany(Rating::class);
     }
+
+
 
     protected static function boot()
     {
@@ -29,6 +30,4 @@ class Article extends Model
             $article->slug = Str::slug($article->name);
         });
     }
-
-
 }

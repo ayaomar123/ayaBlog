@@ -3,21 +3,16 @@
 
 
 @include('frontend.headerads')
-@include('frontend.nav')
+{{-- @include('frontend.nav') --}}
 
 @yield('section')
 <section class="privacy">
     <div class="container">
-        @foreach ($mypages as $myPage)
-
-
+        @foreach ($page as $myPage)
             <h1> {{strip_tags($myPage->title)}}</h1>
             <ul>
                 {{$myPage->description}}
             </ul>
-
-
-
         @endforeach
 
     </div>

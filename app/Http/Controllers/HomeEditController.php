@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Setting;
 use App\Models\Article;
+use App\Models\StaticPages;
 
 class HomeEditController extends Controller
 {
@@ -41,8 +42,6 @@ class HomeEditController extends Controller
         $myArticles =  Article::where('id', $id)->get();
 
 
-
-
             return view(
                 'pages.index',
                 compact(
@@ -53,7 +52,7 @@ class HomeEditController extends Controller
                     'sliders',
                     'randomArticles',
                     'impotrantArticles',
-                    'myArticles'
+                    'myArticles',
                 )
             );
 
@@ -69,7 +68,10 @@ class HomeEditController extends Controller
      */
     public function index()
     {
+        $settings = Setting::all();
         $sliders = Slider::take(3)->get();
+
+        $mypages = StaticPages::all();
 
         //عناوين المقالات في السلايدر
         $sliderCategory =  Category::where('status', 1)->take(11)->get();
@@ -95,14 +97,15 @@ class HomeEditController extends Controller
 
 
         return view('pages.index',compact(
-            //'settings',
+            'settings',
             'importantArticles',
             'internationalArticles',
             'sliderCategory',
             'sliders',
             'randomArticles',
             'impotrantArticles',
-            'myArticles'
+            'myArticles',
+            'mypages'
         ));
     }
 

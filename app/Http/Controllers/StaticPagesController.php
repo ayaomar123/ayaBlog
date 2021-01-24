@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PageRequest;
-use App\Models\Pages;
+use App\Models\StaticPages;
 
 use Illuminate\Http\Request;
 
-class PagesController extends Controller
+class StaticPagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $items = Pages::all();
-        //dd($category);
+        $items = StaticPages::all();
+
         return view('pages2.index',compact('items'));
     }
 
@@ -42,8 +42,8 @@ class PagesController extends Controller
         //dd($request->all());
         $requestData = $request->all();
         //$requestData['status']= $requestData['status']?? '0';
-        Pages::create($requestData);
-        return redirect(route('pages.index'));
+        StaticPages::create($requestData);
+        return redirect(route('staticPages.index'));
     }
 
     /**
@@ -65,7 +65,7 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $pages = Pages::find($id);
+        $pages = StaticPages::find($id);
         return view('pages2.edit',compact('pages'));
     }
 
@@ -79,8 +79,8 @@ class PagesController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        Pages::query()->find($id)->update($data);
-        return redirect(route('page.index'));
+        StaticPages::query()->find($id)->update($data);
+        return redirect(route('staticPages.index'));
     }
 
     /**
@@ -91,7 +91,9 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        Pages::query()->find($id)->delete();
-        return redirect(route('page.index'));
+        //dd($id);
+        StaticPages::find($id)->delete();
+        return redirect()->route('staticPages.index')
+            ->with('success', 'page deleted successfully');
     }
 }

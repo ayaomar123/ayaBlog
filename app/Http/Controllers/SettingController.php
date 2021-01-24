@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\Slider;
 use App\Http\Requests\SettingRequest;
+use App\Models\StaticPages;
 
 class SettingController extends Controller
 {
     public function index()
     {
         $settings = Setting::get();
-        return view('setting.index', compact('settings'));
+        $mypages = StaticPages::get();
+        //dd($settings);
+        return view('frontend.header', compact('settings','mypages'));
     }
 
     public function edit($id)

@@ -17,8 +17,9 @@
             Create Pages
         </h2>
     </div>
-    <form class="card" action="{{route('pages.update',[$pages->id])}}" method="post">
+    <form class="card" action="{{route('staticPages.update',[$pages->id])}}" method="post">
         @csrf
+        @method('put')
 
         <div class="form-group">
             <label for="name">pages Title</label>

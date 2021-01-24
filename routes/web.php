@@ -11,10 +11,11 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\EconmoyController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\HomeEditController;
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,34 +30,16 @@ use App\Http\Controllers\SettingController;
 Route::get('/', function () {
     return view('Auth.login');
 });
-Route::get('/aya', function () {
-    return view('Admin.board');
-});
 
-Route::get('/front/privacy', function () {
-    return view('pages.privacy');
-});
-
-
-Route::get('/front/laws', function () {
-    return view('pages.laws');
-});
-Route::get('/front/about', function () {
-    return view('pages.about');
-});
-Route::get('/front/who', function () {
-    return view('pages.who');
-});
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('/index', [HomeEditController::class, 'index'])->name('home');
 
-Route::get('reviews/{id}', [RatingController::class, 'index'])->withoutMiddleware(['auth']);
-Route::resource('reviews', RatingController::class);
+Route::get('rating/{star}', [EconmoyController::class, 'postRating'])->name('rating');
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['is_admin']], function() {
     Route::get('home/{locale}', [LocalizationController::class, 'lang']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
@@ -65,12 +48,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get("slider/{id}",[SliderController::class,'destroy'])->name("slider.delete");
 
 
-    Route::resource('pages', PagesController::class);
-    Route::get("pages/{id}/delete",[StaticPageController::class,'destroy'])->name("pages.delete");
-    Route::get('index/{id}', [HomeEditController::class, 'page'])
-    ->withoutMiddleware(['auth']);
-    Route::get('economy/{id}', [EconmoyController::class, 'economy'])->withoutMiddleware(['auth']);
-    Route::get('details/{id}', [EconmoyController::class, 'details'])->withoutMiddleware(['auth']);
+    Route::resource('staticPages', StaticPagesController::class);
+    Route::delete('staticPages/{id}', [StaticPagesController::class, 'destroy'])->name('static-delete');
+
+
+    Route::get('index/{id}', [HomeEditController::class, 'page'])->withoutMiddleware(['is_admin']);
+    Route::get('economy/{id}', [EconmoyController::class, 'economy'])->withoutMiddleware(['is_admin']);
+    Route::get('details/{id}', [EconmoyController::class, 'details'])->withoutMiddleware(['is_admin']);
+    Route::get('pages/{id}', [PageController::class, 'pages'])->withoutMiddleware(['is_admin']);
 
 
     Route::resource('setting', SettingController::class);

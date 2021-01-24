@@ -69,11 +69,11 @@
                                 </span>
                             </li>
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="{{asset('front/index')}}" class="menu-link">
+                                <a href="{{asset('staticPages')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Edit</span>
+                                    <span class="menu-text">Show</span>
                                 </a>
                             </li>
                         </ul>
