@@ -66,11 +66,6 @@ class EconmoyController extends Controller
         $views = Article::where('id', $id)->first();
         event(new ArticleViewer($views));
 
-
-        $ArticleRatings = Article::query()->where('id', $id)->with('ratings', function ($rating) {
-            $rating->avg('rating');
-        })->get();
-
         $ratings = Rating::where('article_id',$id)->first()->avg('rating');
         //dd($ratings);
         return view('pages.details', compact(
