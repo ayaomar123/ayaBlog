@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Article;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\EditArticleRequest;
 use App\Http\Controllers\CategoryController;
 use App\models\Category;
 use Validator,Redirect,Response;
@@ -103,8 +104,15 @@ class ArticleController extends Controller
             $imageName = $request->image->hashName();
             $requestData['image'] = $imageName;
         }
+        if ($request->cover) {
+            $fileName = $request->cover->store("public/articles");
+            $CoverName = $request->cover->hashName();
+            $requestData['cover'] = $CoverName;
+        }
         $article = $this->queryModel()->create($requestData);
         $article->categories()->attach($request->category_id);
+        $article->editors()->attach(Auth()->user());
+        //dd(Auth()->user());
         return redirect(route('articles.index'))->with('msg', 'Article Created Successfully');
     }
 
@@ -145,7 +153,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(EditArticleRequest $request, $id)
     {
 
         $this->queryModel()
@@ -153,7 +161,6 @@ class ArticleController extends Controller
         ->update([
             'name' => $request['name'],
             'description' => $request['description'],
-            'image' => $request['image'],
             'status' => $request['status'],
         ]);
         return redirect(route('articles.index'))->with('info', 'Article Edited Successfully');
@@ -167,7 +174,6 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-
         $this->queryModel()
          ->find($id)
          ->delete();
@@ -177,7 +183,6 @@ class ArticleController extends Controller
 
     //delete all records
     public function deleteAll(){
-
         $this->queryModel()
         ->whereIn('id',\request('id'))
         ->delete();

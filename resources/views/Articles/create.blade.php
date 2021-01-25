@@ -45,6 +45,18 @@
                                     </div>
                                 </blockquote>
                                 <br>
+                                <blockquote>
+                                    <div class="col-md-5">
+                                        <label style="float: left" for="cover">Choose article cover</label>
+                                        <br>
+                                        <input  class="col-md-5" id="cover" type="file" name="cover"
+                                            value="{{ old('cover') }}" onchange="loadFile2(event)">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="card-img-top col-md-5" id="out2" style="width:70%">
+                                    </div>
+                                </blockquote>
+                                <br>
                                 <blockquote class="blockquote mb-0">
                                     <div class="slideOne">
                                         <input style="float: left" type="checkbox" value="1" id="published" name="status" checked />
@@ -81,6 +93,11 @@
         var loadFile = function(event) {
             var out = document.getElementById('out');
             out.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        var loadFile2 = function(event) {
+            var out2 = document.getElementById('out2');
+            out2.src = URL.createObjectURL(event.target.files[0]);
         };
 
     </script>

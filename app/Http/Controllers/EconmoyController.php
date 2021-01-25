@@ -9,6 +9,7 @@ use App\Models\Setting;
 use App\Events\ArticleViewer;
 use App\Models\StaticPages;
 use App\Models\Rating;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -35,6 +36,8 @@ class EconmoyController extends Controller
 
 
 
+
+
         return view('pages.economy', compact(
             'settings',
             'sliderCategory',
@@ -55,7 +58,8 @@ class EconmoyController extends Controller
         $sliderCategory =  Category::where('status', 1)->take(11)->get();
 
         //المقالة الحالية اللي ضغطت عليها
-        $articles =  Article::where('id', $id)->get();
+        $articles =  Article::where('id', $id)->with('editors')->get();
+        //dd($articles);
 
         $article =  Category::where('id', $id)->take(3)->get();
 
@@ -67,6 +71,7 @@ class EconmoyController extends Controller
         event(new ArticleViewer($views));
 
         $ratings = Rating::where('article_id',$id)->first()->avg('rating');
+
         //dd($ratings);
         return view('pages.details', compact(
             'settings',

@@ -6,9 +6,6 @@
 
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
-
-
-
 <script>
     $(document).ready(function() {
         $('.mdb-select').select2();
@@ -18,6 +15,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         var table = $('#laravel-datatable-crud').DataTable({
 
             'processing': true,
@@ -68,6 +66,14 @@
                 {
                     name: 'image',
                     data: 'image',
+                    render: function(data) {
+                        return "<img width='150px' src='storage/articles/" + data + " ' />"
+
+                    },
+                },
+                {
+                    name: 'cover',
+                    data: 'cover',
                     render: function(data) {
                         return "<img width='150px' src='storage/articles/" + data + " ' />"
 
@@ -151,6 +157,7 @@
         //delete record
         $('body').on('click', '.delete', function() {
             var catid = $(this).data("id");
+            //dd(catid);
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -172,12 +179,12 @@
             });
             $.ajax({
                 type: "DELETE",
-                url: "{{ url('articles') }}" + '/' + catid,
+                url: "{{ url('articles/') }}" + catid,
                 success: function(data) {
                     var oTable = $('#laravel-datatable-crud').dataTable();
                 },
                 error: function(data) {
-                    console.log('Error:', data);
+                    toastr.info("Error, Can't Be Deleted");
                 }
             });
         });
@@ -213,17 +220,17 @@
                         }
                     });
                     $.ajax({
-                        url: "{{ route('articles.multiple-delete') }}",
+                        url: "{{ route('article.multiple-delete') }}",
                         method: "DELETE",
                         data: {
                             id: id
                         },
                         success: function(data) {
                             //$('#laravel-datatable-crud').DataTable().ajax.reload();
-                            var oTable = $('#laravel-datatable-crud').dataTable();
+                            toastr.info("Error, Can't Be Deleted");
                         },
                         error: function(data) {
-                            console.log('Error:', data);
+                            var oTable = $('#laravel-datatable-crud').dataTable();
                         }
                     });
                 }
@@ -232,6 +239,7 @@
             }
 
         });
+
 
         //deactivate selected records
         $('.active-all').on('click', function(e) {
@@ -254,7 +262,7 @@
                         $('#laravel-datatable-crud').DataTable().ajax.reload();
                     },
                     error: function(data) {
-                        alert("Failed");
+                        toastr.info("Error, Can't Deactive");
                     }
                 });
             } else {
@@ -283,7 +291,7 @@
                         $('#laravel-datatable-crud').DataTable().ajax.reload();
                     },
                     error: function(data) {
-                        alert("Failed");
+                        toastr.info("Error, Can't Be active");
                     }
                 });
             } else {

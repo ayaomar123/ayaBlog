@@ -120,7 +120,8 @@
                     <th style="color: whitesmoke">Name</th>
                     <th style="color: whitesmoke" width="20%">Description</th>
                     <th style="color: whitesmoke" width="20%">Category</th>
-                    <th style="color: whitesmoke">Image</th>
+                    <th style="color: whitesmoke">Main-Image</th>
+                    <th style="color: whitesmoke">Article-cover</th>
                     <th style="color: whitesmoke" width="5%">Status</th>
                     <th style="color: whitesmoke" width="25%">Action</th>
 

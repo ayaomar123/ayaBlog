@@ -31,16 +31,6 @@
                                     <span class="text-danger">{{ $errors->first('description') }}</span>
                                 </blockquote>
                                 <br>
-                                <blockquote>
-                                    <div class="col-md-4">
-                                        <input id="image" type="file" name="image" value="{{ old('image') }}"
-                                            onchange="loadFile(event)">
-                                    </div>
-                                    <div class="col-md-5">
-                                        <img class="card-img-top" id="out" style="width:70%">
-                                    </div>
-                                </blockquote>
-                                <br>
                                 <blockquote class="blockquote mb-0">
                                     <div style="float: left" class="slideOne">
                                         <input {{$articles->status=='1'?"checked":""}} type="checkbox"  value="1" id="published" name="status" />
@@ -62,11 +52,4 @@
 
         </div>
     </div>
-        <script>
-            var loadFile = function(event) {
-                var out = document.getElementById('out');
-                out.src = URL.createObjectURL(event.target.files[0]);
-            };
-
-        </script>
     @endsection

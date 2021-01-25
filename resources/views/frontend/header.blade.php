@@ -63,8 +63,8 @@
                    <div class="mr-2">
                         <!-- Authentication Links -->
                         @guest
-                            <a style="color: white" class="mr-2 p-2" href="{{ route('login') }}"><i class="fab fa-instagram"></i>تسجيل دخول</a>
-                            <a style="color: white" href="{{ route('register') }}"><i class="fab fa-instagram"></i>اشتراك</a>
+                            <a style="color: white" class="mr-2 p-2" href="{{ route('login') }}"><i class="fas fa-user"></i> تسجيل دخول</a>
+                            <a style="color: white" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> تسجيل</a>
                         @else
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item dropdown">

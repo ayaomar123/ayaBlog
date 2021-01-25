@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
+        $data = User::get();
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -52,17 +52,11 @@ class UserController extends Controller
 
         $input = $request->all();
 
-        if($request->image){
-            $fileName = $request->image->store("public/images");
-            $imageName = $request->image->hashName();
-            $requestData['image'] = $imageName;
-        }
-
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-
+//dd($input);
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
     }

@@ -25,6 +25,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Email</th>
                     <th scope="col">Roles</th>
                     <th scope="col" width="280px">Action</th>
@@ -33,11 +34,9 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $user->name }}</td>
-                {{-- <td>
-                    @if($user->image)
-                    <img style='max-width:75px' src='{{asset("storage/$user->image")}}' />
-                    @endif
-                </td> --}}
+                <td>
+                    <img style='max-width:75px' src='{{asset("storage/images/$user->image")}}' />
+                </td>
                 <td>{{ $user->email }}</td>
                 <td>
                     @if(!empty($user->getRoleNames()))
@@ -58,7 +57,7 @@
     </table>
 </div>
 
-    {!! $data->render() !!}
+
 
 
 @endsection

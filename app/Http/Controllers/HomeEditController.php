@@ -11,6 +11,13 @@ use App\Models\StaticPages;
 
 class HomeEditController extends Controller
 {
+    public function header(){
+        $mypages = StaticPages::all();
+
+        //عناوين المقالات في السلايدر
+        $sliderCategory =  Category::where('status', 1)->take(11)->get();
+        return view('frontend.header',compact('mypages','sliderCategory'));
+    }
 
     public function page($id)
     {

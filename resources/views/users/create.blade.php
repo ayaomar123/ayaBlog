@@ -8,16 +8,6 @@
             </h2>
         </div>
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
     <div class="card mt-3" style="text-align:left;padding-left:25px ">

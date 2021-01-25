@@ -80,16 +80,15 @@ Route::group(['middleware' => ['is_admin']], function() {
         Route::get('data',[ArticleController::class, 'data'])->name('data');
         Route::get('/create', [ArticleController::class, 'create'])->name('create');
         Route::post('/',  [ArticleController::class, 'store'])->name('store');
-        //Route::post('/show',  [ArticleController::class, 'show'])->name('show');
         Route::get('/{id}', [ArticleController::class, 'edit'])->name('edit');
         Route::post('/{id}/update', [ArticleController::class, 'update'])->name('update');
-        Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('delete');
+        Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('destroy');
         Route::post('changeStatus',[ArticleController::class, 'changeStatus'])->name('changeStatus');
         Route::put('deactive',[ArticleController::class, 'deactive'])->name('deactive');
         Route::put('activate',[ArticleController::class, 'activate'])->name('activate');
-        Route::delete('myproductsDeleteAll',[ArticleController::class, 'deleteAll'])->name('multiple-delete');
-
     });
+    Route::delete('myproductsDeleteAll',[ArticleController::class, 'deleteAll'])->name('article.multiple-delete');
+
 
 
     Route::get("editProfile",[EditProfileController::class,'editProfile'])->name('editProfile');

@@ -81,12 +81,12 @@
                             <!--================-->
 
                             @php $rating = $ratings; @endphp
-                            @foreach(range(1,5) as $i)
+                            @foreach (range(1, 5) as $i)
                                 <span class="fa-stack" style="width:1em">
                                     <i class="far fa-star fa-stack-1x"></i>
 
-                                    @if($rating >0)
-                                        @if($rating >0.5)
+                                    @if ($rating > 0)
+                                        @if ($rating > 0.5)
                                             <i class="fas fa-star fa-stack-1x"></i>
                                         @else
                                             <i class="fas fa-star-half fa-stack-1x"></i>
@@ -106,7 +106,7 @@
 
                     </ul>
                 </div>
-                <img src="{{ asset('storage/articles/' . $article->image) }}" alt="">
+                <img src="{{ asset('storage/articles/' . $article->cover) }}" alt="">
 
             </div>
         </section>
@@ -151,21 +151,28 @@
                         </div>
                         <div class="edit-team-artical">
                             <div class="row">
-                                <div class="over-lay-img-team">
-                                    <span>مشرف</span>
-                                </div>
-                                <div class="membership">
-                                    <img src="../img/edit-team.png" alt="">
-                                    <a href="http://">عضو نشيط</a>
+                                @foreach ($article->editors as $item)
+                                    @foreach ($item->roles as $role)
+                                        <div class="over-lay-img-team">
+                                            <span>
+                                                {{ $role->name ? $role->name : 'مشرف' }}
+                                            </span>
+                                        </div>
+                                        <div class="membership">
+                                            <img src="{{ $role->image }}" alt="">
+                                        </div>
+                                    @endforeach
+                                    <div class="edit-team-artical-p">
+                                        <p> <span>من قبل</span>
+                                            {{ $item->name }}
+                                            <strong>
+                                                ،{{ $article->created_at->translatedFormat('l j F Y') }} </strong>
+                                        </p>
+                                        <p> <span>أخر تعديل منذ:</span>
+                                            ،{{ $article->updated_at->translatedFormat('l j F Y') }}</p>
 
-                                </div>
-                                <div class="edit-team-artical-p">
-                                    <p> <span>من قبل</span> Name<strong>
-                                            ،{{ $article->created_at->translatedFormat('l j F Y') }} </strong> </p>
-                                    <p> <span>أخر تعديل</span> ،{{ $article->updated_at->translatedFormat('l j F Y') }}</p>
-
-                                </div>
-
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="artical-a department">
