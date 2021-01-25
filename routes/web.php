@@ -13,7 +13,6 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\HomeEditController;
 use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\LocalizationController;
-use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PageController;
 
@@ -27,15 +26,13 @@ use App\Http\Controllers\PageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('Auth.login');
-});
+
 
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
-Route::get('/index', [HomeEditController::class, 'index'])->name('home');
+Route::get('/', [HomeEditController::class, 'index'])->name('home');
 
 Route::get('rating/{star}', [EconmoyController::class, 'postRating'])->name('rating');
 

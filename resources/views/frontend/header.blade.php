@@ -31,7 +31,7 @@
                         <ul class="nav justify-content-Start">
 
                             <li class="nav-item">
-                                <a class=" nav-link" href="{{ asset('/index') }}">الرئيسية</a>
+                                <a class=" nav-link" href="{{ asset('') }}">الرئيسية</a>
                             </li>
                             @foreach ($mypages as $item)
                                 <li class="nav-item">

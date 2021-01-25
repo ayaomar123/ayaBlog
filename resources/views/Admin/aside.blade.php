@@ -16,7 +16,7 @@
             <!--begin::Menu Nav-->
             <ul class="menu-nav">
                 <li class="menu-item menu-item-active" aria-haspopup="true">
-                    <a href="{{asset('index')}}" class="menu-link">
+                    <a href="{{asset('')}}" class="menu-link">
                         <i class="menu-icon flaticon2-architecture-and-city"></i>
                         <span class="menu-text">Home</span>
                     </a>

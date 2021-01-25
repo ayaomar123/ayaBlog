@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="description">pages description</label>
-            <input type="text" name="description" class="form-control" id="description" aria-describedby="emailHelp" value="{{$pages->description}}">
+            <textarea class="description" name="description">{{strip_tags($pages->description)}}</textarea>
         </div>
 
         <div class="form-group">
@@ -41,4 +41,14 @@
         <button type="submit" class="btn btn-primary col-md-2">Edit pages</button>
     </form>
 
+@endsection
+@section('script')
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.description',
+        width: 900,
+        height: 300
+    });
+</script>
 @endsection

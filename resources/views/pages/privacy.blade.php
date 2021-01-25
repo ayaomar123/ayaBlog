@@ -10,9 +10,10 @@
     <div class="container">
         @foreach ($page as $myPage)
             <h1> {{strip_tags($myPage->title)}}</h1>
-            <ul>
-                {{$myPage->description}}
-            </ul>
+            <div class="row" style="text-align: right">
+                {{strip_tags($myPage->description)}}
+            </div>
+
         @endforeach
 
     </div>

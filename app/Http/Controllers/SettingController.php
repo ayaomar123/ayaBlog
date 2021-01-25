@@ -15,7 +15,7 @@ class SettingController extends Controller
         $settings = Setting::get();
         $mypages = StaticPages::get();
         //dd($settings);
-        return view('frontend.header', compact('settings','mypages'));
+        return view('setting.index', compact('settings','mypages'));
     }
 
     public function edit($id)

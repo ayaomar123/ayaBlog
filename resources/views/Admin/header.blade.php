@@ -8,7 +8,7 @@
                 <!--begin::Header Nav-->
                 <ul class="menu-nav">
                     <li class="menu-item menu-item-active" aria-haspopup="true">
-                        <a href="index.html" class="menu-link">
+                        <a href="{{asset('home')}}" class="menu-link">
                             <span class="menu-text">Dashboard</span>
                         </a>
                     </li>
