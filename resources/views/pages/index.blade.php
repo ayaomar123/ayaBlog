@@ -39,7 +39,7 @@
                                 <h1><a href="{{url('details/'.$article2->id)}}"> {{ $article2->name }}</a></h1>
                                 @endforeach
                                 <p>
-                                     {{Str::limit($article2->description,10)}}
+                                     {{strip_tags(Str::words($article2->description,10))}}
                                 </p>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $internationalArticle->image) }}" alt="">
                                 <h1><a href="{{url('details/'.$internationalArticle->id)}}"> {{ $internationalArticle->name }} </a></h1>
-                                <p>{{Str::limit($internationalArticle->description,10)}}
+                                <p>{{strip_tags(Str::words($internationalArticle->description,10))}}
                             </div>
                         </div>
                     @endforeach
@@ -109,7 +109,7 @@
                                 <a href="{{url('details/'.$article->id)}}">
                                     <h3>{{ $article->name }}</h3>
                                 </a>
-                                <p>{{Str::limit($article->description,10)}}
+                                <p>{{strip_tags(Str::words($article->description,10))}}
                                 </p>
                                 <br>
                             </div>
@@ -149,7 +149,7 @@
                                     </div>
                                     <img src="{{ asset('storage/articles/' . $item->image) }}" alt="">
 
-                                    <h1><a href="{{url('details/'.$item->id)}}">{{Str::limit($item->description,50)}}  </span>
+                                    <h1><a href="{{url('details/'.$item->id)}}">{{strip_tags(Str::words($item->description,50))}}  </span>
                                         </a></h1>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl->image) }}" alt="">
-                                <h1><a href="{{url('details/'.$articl->id)}}">  {{Str::limit($articl->description,50)}}
+                                <h1><a href="{{url('details/'.$articl->id)}}">  {{strip_tags(Str::words($articl->description,10))}}
                                     </a></h1>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl2->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl2->image) }}" alt="">
-                                <h1><a href="{{url('details/'.$articl2->id)}}"> {{Str::limit($articl2->description,10)}}
+                                <h1><a href="{{url('details/'.$articl2->id)}}"> {{strip_tags(Str::words($articl2->description,10))}}
                                     </a></h1>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                                     <span class="date-2"> <i class="far fa-calendar-alt"></i> {{ $articl3->created_at->todatestring() }} </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $articl3->image) }}" alt="">
-                                <h1><a href="{{url('details/'.$articl3->id)}}">  {{Str::limit($articl2->description,10)}} </a>
+                                <h1><a href="{{url('details/'.$articl3->id)}}">  {{strip_tags(Str::words($articl2->description,10))}} </a>
                                     </a></h1>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                                 <a href="{{url('details/'.$internationalArticle->id)}}">
                                     <h3>{{ $internationalArticle->name }}</h3>
                                 </a>
-                                <p> {{ $internationalArticle->description }}</p>
+                                <p> {{ strip_tags(Str::words($internationalArticle->description,10)) }}</p>
                             </div>
                         @endforeach
                         <img class="ads-s" src="../img/ADS 5.png" alt="">

@@ -1,8 +1,10 @@
 @extends('Admin.board')
 @section('title', 'Create Article')
-@section('name')
-    <a href="#" class="btn btn-primary">Article</a>
-    <a href="#" class="btn btn-primary">Create Article</a>
+@section('style')
+<title>Summernote</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 @endsection
 @section('content')
     <div class="container mt-2 ">
@@ -20,17 +22,14 @@
                                 <blockquote class="blockquote mb-0">
                                     <label style="float: left;" for="formGroupExampleInput">Enter Article Name</label>
                                     <br>
-                                    <input type="text" name="name" class="form-control col-md-5" id="formGroupExampleInput"
+                                    <input name="name" type="text" name="name" class="form-control col-md-5" id="formGroupExampleInput"
                                         placeholder="Please enter name">
-                                    <span class="text-danger">{{ $errors->first('name') }}</span>
                                 </blockquote>
                                 <br>
                                 <blockquote class="blockquote mb-0">
                                     <label style="float: left" for="message">Description</label>
                                     <br>
-                                    <textarea style="margin-left: 108px;" class="form-control col-md-5" name="description"
-                                        placeholder="Please enter description"></textarea>
-                                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    <textarea name="description" id="summernote" name="editordata"></textarea>
                                 </blockquote>
                                 <br>
                                 <blockquote>
@@ -89,16 +88,23 @@
 
         </div>
     </div>
-    <script>
-        var loadFile = function(event) {
-            var out = document.getElementById('out');
-            out.src = URL.createObjectURL(event.target.files[0]);
-        };
+@endsection
+@section('script')
+<script>
+    var loadFile = function(event) {
+        var out = document.getElementById('out');
+        out.src = URL.createObjectURL(event.target.files[0]);
+    };
 
-        var loadFile2 = function(event) {
-            var out2 = document.getElementById('out2');
-            out2.src = URL.createObjectURL(event.target.files[0]);
-        };
+    var loadFile2 = function(event) {
+        var out2 = document.getElementById('out2');
+        out2.src = URL.createObjectURL(event.target.files[0]);
+    };
 
-    </script>
+</script>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+  </script>
 @endsection

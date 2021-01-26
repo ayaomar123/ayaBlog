@@ -21,7 +21,7 @@
                                             </span>
                                         </div>
                                         <img src="{{asset('storage/articles/'.$article->image)}}" alt="">
-                                        <h1><a href="{{ url('details/' . $article->id) }}">{{$article->description}}
+                                        <h1><a href="{{ url('details/' . $article->id) }}">{{ strip_tags(Str::words($article->description,10))}}
 
                                             </a></h1>
                                     </div>
@@ -49,8 +49,7 @@
                                     <h3>{{$item->name}}</h3>
                                 </a>
                                 <p>
-                                    {{$item->description}}
-                                </p>
+                                    {{ strip_tags(Str::words($item->description,10))}}                                </p>
                             </div>
                             @endforeach
                         </div>

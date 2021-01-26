@@ -26,11 +26,6 @@
                                     <textarea class="form-control col-md-5" name="description"
                                         placeholder="{{ __('lang.catDescription') }}"></textarea>
                                 </blockquote>
-                                <blockquote class="blockquote mb-0">
-                                    <label for="link">link</label>
-                                    <input type="text" name="link" class="form-control col-md-5" id="link"
-                                        placeholder="link">
-                                </blockquote>
                                 <br>
                                 <blockquote>
                                     <div class="col-md-5">

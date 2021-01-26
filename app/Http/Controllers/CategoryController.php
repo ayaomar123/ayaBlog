@@ -95,10 +95,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        //dd(request()->all());
         $requestData = $request->all();
-        //$data['status'] = !empty($request('status')) ? $request('status') : 0;
-
         if ($request->image) {
             $fileName = $request->image->store("public/categories");
             $imageName = $request->image->hashName();

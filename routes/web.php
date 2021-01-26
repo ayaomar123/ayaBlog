@@ -72,7 +72,7 @@ Route::group(['middleware' => ['is_admin']], function() {
         Route::put('activate',[CategoryController::class, 'activate'])->name('activate');
     });
     Route::get('searching',[CategoryController::class, 'searching'])->name('searching');
-    Route::delete('myproductsDeleteAll',[CategoryController::class, 'deleteAll'])->name('category.multiple-delete');
+    Route::delete('productsDeleteAll',[CategoryController::class, 'deleteAll'])->name('category.multiple-delete');
 
 
     Route::group(['prefix' => 'articles','as'=>'articles.'], function(){

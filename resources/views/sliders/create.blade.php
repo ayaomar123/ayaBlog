@@ -65,21 +65,3 @@
         </div>
     </form>
 @endsection
-
-@section('script')
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea.tinymce-editor',
-            width: 900,
-            height: 300,
-            setup: function(editor) {
-                editor.on('init', function(e) {
-                    editor.setContent('<p>Hello world!</p>');
-                });
-            }
-        });
-
-
-    </script>
-@endsection

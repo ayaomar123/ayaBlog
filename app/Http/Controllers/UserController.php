@@ -53,6 +53,8 @@ class UserController extends Controller
         $input = $request->all();
 
         $input['password'] = Hash::make($input['password']);
+        $input['image'] = $request->user_image;
+        $input['is_admin'] = 1;
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));

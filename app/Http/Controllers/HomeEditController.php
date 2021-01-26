@@ -24,7 +24,8 @@ class HomeEditController extends Controller
         $settings = Setting::all();
 
         //السلايدرات
-        $sliders = Slider::take(3)->get();
+        $sliders = Slider::all();
+        //dd($sliders);
 
         //عناوين المقالات في السلايدر
         $sliderCategory =  Category::where('status', 1)->take(11)->get();
@@ -76,8 +77,8 @@ class HomeEditController extends Controller
     public function index()
     {
         $settings = Setting::all();
-        $sliders = Slider::take(3)->get();
-
+        $sliders = Slider::all();
+//dd($sliders);
         $mypages = StaticPages::all();
 
         //عناوين المقالات في السلايدر

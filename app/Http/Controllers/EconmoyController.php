@@ -34,10 +34,6 @@ class EconmoyController extends Controller
 
         $article =  Article::where('id', $id)->take(3)->get();
 
-
-
-
-
         return view('pages.economy', compact(
             'settings',
             'sliderCategory',
@@ -70,7 +66,7 @@ class EconmoyController extends Controller
         $views = Article::where('id', $id)->first();
         event(new ArticleViewer($views));
 
-        $ratings = Rating::where('article_id',$id)->first()->avg('rating');
+        $ratings = Rating::where('article_id',$id)->avg('rating');
 
         //dd($ratings);
         return view('pages.details', compact(

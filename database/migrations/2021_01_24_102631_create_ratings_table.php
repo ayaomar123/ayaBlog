@@ -19,7 +19,7 @@ class CreateRatingsTable extends Migration
             $table->foreign('article_id')->references('id')->on('articles');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('rating');
+            $table->integer('rating')->default(1);
             $table->timestamps();
         });
     }

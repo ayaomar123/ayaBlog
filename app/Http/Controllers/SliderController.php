@@ -90,7 +90,6 @@ class SliderController extends Controller
         Slider::where("id",$id)->update([
             'title' => $request['title'],
             'word' => $request['word'],
-            'image' => $request['image'],
             'link' => $request['link'],
         ]);
         return redirect()->route('slider.index')

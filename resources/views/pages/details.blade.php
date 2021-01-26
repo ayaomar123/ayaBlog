@@ -79,22 +79,21 @@
 
                         <div class="star-header">
                             <!--================-->
+                                @php $rating = $ratings; @endphp
+                                    @foreach (range(1, 5) as $i)
+                                        <span class="fa-stack" style="width:1em">
+                                            <i class="far fa-star fa-stack-1x"></i>
 
-                            @php $rating = $ratings; @endphp
-                            @foreach (range(1, 5) as $i)
-                                <span class="fa-stack" style="width:1em">
-                                    <i class="far fa-star fa-stack-1x"></i>
-
-                                    @if ($rating > 0)
-                                        @if ($rating > 0.5)
-                                            <i class="fas fa-star fa-stack-1x"></i>
-                                        @else
-                                            <i class="fas fa-star-half fa-stack-1x"></i>
-                                        @endif
-                                    @endif
-                                    @php $rating--; @endphp
-                                </span>
-                            @endforeach
+                                            @if ($rating > 0)
+                                                @if ($rating > 0.5)
+                                                    <i class="fas fa-star fa-stack-1x"></i>
+                                                @else
+                                                    <i class="fas fa-star-half fa-stack-1x"></i>
+                                                @endif
+                                            @endif
+                                            @php $rating--; @endphp
+                                        </span>
+                                    @endforeach
                         </div>
                     </div>
                     <ul class="soical-header-artical">
@@ -115,7 +114,7 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <h1>{{ $article->name }}</h1>
-                        <p>{{ $article->description }}</p>
+                        <p>{!! $article->description !!}</p>
                         <div class="container">
 
                             <div class="row">
@@ -159,7 +158,7 @@
                                             </span>
                                         </div>
                                         <div class="membership">
-                                            <img src="{{ $role->image }}" alt="">
+                                            <img src="../IMG_20181223_184550_818.jpg" alt="">
                                         </div>
                                     @endforeach
                                     <div class="edit-team-artical-p">
@@ -213,7 +212,7 @@
                                         <a href="{{ url('details/' . $item->id) }}">
                                             <h3>{{ $item->name }}</h3>
                                         </a>
-                                        <p>{{ $item->description }}</p>
+                                        <p>{{ strip_tags(Str::words($item->description,10))}}</p>
                                     </div>
                                 @endforeach
                                 <img class="ads-s" src="../img/ADS.png" alt="">
