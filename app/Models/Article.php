@@ -26,6 +26,15 @@ class Article extends Model
         return $this->hasMany(Rating::class);
     }
 
+
+    /**
+     * return active status
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     protected static function boot()
     {
         parent::boot();

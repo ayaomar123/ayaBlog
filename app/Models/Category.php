@@ -26,4 +26,8 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Models\Article','category_article');
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

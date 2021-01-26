@@ -149,16 +149,22 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-
-        $this->queryModel()
-            ->where('id', $id)
-            ->update([
-                'name' => $request['name'],
-                'description' => $request['description'],
-                'image' => $request['image'],
-                'status' => $request['status'],
-            ]);
-
+        $category = Category::find($id);
+        if ($request['image']) {
+            $requestData = $request->all();
+            $fileName = $request->image->store("public/categories");
+            $imageName = $request->image->hashName();
+            $requestData['image'] = $imageName;
+            $category->update($requestData);
+        } else {
+            $this->queryModel()
+                ->where('id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'description' => $request['description'],
+                    'status' => $request['status'],
+                ]);
+        }
         return Redirect::to("categories")->with('info', 'Category Edited Successfully');
     }
 

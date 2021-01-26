@@ -135,11 +135,12 @@ class ArticleController extends Controller
     public function edit($id)
     {
         try{
+            $categories = Category::all();
             $articles = $this->queryModel()
             ->where('id', $id)
             ->first();
 
-            return view('articles.edit',compact('articles'));
+            return view('articles.edit',compact('articles','categories'));
         }catch(\Exception $e){
             throw $e;
         }
@@ -154,7 +155,17 @@ class ArticleController extends Controller
      */
     public function update(EditArticleRequest $request, $id)
     {
-
+        $article = Article::find($id);
+        $requestData = $request->all();
+        if ($request['image'] ||$request['cover'] ){
+            $fileName = $request->image->store("public/articles");
+            $imageName = $request->image->hashName();
+            $requestData['image'] = $imageName;
+            $fileName2 = $request->cover->store("public/articles");
+            $imageName2 = $request->cover->hashName();
+            $requestData['cover'] = $imageName2;
+            $article->update($requestData);
+        } else{
         $this->queryModel()
         ->where('id', $request->id)
         ->update([
@@ -162,6 +173,7 @@ class ArticleController extends Controller
             'description' => $request['description'],
             'status' => $request['status'],
         ]);
+}
         return redirect(route('articles.index'))->with('info', 'Article Edited Successfully');
     }
 

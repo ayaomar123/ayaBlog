@@ -118,7 +118,6 @@
                     </th>
                     <th style="color: whitesmoke">Id</th>
                     <th style="color: whitesmoke">Name</th>
-                    <th style="color: whitesmoke" width="20%">Description</th>
                     <th style="color: whitesmoke" width="20%">Category</th>
                     <th style="color: whitesmoke">Main-Image</th>
                     <th style="color: whitesmoke">Article-cover</th>

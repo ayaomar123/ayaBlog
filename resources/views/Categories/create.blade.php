@@ -23,18 +23,20 @@
                                 <br>
                                 <blockquote class="blockquote mb-0">
                                     <label for="message">{{ __('lang.catDescription') }}</label>
-                                    <textarea class="form-control col-md-5" name="description"
-                                        placeholder="{{ __('lang.catDescription') }}"></textarea>
+                                    <textarea style="height: 170px" class="form-control col-md-5" name="description"
+                                        placeholder="Write short description fot this category"></textarea>
                                 </blockquote>
                                 <br>
                                 <blockquote>
-                                    <div class="col-md-5">
+                                    <div class="">
                                         <label for="image">{{ __('lang.choose') }}</label>
-                                        <input class="col-md-5" id="image" type="file" name="image" value="{{ old('image') }}"
+                                        <br>
+                                        <input class="" id="image" type="file" name="image" value="{{ old('image') }}"
                                             onchange="loadFile(event)">
                                     </div>
-                                    <div class="col-md-6">
-                                        <img class="card-img-top col-md-5" id="out" style="width:70%">
+                                    <div class="" style="">
+                                        <br>
+                                        <img class="col-md-5" id="out" style="width:70%;height:150px;">
                                     </div>
                                 </blockquote>
                                 <br>

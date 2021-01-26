@@ -56,10 +56,6 @@
                     name: 'name'
                 },
                 {
-                    data: 'description',
-                    name: 'description'
-                },
-                {
                     name: 'categories',
                     data: 'categories[0].name',
                 },

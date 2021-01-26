@@ -1,73 +1,63 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Models\Article;
-use App\Models\Category;
-use App\Models\Setting;
 use App\Events\ArticleViewer;
-use App\Models\StaticPages;
-use App\Models\Rating;
-use Illuminate\Support\Facades\Auth;
-
+use Helpers;
 
 class EconmoyController extends Controller
 {
+    //صفحة الصنف والمقالات التابعة له
     public function economy($id)
     {
         //روابط السوشيال ميديا
-        $settings = Setting::all();
+        $settings = Helpers::getSetting();
 
         //عناوين المقالات في السلايدر
-        $sliderCategory =  Category::where('status', 1)->take(11)->get();
+        $sliderCategory =  Helpers::getSliderCategory();
 
         //مقالات شائعة
-        $articles =  Article::take(2)->get();
+        $articles =  Helpers::getArticles();
 
         //الصنف والمقالت التابعة له
-        $categoryArticles = Category::query()->where('id', $id)->with('articles', function ($article) {
-            $article->orderBy('id', 'desc')->get();
-        })->get();
+        $categoryArticles = Helpers::getCategoryArticles($id);
 
         //الصفحات الثابتة
-        $mypages = StaticPages::all();
-
-        //المقالة المضغوط عليها
-        $article =  Article::where('id', $id)->take(3)->get();
+        $mypages = Helpers::getmypages();
 
         return view('pages.economy', compact(
             'settings',
             'sliderCategory',
             'articles',
             'categoryArticles',
-            'article',
             'mypages'
         ));
     }
 
+
+    //صفحة المقالات
     public function details($id)
     {
         //روابط السوشال
-        $settings = Setting::all();
+        $settings = Helpers::getSetting();
 
         //صفحة الثوابت
-        $mypages = StaticPages::all();
+        $mypages = Helpers::getmypages();
 
         //عناوين المقالات في السلايدر
-        $sliderCategory =  Category::where('status', 1)->take(11)->get();
+        $sliderCategory =  Helpers::getSliderCategory();
 
         //المقالة الحالية اللي ضغطت عليها
-        $articles =  Article::where('id', $id)->with('editors')->get();
+        $articles = Helpers::getCurrentArticle($id);
 
         //مواضيع عشوائية
-        $related =  Article::inRandomOrder()->take(3)->get();
+        $related =  Helpers::getRelatedArticle();
 
         //مشاهدات
-        $views = Article::where('id', $id)->first();
+        $views = Helpers::getViews($id);
         event(new ArticleViewer($views));
 
-        $ratings = Rating::where('article_id',$id)->avg('rating');
+        //التقييم
+        $ratings = Helpers::getRatings($id);
 
         return view('pages.details', compact(
             'settings',
@@ -80,15 +70,4 @@ class EconmoyController extends Controller
         ));
     }
 
-
-    //تقييم المقالة
-    public function postRating($article, Request $request)
-    {
-        //$requestData = $request->all();
-        $requestData['user_id'] = Auth::id();
-        $requestData['article_id'] = $article;
-        $requestData['rating'] = $request->star;
-        Rating::create($requestData);
-        return redirect()->back();
-    }
 }

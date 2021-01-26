@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Helpers;
 
-use Illuminate\Http\Request;
-use App\Models\StaticPages;
-use App\Models\Category;
-use App\Models\Setting;
 
 class PageController extends Controller
 {
@@ -13,14 +10,17 @@ class PageController extends Controller
 
     public function pages($id)
     {
-        $settings = Setting::all();
+        //السوشيال ميديا
+        $settings = Helpers::getSetting();
 
         //عناوين المقالات في السلايدر
-        $sliderCatgory =  Category::where('status', 1)->take(11)->get();
-        $mypages = StaticPages::all();
+        $sliderCatgory =  Helpers::getSliderCategory();
 
-        $page = StaticPages::where('id',$id)->get();
-        //dd($page);
+        //static pages in header
+        $mypages = Helpers::getmypages();
+
+        //Current static page
+        $page = Helpers::getmyCurrentpages($id);
 
         return view('pages.privacy', compact(
             'settings',
