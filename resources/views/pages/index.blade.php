@@ -35,9 +35,7 @@
                                     </span>
                                 </div>
                                 <img src="{{ asset('storage/articles/' . $article2->image) }}" alt="">
-                                @foreach ($myArticles as $item2)
                                 <h1><a href="{{url('details/'.$article2->id)}}"> {{ $article2->name }}</a></h1>
-                                @endforeach
                                 <p>
                                      {{strip_tags(Str::words($article2->description,10))}}
                                 </p>

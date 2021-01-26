@@ -112,7 +112,6 @@ class ArticleController extends Controller
         $article = $this->queryModel()->create($requestData);
         $article->categories()->attach($request->category_id);
         $article->editors()->attach(Auth()->user());
-        //$article->rating ='1';
         return redirect(route('articles.index'))->with('msg', 'Article Created Successfully');
     }
 

@@ -9,6 +9,8 @@ use App\Models\Setting;
 
 class PageController extends Controller
 {
+    //لاظهار الstatic page اللي ضغطت عليها
+
     public function pages($id)
     {
         $settings = Setting::all();

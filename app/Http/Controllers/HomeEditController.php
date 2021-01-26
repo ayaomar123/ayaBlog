@@ -11,74 +11,16 @@ use App\Models\StaticPages;
 
 class HomeEditController extends Controller
 {
-    public function header(){
-        $mypages = StaticPages::all();
 
-        //عناوين المقالات في السلايدر
-        $sliderCategory =  Category::where('status', 1)->take(11)->get();
-        return view('frontend.header',compact('mypages','sliderCategory'));
-    }
-
-    public function page($id)
-    {
-        $settings = Setting::all();
-
-        //السلايدرات
-        $sliders = Slider::all();
-        //dd($sliders);
-
-        //عناوين المقالات في السلايدر
-        $sliderCategory =  Category::where('status', 1)->take(11)->get();
-
-        //أهم المقالات
-        $importantArticles = Article::latest()->take(2)->get();
-
-        //مقالات شائعة
-        $internationalArticles =  Article::take(3)->get();
-
-        //مقالات عشوائية
-        $impotrantArticles = Article::inRandomOrder()->take(3)->get();
-
-        $$impotrantArticles = Article::inRandomOrder()->take(3)->get();
-        //6 مقالات عشوائية
-        $randomArticles = Article::inRandomOrder()->take(6)->get();
-
-        $categoryArticle = Category::query()->with('articles', function($query){
-            $query->orderBy('id', 'desc')->take(1)->get();
-        })->get();
-
-        $myArticles =  Article::where('id', $id)->get();
-
-
-            return view(
-                'pages.index',
-                compact(
-                    //'settings',
-                    'importantArticles',
-                    'internationalArticles',
-                    'sliderCategory',
-                    'sliders',
-                    'randomArticles',
-                    'impotrantArticles',
-                    'myArticles',
-                )
-            );
-
-
-
-
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        //روابط السوشيال ميديا
         $settings = Setting::all();
+
+        //صور السلايدرات
         $sliders = Slider::all();
-//dd($sliders);
+
+        //الصفحات الثابتة
         $mypages = StaticPages::all();
 
         //عناوين المقالات في السلايدر
@@ -97,14 +39,13 @@ class HomeEditController extends Controller
         //6 مقالات عشوائية
         $randomArticles = Article::inRandomOrder()->take(6)->get();
 
-        $categoryArticle = Category::query()->with('articles', function($query){
+        //الصنف والمقالات التابعة له
+        $categoryArticle = Category::query()->with('articles', function ($query) {
             $query->orderBy('id', 'desc')->take(1)->get();
         })->get();
 
-        $myArticles =  Article::inRandomOrder()->take(1)->get();
 
-
-        return view('pages.index',compact(
+        return view('pages.index', compact(
             'settings',
             'importantArticles',
             'internationalArticles',
@@ -112,10 +53,65 @@ class HomeEditController extends Controller
             'sliders',
             'randomArticles',
             'impotrantArticles',
-            'myArticles',
             'mypages'
         ));
     }
+
+
+    //لإظهار الstatic pages
+    public function page($id)
+    {
+        //حسابات السوشيال ميديا
+        $settings = Setting::all();
+
+        //السلايدرات
+        $sliders = Slider::all();
+
+        //عناوين المقالات في السلايدر
+        $sliderCategory =  Category::where('status', 1)->take(11)->get();
+
+        //أهم المقالات
+        $importantArticles = Article::latest()->take(2)->get();
+
+        //مقالات شائعة
+        $internationalArticles =  Article::take(3)->get();
+
+        //مقالات عشوائية
+        $impotrantArticles = Article::inRandomOrder()->take(3)->get();
+
+        $$impotrantArticles = Article::inRandomOrder()->take(3)->get();
+        //6 مقالات عشوائية
+        $randomArticles = Article::inRandomOrder()->take(6)->get();
+
+        //الصنف والمقالات التابعة له
+        $categoryArticle = Category::query()->with('articles', function ($query) {
+            $query->orderBy('id', 'desc')->take(1)->get();
+        })->get();
+
+        //المقالة اللي اخترتها
+        $myArticles =  Article::where('id', $id)->get();
+
+
+        return view(
+            'pages.index',
+            compact(
+                //'settings',
+                'importantArticles',
+                'internationalArticles',
+                'sliderCategory',
+                'sliders',
+                'randomArticles',
+                'impotrantArticles',
+                'myArticles',
+            )
+        );
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     /**
      * Show the form for creating a new resource.
@@ -157,7 +153,7 @@ class HomeEditController extends Controller
      */
     public function edit($id)
     {
-        return view('EditPages.edit');
+        //return view('EditPages.edit');
     }
 
     /**

@@ -9,7 +9,6 @@ use App\Models\Setting;
 use App\Events\ArticleViewer;
 use App\Models\StaticPages;
 use App\Models\Rating;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -17,6 +16,7 @@ class EconmoyController extends Controller
 {
     public function economy($id)
     {
+        //روابط السوشيال ميديا
         $settings = Setting::all();
 
         //عناوين المقالات في السلايدر
@@ -25,13 +25,15 @@ class EconmoyController extends Controller
         //مقالات شائعة
         $articles =  Article::take(2)->get();
 
-
+        //الصنف والمقالت التابعة له
         $categoryArticles = Category::query()->where('id', $id)->with('articles', function ($article) {
             $article->orderBy('id', 'desc')->get();
         })->get();
 
+        //الصفحات الثابتة
         $mypages = StaticPages::all();
 
+        //المقالة المضغوط عليها
         $article =  Article::where('id', $id)->take(3)->get();
 
         return view('pages.economy', compact(
@@ -46,8 +48,10 @@ class EconmoyController extends Controller
 
     public function details($id)
     {
+        //روابط السوشال
         $settings = Setting::all();
 
+        //صفحة الثوابت
         $mypages = StaticPages::all();
 
         //عناوين المقالات في السلايدر
@@ -55,26 +59,21 @@ class EconmoyController extends Controller
 
         //المقالة الحالية اللي ضغطت عليها
         $articles =  Article::where('id', $id)->with('editors')->get();
-        //dd($articles);
 
-        $article =  Category::where('id', $id)->take(3)->get();
-
-
+        //مواضيع عشوائية
         $related =  Article::inRandomOrder()->take(3)->get();
-        //dd($article);
 
+        //مشاهدات
         $views = Article::where('id', $id)->first();
         event(new ArticleViewer($views));
 
         $ratings = Rating::where('article_id',$id)->avg('rating');
 
-        //dd($ratings);
         return view('pages.details', compact(
             'settings',
             'sliderCategory',
             'articles',
             'related',
-            'article',
             'views',
             'mypages',
             'ratings'
@@ -82,6 +81,7 @@ class EconmoyController extends Controller
     }
 
 
+    //تقييم المقالة
     public function postRating($article, Request $request)
     {
         //$requestData = $request->all();
@@ -90,6 +90,5 @@ class EconmoyController extends Controller
         $requestData['rating'] = $request->star;
         Rating::create($requestData);
         return redirect()->back();
-        //dd($requestData);
     }
 }
