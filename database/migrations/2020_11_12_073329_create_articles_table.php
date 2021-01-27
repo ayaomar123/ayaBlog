@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('description');
+            $table->longText('description');
             $table->boolean('status')->nullable();
             $table->string('image');
            //$table->unsignedBigInteger('category_id');

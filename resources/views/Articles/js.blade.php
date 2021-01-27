@@ -175,7 +175,7 @@
             });
             $.ajax({
                 type: "DELETE",
-                url: "{{ url('articles/') }}" + catid,
+                url: "{{ url('articles/') }}" +"/" + catid,
                 success: function(data) {
                     var oTable = $('#laravel-datatable-crud').dataTable();
                 },
@@ -226,7 +226,7 @@
                             toastr.info("Error, Can't Be Deleted");
                         },
                         error: function(data) {
-                            var oTable = $('#laravel-datatable-crud').dataTable();
+                            var oTable = $('#laravel-datatable-crud').dataTable().ajax.reload();
                         }
                     });
                 }

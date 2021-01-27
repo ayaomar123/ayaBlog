@@ -79,21 +79,21 @@
 
                         <div class="star-header">
                             <!--================-->
-                                @php $rating = $ratings; @endphp
-                                    @foreach (range(1, 5) as $i)
-                                        <span class="fa-stack" style="width:1em">
-                                            <i class="far fa-star fa-stack-1x"></i>
+                            @php $rating = $ratings; @endphp
+                            @foreach (range(1, 5) as $i)
+                                <span class="fa-stack" style="width:1em">
+                                    <i class="far fa-star fa-stack-1x"></i>
 
-                                            @if ($rating > 0)
-                                                @if ($rating > 0.5)
-                                                    <i class="fas fa-star fa-stack-1x"></i>
-                                                @else
-                                                    <i class="fas fa-star-half fa-stack-1x"></i>
-                                                @endif
-                                            @endif
-                                            @php $rating--; @endphp
-                                        </span>
-                                    @endforeach
+                                    @if ($rating > 0)
+                                        @if ($rating > 0.5)
+                                            <i class="fas fa-star fa-stack-1x"></i>
+                                        @else
+                                            <i class="fas fa-star-half fa-stack-1x"></i>
+                                        @endif
+                                    @endif
+                                    @php $rating--; @endphp
+                                </span>
+                            @endforeach
                         </div>
                     </div>
                     <ul class="soical-header-artical">
@@ -116,38 +116,84 @@
                         <h1>{{ $article->name }}</h1>
                         <p>{!! $article->description !!}</p>
                         <div class="container">
-
-                            <div class="row">
-                                <h1></h1>
-                                <div class="container">
-                                    <form class="form-horizontal poststars" action="{{ route('rating', $article->id) }}"
-                                        id="addStar" method="get">
-
-                                        <div class="rating rating--interactive" itemprop="reviewRating" itemscope>
-                                            <p class="sr-only">
-                                                <meta itemprop="ratingValue" content="1">
-                                                Not yet rated
-                                            </p>
-                                            <button class="star" type="radio" value="5" name="star" itemprop="bestRating">
-                                                <span class="sr-only">Rate 5 star</span>
-                                            </button>
-                                            <button class="star" type="radio" value="4" name="star">
-                                                <span class="sr-only">Rate 4 star</span>
-                                            </button>
-                                            <button class="star" type="radio" value="3" name="star">
-                                                <span class="sr-only">Rate 3 star</span>
-                                            </button>
-                                            <button class="star" value="2" type="radio" name="star">
-                                                <span class="sr-only">Rate 2 star</span>
-                                            </button>
-                                            <button class="star" type="radio" value="1" name="star" itemprop="worstRating">
-                                                <span class="sr-only">Rate 1 star</span>
-                                            </button>
+                            <div class="mt-3 row">
+                                <div class="card col-md-12">
+                                    <div class="card-header">
+                                        <h1>التعليقات</h1>
+                                    </div>
+                                    @foreach ($comments as $item)
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <img width="50px" src="../a.png" alt="A">
+                                                </div>
+                                                <div style="text-align: right" class="col-md-11">
+                                                    <h5>{{ $item->user->name }}</h5>
+                                                    <h6 style="margin-top:5px">{{ $item->comment }}</h6>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </form>
+                                        <hr>
+                                    @endforeach
+
                                 </div>
+
                             </div>
+                            <br>
+                            @if (Auth::user())
+                                <form action="{{ route('comment', $article->id) }}" method="get">
+                                    <div class="row">
+                                        <img width="50px" src="../a.png" alt="A">
+                                        <input class="col-md-10" type="text" name="comment" placeholder="أضف تعليقك هنا">
+                                        <button class="col-md-1 btn btn-primary" type="submit" style="margin-right: 5px">نشر</button>
+                                    </div>
+                                </form>
+                                <br>
+                                <div class="container">
+
+                                    <div class="row">
+                                        <h1>قيم المقالة</h1>
+                                        <div class="container">
+                                            <form class="form-horizontal poststars" action="{{ route('rating', $article->id) }}"
+                                                id="addStar" method="get">
+
+                                                <div class="rating rating--interactive" itemprop="reviewRating" itemscope>
+                                                    <p class="sr-only">
+                                                        <meta itemprop="ratingValue" content="1">
+                                                        Not yet rated
+                                                    </p>
+                                                    <button class="star" type="radio" value="5" name="star" itemprop="bestRating">
+                                                        <span class="sr-only">Rate 5 star</span>
+                                                    </button>
+                                                    <button class="star" type="radio" value="4" name="star">
+                                                        <span class="sr-only">Rate 4 star</span>
+                                                    </button>
+                                                    <button class="star" type="radio" value="3" name="star">
+                                                        <span class="sr-only">Rate 3 star</span>
+                                                    </button>
+                                                    <button class="star" value="2" type="radio" name="star">
+                                                        <span class="sr-only">Rate 2 star</span>
+                                                    </button>
+                                                    <button class="star" type="radio" value="1" name="star" itemprop="worstRating">
+                                                        <span class="sr-only">Rate 1 star</span>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                            <div class="row">
+                                <h6> قم بتسجيل الدخول لتتمكن من التعليق وتقييم المقالات <a
+                                        href="{{ asset('login') }}">من هنا</a></h6>
+                            </div>
+                            @endif
                         </div>
+                        <br>
+
+                        <br>
+                        <br>
+
                         <div class="edit-team-artical">
                             <div class="row">
                                 @foreach ($article->editors as $item)
@@ -212,7 +258,7 @@
                                         <a href="{{ url('details/' . $item->id) }}">
                                             <h3>{{ $item->name }}</h3>
                                         </a>
-                                        <p>{{ strip_tags(Str::words($item->description,10))}}</p>
+                                        <p>{{ strip_tags(Str::words($item->description, 10)) }}</p>
                                     </div>
                                 @endforeach
                                 <img class="ads-s" src="../img/ADS.png" alt="">

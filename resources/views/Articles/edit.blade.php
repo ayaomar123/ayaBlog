@@ -78,7 +78,8 @@
                                         <option selected>Open this select menu</option>
                                         @foreach ($categories as $category)
                                             <option style="text-align: center" value="{{ $category->id }}">
-                                                {{ $category->name }}</option>
+                                                {{ $category->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -118,8 +119,6 @@
             out2.src = URL.createObjectURL(event.target.files[0]);
         };
 
-    </script>
-    <script>
         $(document).ready(function() {
             $('#summernote').summernote({
                 height: 200,

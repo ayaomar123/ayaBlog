@@ -16,6 +16,8 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +33,11 @@ use App\Http\Controllers\RatingController;
 
 
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('/', [HomeEditController::class, 'index'])->name('home');
 
 Route::get('rating/{star}', [RatingController::class, 'postRating'])->name('rating');
+Route::get('comment/{slug}', [CommentController::class, 'postComment'])->name('comment');
 
 Route::group(['middleware' => ['is_admin']], function() {
     Route::get('home/{locale}', [LocalizationController::class, 'lang']);

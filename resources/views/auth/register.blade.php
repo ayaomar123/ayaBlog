@@ -65,9 +65,8 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-key"></i></div>
                                     </div>
-                                    <input type="password"
-                                        class="form-control @error('password-confirm') is-invalid @enderror"
-                                        id="password-confirm" placeholder="ادخل  كلمة السر" name="password"
+                                    <input type="password" class="form-control @error('password-confirm') is-invalid @enderror"
+                                        id="password-confirm" placeholder="ادخل  كلمة السر" name="password-confirm"
                                         value="{{ old('password-confirm') }}" required autofocus>
                                     @error('password-confirm')
                                         <span class="invalid-feedback" role="alert">

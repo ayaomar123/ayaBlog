@@ -8,7 +8,7 @@ use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\EditArticleRequest;
 use App\Http\Controllers\CategoryController;
 use App\models\Category;
-use Validator,Redirect,Response;
+use Validator, Redirect, Response;
 use DataTables;
 use Toastr;
 use Session;
@@ -17,10 +17,10 @@ class ArticleController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:article-list|article-create|article-edit|article-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:article-create', ['only' => ['create','store']]);
-         $this->middleware('permission:article-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:article-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:article-list|article-create|article-edit|article-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:article-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:article-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:article-delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -30,52 +30,52 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index(){
+    public function index()
+    {
         $categories = Category::all();
         $items = $this->queryModel()->get();
         //dd($items);
-        return view('Articles.index',compact('items','categories'));
-     }
+        return view('Articles.index', compact('items', 'categories'));
+    }
 
-     //get datatable
+    //get datatable
     public function data(Request $request)
     {
 
         $items = $this->queryModel()->with('categories')->get();
 
-        if(request()->ajax()) {
+        if (request()->ajax()) {
             $items = $this->queryModel()->select('*');
             return DataTables::of($items)
-            ->filter(function ($instance) use ($request) {
+                ->filter(function ($instance) use ($request) {
 
-                if (isset($request->artcile)) {
-                    $instance->where('name', $request->artcile);
-                }
+                    if (isset($request->artcile)) {
+                        $instance->where('name', $request->artcile);
+                    }
 
-                if (isset($request->status)) {
-                    $instance->where('status', $request->status);
-                }
-                if (isset($request->category)) {
-                    $instance->where('name', $request->category);
-                }
+                    if (isset($request->status)) {
+                        $instance->where('status', $request->status);
+                    }
+                    if (isset($request->category)) {
+                        $instance->where('name', $request->category);
+                    }
 
-                if (isset($request->search)) {
-                    $instance->where('name', 'like', '%'.\request('search').'%')
-                    ->orWhere('status', 'LIKE', '%' . $request->search . '%')
-                    ->orWhere('description', 'LIKE', '%' . $request->search . '%');
-                }
-            })
-            ->rawColumns(['status'])
-            ->addColumn('action', function($data){
-                $editUrl = url('articles/'.$data->id);
-                $btn = '<a style="width:100px" href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
-                $btn = $btn.' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
-                return $btn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+                    if (isset($request->search)) {
+                        $instance->where('name', 'like', '%' . \request('search') . '%')
+                            ->orWhere('status', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('description', 'LIKE', '%' . $request->search . '%');
+                    }
+                })
+                ->rawColumns(['status'])
+                ->addColumn('action', function ($data) {
+                    $editUrl = url('articles/' . $data->id);
+                    $btn = '<a style="width:100px" href="' . $editUrl . '" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
+                    $btn = $btn . ' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
-
     }
 
     /**
@@ -86,7 +86,7 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('Articles.create',compact('categories'));
+        return view('Articles.create', compact('categories'));
     }
 
     /**
@@ -109,6 +109,29 @@ class ArticleController extends Controller
             $CoverName = $request->cover->hashName();
             $requestData['cover'] = $CoverName;
         }
+
+        $description = $request->description;
+
+        $dom = new \DomDocument();
+
+        $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+        $images = $dom->getElementsByTagName('img');
+
+        foreach ($images as $k => $img) {
+            $data = $img->getAttribute('src');
+            list($type, $data) = explode(';', $data);
+            list($type, $data) = explode(',', $data);
+            $data = base64_decode($data);
+            $image_name = "/upload/" . time() . $k . '.png';
+            $path = public_path() . $image_name;
+            //file_put_contents($path, $data);
+            $img->removeAttribute('src');
+            $img->setAttribute('src', $image_name);
+        }
+
+
+        $description = $dom->saveHTML();
         $article = $this->queryModel()->create($requestData);
         $article->categories()->attach($request->category_id);
         $article->editors()->attach(Auth()->user());
@@ -134,14 +157,14 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        try{
+        try {
             $categories = Category::all();
             $articles = $this->queryModel()
-            ->where('id', $id)
-            ->first();
+                ->where('id', $id)
+                ->first();
 
-            return view('articles.edit',compact('articles','categories'));
-        }catch(\Exception $e){
+            return view('articles.edit', compact('articles', 'categories'));
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -157,7 +180,7 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         $requestData = $request->all();
-        if ($request['image'] ||$request['cover'] ){
+        if ($request['image'] || $request['cover']) {
             $fileName = $request->image->store("public/articles");
             $imageName = $request->image->hashName();
             $requestData['image'] = $imageName;
@@ -165,15 +188,15 @@ class ArticleController extends Controller
             $imageName2 = $request->cover->hashName();
             $requestData['cover'] = $imageName2;
             $article->update($requestData);
-        } else{
-        $this->queryModel()
-        ->where('id', $request->id)
-        ->update([
-            'name' => $request['name'],
-            'description' => $request['description'],
-            'status' => $request['status'],
-        ]);
-}
+        } else {
+            $this->queryModel()
+                ->where('id', $request->id)
+                ->update([
+                    'name' => $request['name'],
+                    'description' => $request['description'],
+                    'status' => $request['status'],
+                ]);
+        }
         return redirect(route('articles.index'))->with('info', 'Article Edited Successfully');
     }
 
@@ -186,50 +209,52 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $this->queryModel()
-         ->find($id)
-         ->delete();
+            ->find($id)
+            ->delete();
 
-         return  response()->json(['success' => 'Article Deleted successfully.']);
+        return  response()->json(['success' => 'Article Deleted successfully.']);
     }
 
     //delete all records
-    public function deleteAll(){
+    public function deleteAll()
+    {
         $this->queryModel()
-        ->whereIn('id',\request('id'))
-        ->delete();
+            ->whereIn('id', \request('id'))
+            ->delete();
 
-        return response()->json(['success'=>"Article Deleted successfully."]);
+        return response()->json(['success' => "Article Deleted successfully."]);
     }
 
     //Deactivate all records
-    public function deactive(){
+    public function deactive()
+    {
 
         $this->queryModel()
-        ->whereIn('id',\request('id'))
-        ->update(['status'=> \request('status')]);
+            ->whereIn('id', \request('id'))
+            ->update(['status' => \request('status')]);
 
-        return response()->json(['success'=>"Categories updated successfully."]);
+        return response()->json(['success' => "Categories updated successfully."]);
     }
 
     //activate all records
-    public function activate(){
+    public function activate()
+    {
 
         $this->queryModel()
-        ->whereIn('id',\request('id'))
-        ->update(['status'=>!\request('status')]);
+            ->whereIn('id', \request('id'))
+            ->update(['status' => !\request('status')]);
 
-        return response()->json(['success'=>"Article updated successfully."]);
-
+        return response()->json(['success' => "Article updated successfully."]);
     }
 
     //toggle switch
     public function changeStatus()
     {
         $this->queryModel()
-        ->find(\request('id'))
-        ->update(['status'=>\request('status')]);
+            ->find(\request('id'))
+            ->update(['status' => \request('status')]);
 
-        return response()->json(['success'=>"Article Status Updated successfully."]);
+        return response()->json(['success' => "Article Status Updated successfully."]);
     }
 
 
@@ -242,5 +267,4 @@ class ArticleController extends Controller
     {
         return $this->model()->query();
     }
-
 }

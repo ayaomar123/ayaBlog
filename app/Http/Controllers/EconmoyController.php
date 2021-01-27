@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Events\ArticleViewer;
+use App\Models\Comment;
 use Helpers;
 
 class EconmoyController extends Controller
@@ -59,6 +60,9 @@ class EconmoyController extends Controller
         //التقييم
         $ratings = Helpers::getRatings($id);
 
+        $comments = Helpers::getComments($id);
+        //dd($comments);
+
         return view('pages.details', compact(
             'settings',
             'sliderCategory',
@@ -66,7 +70,8 @@ class EconmoyController extends Controller
             'related',
             'views',
             'mypages',
-            'ratings'
+            'ratings',
+            'comments'
         ));
     }
 

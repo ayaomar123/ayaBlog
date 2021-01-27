@@ -2,6 +2,7 @@
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Rating;
 use App\Models\Setting;
 use App\Models\StaticPages;
@@ -90,5 +91,9 @@ class Helpers
     public static function getRatings($id)
     {
         return Rating::where('article_id',$id)->avg('rating');
+    }
+
+    public static function getComments($id){
+        return Comment::where('article_id',$id)->get();
     }
 }
