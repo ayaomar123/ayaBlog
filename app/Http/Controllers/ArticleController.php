@@ -31,9 +31,10 @@ class ArticleController extends Controller
      */
 
      public function index(){
-
+        $categories = Category::all();
         $items = $this->queryModel()->get();
-        return view('Articles.index',compact('items'));
+        //dd($items);
+        return view('Articles.index',compact('items','categories'));
      }
 
      //get datatable
@@ -44,7 +45,7 @@ class ArticleController extends Controller
 
         if(request()->ajax()) {
             $items = $this->queryModel()->select('*');
-            return Datatables::of($items)
+            return DataTables::of($items)
             ->filter(function ($instance) use ($request) {
 
                 if (isset($request->artcile)) {
@@ -55,8 +56,7 @@ class ArticleController extends Controller
                     $instance->where('status', $request->status);
                 }
                 if (isset($request->category)) {
-                    //dd($request->category);
-                    $instance->where('category', $request->category);
+                    $instance->where('name', $request->category);
                 }
 
                 if (isset($request->search)) {

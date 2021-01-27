@@ -59,7 +59,7 @@
                     name: 'categories',
                     data: 'categories[0].name',
                 },
-                {
+                /* {
                     name: 'image',
                     data: 'image',
                     render: function(data) {
@@ -74,7 +74,7 @@
                         return "<img width='150px' src='storage/articles/" + data + " ' />"
 
                     },
-                },
+                }, */
                 {
                     data: 'status',
                     "render": function(data, type, row, meta) {
