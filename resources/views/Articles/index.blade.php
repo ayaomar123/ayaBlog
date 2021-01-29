@@ -41,12 +41,13 @@
 
                         <div class="col-md-4">
                             <div class="form-check" style="">
-                                <select class="mdb-select md-form" searchable="Search here.." name='category' id="category"
+                                <select class="mdb-select md-form" searchable="Search here.." name='categories' id="categories"
                                     style="width:340px;">
                                     <option value="">{{ __('lang.select') }}</option>
                                     @foreach ($categories as $item)
                                         <option {{ old('name') == $item->id ? 'selected' : '' }} value='{{ $item->name }}'>
-                                            {{ $item->name }}</option>
+                                            {{ $item->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

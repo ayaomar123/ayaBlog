@@ -55,7 +55,7 @@
                 padding-right: 10%;
             }
             html[dir="ltr"] .mycontent {
-                margin-left:150px;
+                margin-left:180px;
             }
             html[dir="rtl"] .mycontent {
                 margin-right: 150px;

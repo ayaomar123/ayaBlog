@@ -147,7 +147,7 @@
                                     </div>
                                     <img src="{{ asset('storage/articles/' . $item->image) }}" alt="">
 
-                                    <h1><a href="{{url('details/'.$item->id)}}">{{strip_tags(Str::words($item->description,50))}}  </span>
+                                    <h1><a href="{{url('details/'.$item->id)}}">{{strip_tags(Str::words($item->description,10))}}  </span>
                                         </a></h1>
                                 </div>
                             </div>

@@ -166,10 +166,10 @@
                 type: "DELETE",
                 url: "{{ url('categories') }}" + '/' + catid,
                 success: function(data) {
-                    var oTable = $('#laravel-datatable-crud').dataTable();
+                    var oTable = $('#laravel-datatable-crud').dataTable().ajax.reload();
                 },
                 error: function(data) {
-                    console.log('Error:', data);
+                    toastr.info("Error, Can't Be Deleted");
                 }
             });
         });
@@ -212,7 +212,7 @@
                         },
                         success: function(data) {
                             //$('#laravel-datatable-crud').DataTable().ajax.reload();
-                            var oTable = $('#laravel-datatable-crud').dataTable();
+                            var oTable = $('#laravel-datatable-crud').dataTable().ajax.reload();
                         },
                         error: function(data) {
                             toastr.info("Error, Can't Be Deleted");
@@ -226,7 +226,7 @@
         });
 
         //deactivate selected records
-        $('.active-all').on('click', function(e) {
+        $('.deactive-all').on('click', function(e) {
             e.preventDefault();
             var id = [];
             $('.checkbox:checked').each(function() {
@@ -236,7 +236,7 @@
 
                 //alert(id);
                 $.ajax({
-                    url: "{{ route('categories.deactivate') }}",
+                    url: "{{ route('categories.deactive') }}",
                     method: "PUT",
                     data: {
                         id: id
@@ -246,7 +246,7 @@
                         $('#laravel-datatable-crud').DataTable().ajax.reload();
                     },
                     error: function(data) {
-                        alert("Failed");
+                        toastr.warning("Cant Deactivated!");
                     }
                 });
             } else {
@@ -275,7 +275,7 @@
                         $('#laravel-datatable-crud').DataTable().ajax.reload();
                     },
                     error: function(data) {
-                        alert("Failed");
+                        toastr.warning("Cant Activated!");
                     }
                 });
             } else {

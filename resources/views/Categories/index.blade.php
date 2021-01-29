@@ -72,7 +72,7 @@
                         <div class="col-md-3">
                             <a href="" style="width: 250px;margin-left:0px;margin-right:10px"
                                 data-url="{{ url('categories/deactive') }}"
-                                class="px-5 btn btn-primary btn-lg active-all"><i class="fas fa-check"></i> {{ __('lang.deactivate') }}
+                                class="px-5 btn btn-primary btn-lg deactive-all"><i class="fas fa-check"></i> {{ __('lang.deactivate') }}
                             </a>
                         </div>
 

@@ -56,8 +56,8 @@ class ArticleController extends Controller
                     if (isset($request->status)) {
                         $instance->where('status', $request->status);
                     }
-                    if (isset($request->category)) {
-                        $instance->where('name', $request->category);
+                    if (isset($request->categories)) {
+                        $instance->with('categories')->where('name', $request->categories);
                     }
 
                     if (isset($request->search)) {

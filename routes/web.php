@@ -17,7 +17,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\Auth\EditProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +71,7 @@ Route::group(['middleware' => ['is_admin']], function() {
         Route::post('/{id}/update', [CategoryController::class, 'update'])->name('update');
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('destroy');
         Route::post('changeStatus',[CategoryController::class, 'changeStatus'])->name('changeStatus');
-        Route::put('deactivate',[CategoryController::class, 'deactivate'])->name('deactivate');
+        Route::put('deactive',[CategoryController::class, 'deactive'])->name('deactive');
         Route::put('activate',[CategoryController::class, 'activate'])->name('activate');
     });
     Route::get('searching',[CategoryController::class, 'searching'])->name('searching');
@@ -90,7 +90,7 @@ Route::group(['middleware' => ['is_admin']], function() {
         Route::put('deactive',[ArticleController::class, 'deactive'])->name('deactive');
         Route::put('activate',[ArticleController::class, 'activate'])->name('activate');
     });
-    Route::delete('myproductsDeleteAll',[ArticleController::class, 'deleteAll'])->name('article.multiple-delete');
+    Route::delete('myproductsDeleteAll',[ArticleController::class, 'deleteAll'])->name('myproductsDeleteAll');
 
 
 

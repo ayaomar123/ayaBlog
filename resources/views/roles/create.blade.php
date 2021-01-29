@@ -1,5 +1,5 @@
 @extends('Admin.board')
-@section('title','Create Roles')
+@section('title', 'Create Roles')
 @section('content')
 
     <div class="mb-4">
@@ -20,64 +20,95 @@
         </div>
     @endif
 
-    {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
+    {!! Form::open(['route' => 'roles.store', 'method' => 'POST']) !!}
 
     <div class="card mt-3" style="text-align:left;padding-left:25px ">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="form-group mt-2">
                     <strong>Role Name:</strong>
-                    {!! Form::text('name', null, array('placeholder' => 'Role Name','class' => 'form-control')) !!}
+                    {!! Form::text('name', null, ['placeholder' => 'Role Name', 'class' => 'form-control']) !!}
                 </div>
             </div>
         </div>
-        <label><input name="check_all" id="check_all" type="checkbox" id="select_all" >Select All</label>
+        <label><input name="check_all" id="check_all" type="checkbox" id="select_all">Select All</label>
 
 
         <table class="table table-hover">
-        <thead>
-            <tr>
-              <th scope="col">Permission</th>
-              <th scope="col">View</th>
-              <th scope="col">Add</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <th scope="row">Category</th>
-              <td><input class="name" name="permission[]" type="checkbox" value="9"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="10"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="11"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="12"></td>
-            </tr>
-            <tr>
-              <th scope="row">Product</th>
-              <td><input class="name" name="permission[]" type="checkbox" value="5"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="6"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="7"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="8"></td>
-            </tr>
-            <tr>
-              <th scope="row">Article</th>
-              <td><input class="name" name="permission[]" type="checkbox" value="13"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="14"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="15"></td>
-              <td><input class="name" name="permission[]" type="checkbox" value="16"></td>
-            </tr>
-        <tr>
-          <th scope="row">Role</th>
-          <td><input class="name" name="permission[]" type="checkbox" value="1"></td>
-          <td><input class="name" name="permission[]" type="checkbox" value="2"></td>
-          <td><input class="name" name="permission[]" type="checkbox" value="3"></td>
-          <td><input class="name" name="permission[]" type="checkbox" value="4"></td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary" style="margin-bottom:25px;float: left;">Submit</button>
-    </div>
+            <thead>
+                <tr>
+                    <th scope="col">Permission</th>
+                    <th scope="col">View</th>
+                    <th scope="col">Add</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Role</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="1"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="2"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="3"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="4"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Category</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="5"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="6"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="7"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="8"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Article</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="9"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="10"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="11"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="12"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Product</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="5"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="6"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="7"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="8"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Static-Page</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="13"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="14"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="15"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="16"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Slider</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="17"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="18"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="19"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="20"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Socils</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="21"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="22"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="23"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="24"></td>
+                </tr>
+                <tr>
+                    <th scope="row">User</th>
+                    <td><input class="name" name="permission[]" type="checkbox" value="25"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="26"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="27"></td>
+                    <td><input class="name" name="permission[]" type="checkbox" value="28"></td>
+                </tr>
+
+
+            </tbody>
+        </table>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary" style="margin-bottom:25px;float: left;">Submit</button>
+        </div>
     </div>
 
 
@@ -87,8 +118,9 @@
 @endsection
 @section('script')
     <script>
-    $('#check_all').change(function() {
-        $(".name").prop('checked', $(this).prop('checked'));
-    });
+        $('#check_all').change(function() {
+            $(".name").prop('checked', $(this).prop('checked'));
+        });
+
     </script>
 @endsection

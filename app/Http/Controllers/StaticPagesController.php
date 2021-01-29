@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:page-list|page-create|page-edit|page-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:page-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:page-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:page-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Helpers;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Setting;
@@ -15,35 +16,28 @@ class HomeEditController extends Controller
     public function index()
     {
         //روابط السوشيال ميديا
-        $settings = Setting::all();
+        $settings = Helpers::getSetting();
 
         //صور السلايدرات
-        $sliders = Slider::all();
+        $sliders = Helpers::getSlider();
 
         //الصفحات الثابتة
-        $mypages = StaticPages::all();
+        $mypages = Helpers::getmypages();
 
         //عناوين المقالات في السلايدر
-        $sliderCategory =  Category::where('status', 1)->take(11)->get();
+        $sliderCategory =  Helpers::getSliderCategory();
 
         //أهم المقالات
-        $importantArticles = Article::latest()->take(2)->get();
+        $importantArticles = Helpers::getArticles();
 
         //مقالات شائعة
-        $internationalArticles =  Article::take(3)->get();
+        $internationalArticles =  Helpers::getRelatedArticle();
 
         //مقالات عشوائية
-        $impotrantArticles = Article::inRandomOrder()->take(3)->get();
+        $impotrantArticles = Helpers::getArticles();
 
-        $$impotrantArticles = Article::inRandomOrder()->take(3)->get();
         //6 مقالات عشوائية
-        $randomArticles = Article::inRandomOrder()->take(6)->get();
-
-        //الصنف والمقالات التابعة له
-        $categoryArticle = Category::query()->with('articles', function ($query) {
-            $query->orderBy('id', 'desc')->take(1)->get();
-        })->get();
-
+        $randomArticles = Helpers::getRandomArticle();
 
         return view('pages.index', compact(
             'settings',
@@ -62,26 +56,25 @@ class HomeEditController extends Controller
     public function page($id)
     {
         //حسابات السوشيال ميديا
-        $settings = Setting::all();
+        $settings =  Helpers::getSetting();
 
         //السلايدرات
-        $sliders = Slider::all();
+        $sliders = Helpers::getSlider();
 
         //عناوين المقالات في السلايدر
-        $sliderCategory =  Category::where('status', 1)->take(11)->get();
+        $sliderCategory =  Helpers::getSliderCategory();
 
         //أهم المقالات
-        $importantArticles = Article::latest()->take(2)->get();
+        $importantArticles = Helpers::getArticles();
 
         //مقالات شائعة
-        $internationalArticles =  Article::take(3)->get();
+        $internationalArticles =  Helpers::getRelatedArticle();
 
         //مقالات عشوائية
-        $impotrantArticles = Article::inRandomOrder()->take(3)->get();
+        $impotrantArticles = Helpers::getRelatedArticle();
 
-        $$impotrantArticles = Article::inRandomOrder()->take(3)->get();
         //6 مقالات عشوائية
-        $randomArticles = Article::inRandomOrder()->take(6)->get();
+        $randomArticles =  Helpers::getRandomArticle();
 
         //الصنف والمقالات التابعة له
         $categoryArticle = Category::query()->with('articles', function ($query) {

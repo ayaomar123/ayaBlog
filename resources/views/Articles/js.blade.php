@@ -27,7 +27,7 @@
                 data: function(d) {
                     d.search = $('input[type="search"]').val(),
                         d.artcile = $('#artcile').val(),
-                        d.category = $('#category').val(),
+                        d.categories = $('#categories').val(),
                         d.status = $("#status").val()
                 }
 
@@ -126,13 +126,15 @@
             e.preventDefault();
             var status = $('#status').val();
             var artcile = $('#artcile').val();
-            var category = $('#category').val();
+            var categories = $('#categories').val();
+            //console.log(categories);
+
             $.ajax({
                 url: "{{ route('searching') }}",
                 method: "get",
                 data: {
                     name: artcile,
-                    category: category,
+                    category: categories,
                     status: status
                 },
                 success: function(data) {
@@ -216,7 +218,7 @@
                         }
                     });
                     $.ajax({
-                        url: "{{ route('article.multiple-delete') }}",
+                        url: "{{ route('myproductsDeleteAll') }}",
                         method: "DELETE",
                         data: {
                             id: id

@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Rating;
 use App\Models\Setting;
+use App\Models\Slider;
 use App\Models\StaticPages;
 
 class Helpers
@@ -86,7 +87,7 @@ class Helpers
     }
 
      /**
-     * return views
+     * return ratings
      */
     public static function getRatings($id)
     {
@@ -94,6 +95,22 @@ class Helpers
     }
 
     public static function getComments($id){
-        return Comment::where('article_id',$id)->get();
+        return Comment::where('article_id',$id)->paginate(5);
+    }
+
+     /**
+     * return ratings
+     */
+    public static function getSlider()
+    {
+        return Slider::get();
+    }
+
+     /**
+     * return ratings
+     */
+    public static function getRandomArticle()
+    {
+        return Article::inRandomOrder()->take(6)->get();
     }
 }

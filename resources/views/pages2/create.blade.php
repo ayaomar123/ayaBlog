@@ -9,6 +9,9 @@
             padding: 30px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 @endsection
 @section('content')
     <div class="mb-4">
@@ -26,7 +29,7 @@
 
             <div class="form-group">
               <label for="word">Word</label>
-              <textarea class="description" name="description"></textarea>
+              <textarea id="summernote" class="description" name="description"></textarea>
             </div>
 
             <div class="form-group">
@@ -44,12 +47,15 @@
 @endsection
 
 @section('script')
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+
 <script>
-    tinymce.init({
-        selector:'textarea.description',
-        width: 900,
-        height: 300
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 200,
+            focus: true,
+        });
+
     });
+
 </script>
 @endsection

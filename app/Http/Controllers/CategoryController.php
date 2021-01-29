@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\models\Category;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\EditCategoryRequest;
 use App\models\Article;
 use Illuminate\Http\Request;
 use Validator, Redirect, Response;
@@ -147,7 +148,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(EditCategoryRequest $request, $id)
     {
         $category = Category::find($id);
         if ($request['image']) {
@@ -194,12 +195,12 @@ class CategoryController extends Controller
         return response()->json(['success' => "Category Deleted successfully."]);
     }
 
-    public function deactivate()
+    public function deactive(Request $request)
     {
 
         $this->queryModel()
             ->whereIn('id', \request('id'))
-            ->update(['status' => \request('status')]);
+            ->update(['status' => !!\request('status')]);
 
         return response()->json(['success' => "Categories updated successfully."]);
     }
@@ -214,6 +215,7 @@ class CategoryController extends Controller
 
         return response()->json(['success' => "Categories updated successfully."]);
     }
+
     public function changeStatus(Request $request)
     {
 

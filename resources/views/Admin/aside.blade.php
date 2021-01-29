@@ -21,6 +21,7 @@
                         <span class="menu-text">Home</span>
                     </a>
                 </li>
+                @can('role-list')
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-telegram-logo"></i>
@@ -44,16 +45,20 @@
                                 </a>
                             </li>
                             <li class="menu-item" aria-haspopup="true">
+                                @can('role-create')
                                 <a href="{{asset('roles/create')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
                                     <span class="menu-text">Add</span>
                                 </a>
+                                @endcan
                             </li>
                         </ul>
                     </div>
                 </li>
+                @endcan
+                @can('page-list')
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-laptop"></i>
@@ -79,6 +84,8 @@
                         </ul>
                     </div>
                 </li>
+                @endcan
+                @can('category-list')
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-browser-2"></i>
@@ -101,6 +108,7 @@
                                     <span class="menu-text">Show</span>
                                 </a>
                             </li>
+                            @can('category-create')
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{asset('categories/create')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
@@ -109,9 +117,12 @@
                                     <span class="menu-text">Add</span>
                                 </a>
                             </li>
+                            @endcan
                         </ul>
                     </div>
                 </li>
+                @endcan
+                @can('article-list')
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-browser-2"></i>
@@ -134,6 +145,7 @@
                                     <span class="menu-text">Show</span>
                                 </a>
                             </li>
+                            @can('article-create')
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{asset('articles/create')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
@@ -142,27 +154,35 @@
                                     <span class="menu-text">Add</span>
                                 </a>
                             </li>
+                            @endcan
                         </ul>
                     </div>
                 </li>
+                @endcan
+                @can('slider-list')
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{asset('slider')}}" class="menu-link">
                         <i class="menu-icon flaticon2-console"></i>
                         <span class="menu-text">Sliders</span>
                     </a>
                 </li>
+                @endcan
+                @can('setting-list')
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{asset('setting/1/edit')}}" class="menu-link">
                         <i class="menu-icon flaticon2-console"></i>
                         <span class="menu-text">setting</span>
                     </a>
                 </li>
+                @endcan
+                @can('user-list')
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{asset('users')}}" class="menu-link">
                         <i class="menu-icon flaticon2-graph-1"></i>
                         <span class="menu-text">User</span>
                     </a>
                 </li>
+                @endcan
             </ul>
             <!--end::Menu Nav-->
         </div>

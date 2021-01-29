@@ -204,7 +204,7 @@
                                             </span>
                                         </div>
                                         <div class="membership">
-                                            <img src="../IMG_20181223_184550_818.jpg" alt="">
+                                            <img src="{{asset('storage/images/').'/'.$item->image}}" alt="">
                                         </div>
                                     @endforeach
                                     <div class="edit-team-artical-p">
