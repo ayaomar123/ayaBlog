@@ -18,14 +18,14 @@
                 <li class="menu-item menu-item-active" aria-haspopup="true">
                     <a href="{{asset('')}}" class="menu-link">
                         <i class="menu-icon flaticon2-architecture-and-city"></i>
-                        <span class="menu-text">Home</span>
+                        <span class="menu-text">{{__('lang.Home')}}</span>
                     </a>
                 </li>
                 @can('role-list')
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-telegram-logo"></i>
-                        <span class="menu-text">Roles</span>
+                        <span class="menu-text">{{__('lang.Roles')}}</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -41,7 +41,7 @@
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Show</span>
+                                    <span class="menu-text">{{__('lang.Show')}}</span>
                                 </a>
                             </li>
                             <li class="menu-item" aria-haspopup="true">
@@ -50,7 +50,7 @@
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Add</span>
+                                    <span class="menu-text">{{__('lang.Add')}}</span>
                                 </a>
                                 @endcan
                             </li>
@@ -62,7 +62,7 @@
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-laptop"></i>
-                        <span class="menu-text">Pages</span>
+                        <span class="menu-text">{{__('lang.Pages')}}</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -78,7 +78,7 @@
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Show</span>
+                                    <span class="menu-text">{{__('lang.Show')}}</span>
                                 </a>
                             </li>
                         </ul>
@@ -89,7 +89,7 @@
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-browser-2"></i>
-                        <span class="menu-text">Categories</span>
+                        <span class="menu-text">{{__('lang.Categories')}}</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -105,7 +105,7 @@
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Show</span>
+                                    <span class="menu-text">{{__('lang.Show')}}</span>
                                 </a>
                             </li>
                             @can('category-create')
@@ -114,7 +114,7 @@
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Add</span>
+                                    <span class="menu-text">{{__('lang.Add')}}</span>
                                 </a>
                             </li>
                             @endcan
@@ -126,7 +126,7 @@
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <i class="menu-icon flaticon2-browser-2"></i>
-                        <span class="menu-text">Articles</span>
+                        <span class="menu-text">{{__('lang.Articles')}}</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -142,7 +142,7 @@
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Show</span>
+                                    <span class="menu-text">{{__('lang.Show')}}</span>
                                 </a>
                             </li>
                             @can('article-create')
@@ -151,7 +151,7 @@
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Add</span>
+                                    <span class="menu-text">{{__('lang.Add')}}</span>
                                 </a>
                             </li>
                             @endcan
@@ -163,7 +163,7 @@
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{asset('slider')}}" class="menu-link">
                         <i class="menu-icon flaticon2-console"></i>
-                        <span class="menu-text">Sliders</span>
+                        <span class="menu-text">{{__('lang.Sliders')}}</span>
                     </a>
                 </li>
                 @endcan
@@ -171,7 +171,7 @@
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{asset('setting/1/edit')}}" class="menu-link">
                         <i class="menu-icon flaticon2-console"></i>
-                        <span class="menu-text">setting</span>
+                        <span class="menu-text">{{__('lang.setting')}}</span>
                     </a>
                 </li>
                 @endcan
@@ -179,7 +179,7 @@
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{asset('users')}}" class="menu-link">
                         <i class="menu-icon flaticon2-graph-1"></i>
-                        <span class="menu-text">User</span>
+                        <span class="menu-text">{{__('lang.User')}}</span>
                     </a>
                 </li>
                 @endcan

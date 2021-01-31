@@ -66,9 +66,9 @@ class CategoryController extends Controller
 
                     $editUrl = url('categories/' . $data->id);
 
-                    $btn = '<a style="width:100px" href="' . $editUrl . '" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
+                    $btn = '<a style="width:100px" href="' . $editUrl . '" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i> Edit</a>';
 
-                    $btn = $btn . ' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
+                    $btn = $btn . ' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i> Delete</a>';
 
                     return $btn;
                 })

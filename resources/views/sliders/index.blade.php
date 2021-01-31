@@ -5,23 +5,23 @@
     <div class="mb-4">
         <h2 class="text-center py-2"
             style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
-             Slider
+             {{__('lang.Sliders')}}
         </h2>
         {{-- <div class="col-md-3 mb-5">
             <a style="background:rgb(108, 192, 115);color:white;float: right; width:250px;" class="btn btn-success" href="{{ route('slider.create') }}"> Create New Slider</a>
         </div> --}}
     </div>
-<div class="card" style="text-align:left;margin-top:30px">
+<div class="card" style="margin-top:30px">
 
-    <table class="table table-hover" style="text-align:left;">
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Image</th>
-                <th scope="col">word</th>
-                <th scope="col">Link</th>
-                <th scope="col">Action</th>
+                <th scope="col">{{__('lang.Id')}}</th>
+                <th scope="col">{{__('lang.Name')}}</th>
+                <th scope="col">{{__('lang.myImage')}}</th>
+                <th scope="col">{{__('lang.Description')}}</th>
+                <th scope="col">{{__('lang.link')}}</th>
+                <th scope="col">{{__('lang.Action')}}</th>
             </tr>
         </thead>
         <tbody>

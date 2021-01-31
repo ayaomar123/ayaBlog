@@ -16,20 +16,20 @@
                         <div class="card">
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                    <label for="name">{{ __('lang.enter') }}</label>
+                                    <label for="name">{{ __('lang.Name') }}</label>
                                     <input type="text" name="name" class="form-control col-md-5" id="formGroupExampleInput"
-                                        placeholder="{{ __('lang.enter') }}">
+                                        placeholder="{{ __('lang.Name') }}">
                                 </blockquote>
                                 <br>
                                 <blockquote class="blockquote mb-0">
-                                    <label for="message">{{ __('lang.catDescription') }}</label>
+                                    <label for="message">{{ __('lang.Description') }}</label>
                                     <textarea style="height: 170px" class="form-control col-md-5" name="description"
-                                        placeholder="Write short description fot this category"></textarea>
+                                        placeholder="{{ __('lang.Description') }}"></textarea>
                                 </blockquote>
                                 <br>
                                 <blockquote>
                                     <div class="">
-                                        <label for="image">{{ __('lang.choose') }}</label>
+                                        <label for="image">{{ __('lang.image') }}</label>
                                         <br>
                                         <input class="" id="image" type="file" name="image" value="{{ old('image') }}"
                                             onchange="loadFile(event)">
@@ -43,15 +43,15 @@
                                 <blockquote class="blockquote mb-0">
                                     <div class="slideOne">
                                         <input type="checkbox" value="1" id="published" name="status" checked />
-                                        <label for="slideOne">{{__('lang.active')}}</label>
+                                        <label for="slideOne">{{__('lang.Active')}}</label>
                                     </div>
 
                                 </blockquote>
 
                                 <br>
                                 <div class="form-group" >
-                                    <button style="" type="submit" class="btn btn-success col-md-2" id="btn-send">{{__('lang.submit')}}</button>
-                                    <a class='btn btn-light col-md-2' href='{{ route('categories.index') }}'>{{__('lang.cancel')}}</a>
+                                    <button style="" type="submit" class="btn btn-success col-md-1" id="btn-send">{{__('lang.submit')}}</button>
+                                    <a class='btn btn-light col-md-1' href='{{ route('categories.index') }}'>{{__('lang.cancel')}}</a>
                                 </div>
                             </div>
                         </div>

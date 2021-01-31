@@ -2,10 +2,11 @@
 @section('title','Edit User')
 
 @section('content')
+<div class="">
     <div class="mb-4">
         <h2 class="text-center py-2"
             style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
-            Edit User
+            {{__('lang.editUser')}}
         </h2>
     </div>
     @if (count($errors) > 0)
@@ -19,12 +20,12 @@
         </div>
     @endif
 
-    <div class="card mt-3" style="text-align:left;padding-left:25px ">
+    <div class="card mt-3" style="padding-left:25px;padding-right:25px ">
     {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group mt-3">
-                <strong>Name:</strong>
+                <strong> {{__('lang.UserName')}}:</strong>
                 {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
             </div>
         </div>
@@ -32,7 +33,7 @@
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Email:</strong>
+                <strong>{{__('lang.Email')}}:</strong>
                 {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
             </div>
         </div>
@@ -40,7 +41,7 @@
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Password:</strong>
+                <strong>{{__('lang.Password')}}:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
             </div>
         </div>
@@ -48,7 +49,7 @@
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Confirm Password:</strong>
+                <strong>{{__('lang.confPassword')}}:</strong>
                 {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
             </div>
         </div>
@@ -56,18 +57,18 @@
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Role:</strong>
+                <strong>{{__('lang.Roles')}}:</strong>
                 {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 text-center mb-5">
-            <button style="float: left" type="submit" class="btn btn-primary">Submit</button>
+        <div class="col-xs-6 col-sm-6 col-md-6 mr-5 mb-5">
+            <button type="submit" class="col-md-5 btn btn-primary">{{__('lang.submit')}}</button>
         </div>
     </div>
     </div>
     {!! Form::close() !!}
     </div>
-
+</div>
 @endsection

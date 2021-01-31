@@ -4,17 +4,17 @@
         <div class="mb-4">
             <h2 class="text-center py-2"
             style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
-            Create New User
+            {{__('lang.createUser')}}
             </h2>
         </div>
 
 
     {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-    <div class="card mt-3" style="text-align:left;padding-left:25px ">
+    <div class="card mt-3" style="padding-left:25px ">
         <div class="row" style="margin-right: 50px;">
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group mt-3">
-                <strong>Name:</strong>
+                <strong> {{__('lang.UserName')}}:</strong>
                 {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
             </div>
         </div>
@@ -25,9 +25,11 @@
             <form method="post" action="{{ url('store_image/insert_image') }}"  enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <strong>Image:</strong>
+                    <strong>{{__('lang.myImage')}}:</strong>
                     <br><br>
+                    <div>
                         <input type="file" name="user_image" />
+                    </div>
                 </div>
             </form>
         </div>
@@ -36,7 +38,7 @@
     <div class="row" style="margin-right: 50px;">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Email:</strong>
+                <strong>{{__('lang.Email')}}:</strong>
                 {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
             </div>
         </div>
@@ -45,7 +47,7 @@
     <div class="row" style="margin-right: 50px;">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Password:</strong>
+                <strong>{{__('lang.Password')}}:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
             </div>
         </div>
@@ -54,7 +56,7 @@
     <div class="row" style="margin-right: 50px;">
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Confirm Password:</strong>
+                <strong>{{__('lang.confPassword')}}:</strong>
                 {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
             </div>
         </div>
@@ -63,20 +65,19 @@
     <div class="row" style="margin-right: 50px;">
         <div class="col-xs-6 col-sm-6 col-md-6">
 
-                <strong>Role:</strong>
+                <strong>{{__('lang.Roles')}}:</strong>
                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
 
         </div>
     </div>
 
-    <div class="row" style="margin-right: 50px;">
-        <div class="col-xs-6 col-sm-6 col-md-6 text-center mb-5 mt-5" >
-            <button style="float:left " type="submit" class="btn btn-primary">Submit</button>
+    <div class="row" >
+        <div class="col-xs-6 col-sm-6 col-md-2 text-center mb-5 mt-5" >
+            <button  type="submit" class="col-md-5 btn btn-primary">{{__('lang.submit')}}</button>
         </div>
     </div>
     {!! Form::close() !!}
 
-</div>
 
 
 @endsection

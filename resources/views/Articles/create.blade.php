@@ -79,10 +79,10 @@
                                 <br> <br>
 
                                 <div class="col-xs-12 col-sm-12 col-md-7 mb-5">
-                                    <label  for="category">{{__lang.}}</label>
+                                    <label  for="category">{{__('lang.Category')}}</label>
                                     <select name="category_id[]" id="category"
                                         class="form-control show-tick" data-live-search="true">
-                                        <option selected>Open this select menu</option>
+                                        <option selected>{{__('lang.OpenMenu')}}</option>
                                         @foreach ($categories as $category)
                                             <option style="text-align: center" value="{{ $category->id }}">
                                                 {{ $category->name }}</option>
@@ -91,8 +91,8 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <button style="" type="submit" class="btn btn-success" id="btn-send">Submit</button>
-                                    <a class='btn btn-light ' href='{{ route('articles.index') }}'>Cancel</a>
+                                    <button style="" type="submit" class="btn btn-success" id="btn-send">{{__('lang.submit')}}</button>
+                                    <a class='btn btn-light ' href='{{ route('articles.index') }}'>{{__('lang.cancel')}}</a>
                                 </div>
                             </div>
                         </div>

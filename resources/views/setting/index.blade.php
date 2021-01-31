@@ -5,7 +5,7 @@
     <div class="mb-4">
         <h2 class="text-center py-2"
             style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
-             Social Links
+             {{__('lang.socialLinks')}}
         </h2>
     </div>
 <div class="card" style="text-align:left;margin-top:30px">
@@ -13,14 +13,14 @@
     <table class="table table-hover" style="text-align:left;">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">facebook</th>
-                <th scope="col">twitter</th>
-                <th scope="col">youtube</th>
-                <th scope="col">instagram</th>
-                <th scope="col">snapchat</th>
-                <th scope="col">linkedin</th>
-                <th scope="col">Action</th>
+                <th scope="col">#</th>
+                <th scope="col">{{__('lang.facebook')}}</th>
+                <th scope="col">{{__('lang.twitter')}}</th>
+                <th scope="col">{{__('lang.youtube')}}</th>
+                <th scope="col">{{__('lang.instagram')}}</th>
+                <th scope="col">{{__('lang.snapchat')}}</th>
+                <th scope="col">{{__('lang.linkedin')}}</th>
+                <th scope="col">{{__('lang.Action')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
                         <td>{{ Str::limit($setting->linkedin,10)}}</td>
 
                         <td>
-                            <a href="{{ route('setting.edit',[$setting->id]) }}">Edit </a>
+                            <a href="{{ route('setting.edit',[$setting->id]) }}">{{__('lang.Edit')}} </a>
                             {{-- <form class="" action="{{ route('setting.delete',[$setting->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
