@@ -10,7 +10,7 @@
         <div class="mb-4">
             <h2 class="text-center py-2"
                 style="width: 100%;height:40px; background:#1f1e2e;color:whitesmoke;  font-family: Arial, Helvetica, sans-serif;">
-                Create Article
+                {{__('lang.Create_Article')}}
             </h2>
             <form enctype="multipart/form-data" id="add-article" method="post" action="{{ url('articles') }}">
                 @csrf
@@ -20,61 +20,67 @@
                             <div class="card-body">
                                 <div class="row">
                                     <blockquote  class="col-md-8 blockquote mb-0">
-                                        <label style="float: left;" for="formGroupExampleInput">Enter Article Name</label>
+                                        <label for="formGroupExampleInput">{{__('lang.Article_Name')}}</label>
                                         <br>
-                                        <input style="margin-left:80px;width:559px" name="name" type="text" name="name" class="form-control"
-                                            id="formGroupExampleInput" placeholder="Please enter name">
+                                        <input style="width:559px" name="name" type="text" name="name" class="form-control"
+                                            id="formGroupExampleInput" placeholder="{{__('lang.Article_Name')}}">
                                     </blockquote>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <blockquote class="col-md-8 blockquote mb-0">
-                                        <label style="float: left" for="formGroupExampleInput">Description</label>
+                                        <label  for="formGroupExampleInput">{{__('lang.Description')}}</label>
                                         <br>
                                         <textarea style="" class="" name="description"
                                             id="summernote" name="editordata"></textarea>
                                     </blockquote>
                                 </div>
                                 <br>
+                                <div class="row">
                                 <blockquote>
                                     <div class="col-md-5">
-                                        <label style="float: left" for="image">Choose article Image</label>
+                                        <label  for="image">{{__('lang.image')}}</label>
                                         <br>
                                         <input class="" id="image" type="file" name="image"
                                             value="{{ old('image') }}" onchange="loadFile(event)">
                                     </div>
                                     <div>
                                         <br>
-                                        <img id="out" style="height:150px;margin-left:65px;width:580px">
+                                        <img id="out" style="height:150px;width:580px">
                                     </div>
                                 </blockquote>
+                                </div>
                                 <br>
+                                <div class="row">
                                 <blockquote>
                                     <div class="col-md-5">
-                                        <label style="float: left" for="cover">Choose Article cover</label>
+                                        <label  for="cover">{{__('lang.cover')}}</label>
                                         <br>
                                         <input class="" id="cover" type="file" name="cover"
                                             value="{{ old('cover') }}" onchange="loadFile2(event)">
                                     </div>
                                     <div>
                                         <br>
-                                        <img class="" id="out2" style="height:150px;margin-left:60px;width:580px">
+                                        <img class="" id="out2" style="height:150px;width:580px">
                                     </div>
                                 </blockquote>
+                                </div>
                                 <br>
+                                <div class="row">
                                 <blockquote class="blockquote mb-0">
                                     <div class="slideOne">
-                                        <input style="float: left" type="checkbox" value="1" id="published" name="status"
+                                        <input  type="checkbox" value="1" id="published" name="status"
                                             checked />
-                                        <label style="float: left" for="slideOne">Active</label>
+                                        <label  for="slideOne">{{__('lang.Active')}}</label>
                                     </div>
 
                                 </blockquote>
+                                </div>
                                 <br> <br>
 
                                 <div class="col-xs-12 col-sm-12 col-md-7 mb-5">
-                                    <label style="float: left" for="category">Select Category</label>
-                                    <select style="margin-left: 50px;" name="category_id[]" id="category"
+                                    <label  for="category">{{__lang.}}</label>
+                                    <select name="category_id[]" id="category"
                                         class="form-control show-tick" data-live-search="true">
                                         <option selected>Open this select menu</option>
                                         @foreach ($categories as $category)
@@ -84,7 +90,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-6" style="float: left">
+                                <div class="form-group col-md-6">
                                     <button style="" type="submit" class="btn btn-success" id="btn-send">Submit</button>
                                     <a class='btn btn-light ' href='{{ route('articles.index') }}'>Cancel</a>
                                 </div>

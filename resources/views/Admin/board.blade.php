@@ -38,6 +38,16 @@
                 left: 0px;
                 margin-right: 150px;
             }
+			html[dir="ltr"] body{
+				float: left;
+				width: 100%;
+				text-align: left;
+			}
+			html[dir="rtl"] body{
+				float: right;
+				width: 100%;
+				text-align: right;
+			}
             html[dir="rtl"] .footer {
                 margin-left:0px;
                 padding-right: 10%;
@@ -55,7 +65,7 @@
                 padding-right: 10%;
             }
             html[dir="ltr"] .mycontent {
-                margin-left:180px;
+                margin-left:150px;
             }
             html[dir="rtl"] .mycontent {
                 margin-right: 150px;
