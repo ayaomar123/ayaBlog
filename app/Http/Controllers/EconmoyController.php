@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Events\ArticleViewer;
 use App\Models\Comment;
 use Helpers;
+use App\Http\Requests\CallRequest;
+use App\Models\Call;
 
 class EconmoyController extends Controller
 {
@@ -73,6 +75,27 @@ class EconmoyController extends Controller
             'ratings',
             'comments'
         ));
+    }
+    public function call(){
+        $settings = Helpers::getSetting();
+        $mypages = Helpers::getmypages();
+        return view('pages.call',compact('mypages','settings'));
+    }
+
+    public function callPost(CallRequest $request){
+        $requestData = $request->all();
+
+        Call::create($requestData);
+        //dd($requestData);
+
+        return redirect()->route('home')
+            ->with('success', 'Project created successfully.');
+    }
+
+    public function showMsg(){
+        $items = Call::get();
+        //dd($items);
+        return view('pages.myMsg',compact('items'));
     }
 
 }

@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <h1>©جميع الحقوق محفوظة لدى ذهنك 2019</h1>
+                <h1>©جميع الحقوق محفوظة لدى مقالات 2021</h1>
             </div>
             <div class="col-lg-6">
                 <ul class="soical-footer">

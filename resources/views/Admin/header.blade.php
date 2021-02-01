@@ -35,7 +35,7 @@
                     <ul class="navi navi-hover py-4">
                         @php $locale = session()->get('locale'); @endphp
                         <!--begin::Item-->
-                        <li class="navi-item">
+                        <li class="navi-item active">
                             <a href="{{ url('/home/en') }}" class="navi-link">
                                 <span class="symbol symbol-20 mr-3">
                                     <img src="{{asset('assets/media/svg/flags/226-united-states.svg')}}" alt="" />
@@ -45,7 +45,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="navi-item active ">
+                        <li class="navi-item  ">
                             <a href="{{ url('/home/ar') }}" class="navi-link">
                                 <span class="symbol symbol-20 mr-3">
                                     <img src="{{asset('assets/media/svg/flags/158-egypt.svg')}}" alt="" />

@@ -38,6 +38,9 @@
                                     <a class=" nav-link" href="{{ asset('pages/' . $item->id) }}">{{ $item->title }}</a>
                                 </li>
                             @endforeach
+                            <li class="nav-item">
+                                <a class=" nav-link" href="{{ asset('call') }}">اتصل بنا</a>
+                            </li>
                         </ul>
                     </div>
                     <!--=================================================-->

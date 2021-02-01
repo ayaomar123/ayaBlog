@@ -38,6 +38,11 @@ Route::get('/', [HomeEditController::class, 'index'])->name('home');
 
 Route::get('rating/{star}', [RatingController::class, 'postRating'])->name('rating');
 Route::get('comment/{slug}', [CommentController::class, 'postComment'])->name('comment');
+Route::get('call', [EconmoyController::class, 'call'])->name('call');
+Route::post('callPost', [EconmoyController::class, 'callPost'])->name('callPost');
+Route::get('showMsg', [EconmoyController::class, 'showMsg'])->name('showMsg');
+
+
 
 Route::group(['middleware' => ['is_admin']], function() {
     Route::get('home/{locale}', [LocalizationController::class, 'lang']);
