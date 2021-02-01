@@ -45,10 +45,10 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="navi-item active">
+                        <li class="navi-item active ">
                             <a href="{{ url('/home/ar') }}" class="navi-link">
                                 <span class="symbol symbol-20 mr-3">
-                                    <img src="{{asset('assets/media/svg/flags/128-spain.svg')}}" alt="" />
+                                    <img src="{{asset('assets/media/svg/flags/158-egypt.svg')}}" alt="" />
                                 </span>
                                 <span class="navi-text">Arabic</span>
                             </a>
